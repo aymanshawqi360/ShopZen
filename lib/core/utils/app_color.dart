@@ -7,10 +7,11 @@ class AppColors {
   // static Color background = const Color(0xffF4F4F4);
 
   // ===== Dark Mode =====
-  static Color darkBackground = Color(0xffffffff);
+  static Color darkBackground =  Color(0xff121212);
+  
 
   // ====== Light Mode ======
-  static Color lightBackground = Color(0xff121212);
+  static Color lightBackground = Color(0xffffffff);
 
   // ======= griy Colors ======
   static Color griy50 = Color(0xffFBFBFC);

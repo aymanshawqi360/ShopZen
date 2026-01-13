@@ -20,9 +20,9 @@ class ShopzenApp extends StatelessWidget {
           // title: 'First Method',
           // You can use the library anywhere in the app even in theme
 
-          theme: AppTheme.darkTheme,
+          theme: AppTheme.lightTheme,
           
-          darkTheme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
           themeMode: ThemeMode.system,
           routerConfig: RoutGenerator.mainAppRouter,
         );
