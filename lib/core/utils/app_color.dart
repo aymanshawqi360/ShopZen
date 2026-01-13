@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 class AppColors {
   AppColors._();
   static Color primaryColor = const Color(0xff452CE8);
-  static Color secondary = const Color(0xffFBFBFC);
-  static Color background = const Color(0xffF4F4F4);
+  // static Color secondary = const Color(0xffFBFBFC);
+  // static Color background = const Color(0xffF4F4F4);
 
-  // ===== Light Mode =====
+  // ===== Dark Mode =====
+  static Color darkBackground = Color(0xffffffff);
+
+  // ====== Light Mode ======
+  static Color lightBackground = Color(0xff121212);
 
   // ======= griy Colors ======
   static Color griy50 = Color(0xffFBFBFC);
@@ -34,7 +38,7 @@ class AppColors {
 
   // ====== Common Colors ======
   static Color black = Color(0xff000000);
-  static Color white = Color(0xffffffff);
+  
   static Color transparent = Colors.transparent;
 
   // ====== Shadow Colors ======
