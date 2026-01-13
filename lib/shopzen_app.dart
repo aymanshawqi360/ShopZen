@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopzen/core/constants/app_constants.dart';
 import 'package:shopzen/core/routing/app_router.dart';
+import 'package:shopzen/core/utils/app_theme.dart';
 
 class ShopzenApp extends StatelessWidget {
   const ShopzenApp({super.key});
@@ -18,10 +19,11 @@ class ShopzenApp extends StatelessWidget {
           debugShowCheckedModeBanner: AppConstants.debugShowCheckedModeBanner,
           // title: 'First Method',
           // You can use the library anywhere in the app even in theme
-          // theme: ThemeData(
-          //   primarySwatch: Colors.blue,
-          //   textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
-          // ),
+
+          theme: AppTheme.lightTheme,
+          
+          darkTheme: AppTheme.darkTheme,
+          themeMode: ThemeMode.system,
           routerConfig: RoutGenerator.mainAppRouter,
         );
       },
