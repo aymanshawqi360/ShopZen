@@ -15,9 +15,11 @@ class CustomButton extends StatelessWidget {
   final WidgetStateProperty<Color?>? shadowColor;
   final TextStyle? style;
   final  String? text ;
+  final Size ? minimumSize;
   const CustomButton({
     super.key,
     this.onPressed,
+    this.minimumSize,
     this.padding,
     this.elevation,
     this.backgroundColor, this.overlayColor, this.shadowColor, this.text, this.style,
@@ -33,8 +35,10 @@ class CustomButton extends StatelessWidget {
             backgroundColor ??
             MaterialStateProperty.all(AppColors.primaryColor),
         elevation: elevation ?? MaterialStateProperty.all(1),
-        padding:
-            padding ?? MaterialStateProperty.all(AppSpacing.paddingH123V14),
+         padding:
+             padding ?? MaterialStateProperty.all(EdgeInsets.zero),
+
+              minimumSize: MaterialStateProperty.all<Size>(minimumSize?? AppSize.sizeW335H50),
 
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(borderRadius: AppSpacing.borderRadius8),

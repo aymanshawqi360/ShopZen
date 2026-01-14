@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopzen/core/common_ui/widgets/custom_button.dart';
-import 'package:shopzen/core/constants/app_spacing.dart';
+import 'package:shopzen/core/constants/app_size.dart';
+import 'package:shopzen/core/extension/app_extension.dart';
 import 'package:shopzen/feature/onboarding/widget/onboarding_description_and_title.dart';
 import 'package:shopzen/feature/onboarding/widget/onboarding_image.dart';
 
@@ -14,11 +15,13 @@ class OnboardingScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            AppSpacing.hSpace16,
+          children: [            
+            AppSize.gapH16,
             OnboardingImage(),
             OnboardingDescriptionAndTitle(),
-            CustomButton(),
+            CustomButton(
+              text: context.l10n.onboardingGetStarted,
+            ),
           ],
         ),
       ),

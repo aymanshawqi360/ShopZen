@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppSize {
@@ -124,23 +125,10 @@ class AppSize {
 
  //SizeBox
   
+  // ====== Size ======
 
+  static Size get sizeW335H50=> Size(335.w, 50.h);
 
-  //  static double get radiusXSmall => 4.r;
-  // static double get radiusSmall => 10.r;
-  // static double get radius12 => 12.r;
-  // static double get radius14 => 14.r;
-  // static double get radius16 => 16.r;
-  // static double get radius20 => 20.r;
-  // static double get radius22 => 22.r;
-  // static double get radiusMedium => 28.r;
-  // static double get radiusLarge => 30.r;
-  // static double get radiusXLarge => 20.r;
-  // static double get radiusXXLarge => 25.r;
-  // static double get radiusButton => 32.r;
-  // static double get radiusXXButton => 40.r;
-  // static double get radiusXXXButton => 50.r;
-  // static double get radiusXXXXButton => 60.r;
     
 
   //Texts Style
@@ -167,7 +155,53 @@ class AppSize {
   static double get textSizeSp64 => 64.sp;
  
 
-  
+   // Vertical Gaps
+
+  static SizedBox get gapH2 => SizedBox(height: 2.h);
+  static SizedBox get gapH4 => SizedBox(height: 4.h);
+  static SizedBox get gapH6 => SizedBox(height: 6.h);
+  static SizedBox get gapH8 => SizedBox(height: 8.h);
+  static SizedBox get gapH9 => SizedBox(height: 9.h);
+  static SizedBox get gapH12 => SizedBox(height: 12.h);
+  static SizedBox get gapH16 => SizedBox(height: 16.h);
+  static SizedBox get gapH20 => SizedBox(height: 20.h);
+  static SizedBox get gapH24 => SizedBox(height: 24.h);
+  static SizedBox get gapH27 => SizedBox(height: 27.h);
+  static SizedBox get gapH28 => SizedBox(height: 28.h);
+  static SizedBox get gapH30 => SizedBox(height: 30.h);
+  static SizedBox get gapH33 => SizedBox(height: 33.h);
+  static SizedBox get gapH32 => SizedBox(height: 32.h);
+  static SizedBox get gapH40 => SizedBox(height: 40.h);
+  static SizedBox get gapH50 => SizedBox(height: 50.h);
+  static SizedBox get gapH53 => SizedBox(height: 53.19.h);
+  static SizedBox get gapH58 => SizedBox(height: 58.h);
+  static SizedBox get gapH59 => SizedBox(height: 59.h);
+  static SizedBox get gapH70 => SizedBox(height: 70.h);
+  static SizedBox get gapH88 => SizedBox(height: 88.h);
+  static SizedBox get gapH100 => SizedBox(height: 100.h);
+
+  // ========= HORIZONTAL GAPS (SizedBox widths) =========
+
+  static SizedBox get gapW4 => SizedBox(width: 4.w);
+  static SizedBox get gapW8 => SizedBox(width: 8.w);
+  static SizedBox get gapW10 => SizedBox(width: 10.w);
+  static SizedBox get gapW12 => SizedBox(width: 12.w);
+  static SizedBox get gapW16 => SizedBox(width: 16.w);
+  static SizedBox get gapW20 => SizedBox(width: 20.w);
+  static SizedBox get gapW24 => SizedBox(width: 24.w);
+  static SizedBox get gapW48 => SizedBox(width: 48.w);
+
+  // ========= GRID SPACING =========
+
+  static double get gridCrossSpacing => 12.w;
+  static double get gridMainSpacing => 12.h;
+  static double get gridMainExtent => 110.h;
+
+  // ========= (SizedBox width and height) =========
+
+  static SizedBox get gapW123AndH14 => SizedBox(width: 123.w, height: 14.h);
+
+
 
 }
 

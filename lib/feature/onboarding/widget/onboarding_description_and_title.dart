@@ -10,27 +10,25 @@ class OnboardingDescriptionAndTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   Column(
-              children: [
-                Text(
-                  AppStrings.welcomeOnboarding,
-                  style: AppTextStyles.onboardingLarge.copyWith(
-                    fontSize: AppSize.textSizeSp28,
-                    color: context.isDark()? AppColors.textWhite:AppColors.textBlack
-                  ),
-                  
-                ),
-                 Text(
-              textAlign: TextAlign.center,
-              AppStrings.descriptionOnboarding,
-              style: AppTextStyles.onboardingBody.copyWith(
-                color:context.isDark()?                 
-                 AppColors.griy650
-                : AppColors.griy800,
-                fontSize: AppSize.textSizeSp14,
-              ),
-            ),
-              ],
-            );
+    return Column(
+      children: [
+        Text(
+          context.l10n.onboardingWelcome,
+          style: AppTextStyles.onboardingLarge.copyWith(
+            fontSize: AppSize.textSizeSp28,
+            color: context.isDark() ? AppColors.textWhite : AppColors.textBlack,
+          ),
+        ),
+        Text(
+          textAlign: TextAlign.center,
+
+          context.l10n.onboardingAppDescription,
+          style: AppTextStyles.onboardingBody.copyWith(
+            color: context.isDark() ? AppColors.griy650 : AppColors.griy800,
+            fontSize: AppSize.textSizeSp14,
+          ),
+        ),
+      ],
+    );
   }
 }
