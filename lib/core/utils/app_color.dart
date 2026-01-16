@@ -8,6 +8,7 @@ class AppColors {
 
   // ===== Dark Mode =====
   static Color darkBackground =  Color(0xff121212);
+  static Color darkGray=Color(0xff2A2A2A);
   
 
   // ====== Light Mode ======
