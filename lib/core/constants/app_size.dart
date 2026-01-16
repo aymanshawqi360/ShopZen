@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppSize {
+  // ====== Radius ======
+  static double get radius170 => 143.r;
+
+  // ====== Positioned ======
+  static double get positionedTop140 => -140;
+  static double get positionedRight95 => -95;
   
   // ====== Width ======
   static double get width1 => 1.5;
