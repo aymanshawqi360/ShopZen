@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shopzen/core/constants/app_size.dart';
-import 'package:shopzen/core/constants/app_spacing.dart';
 import 'package:shopzen/core/utils/app_color.dart';
 import 'package:shopzen/core/utils/app_text_styles.dart';
 import 'package:shopzen/core/utils/font_weight_helper.dart';
+import 'package:shopzen/core/utils/theme_borders.dart';
 
 ThemeData buildDarkTheme() {
   final base = ThemeData.dark();
@@ -73,11 +73,13 @@ ThemeData buildDarkTheme() {
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
+      filled: true,
       fillColor: AppColors.darkBackground,
-      focusedBorder: themeFocusedBorder(),
-      enabledBorder: themeEnabledBorder(),
-      errorBorder: themeErrorBorder(),
-      focusedErrorBorder: themeErrorBorder(),
+      focusedBorder:ThemeDefaultBorder.outlineInputBorder(ThemeFocusedBorder()),
+      enabledBorder: ThemeDefaultBorder.outlineInputBorder(
+          ThemeEnabledBorder()),
+      errorBorder:ThemeDefaultBorder.outlineInputBorder(ThemeErrorBorder()),
+      focusedErrorBorder: ThemeDefaultBorder.outlineInputBorder(ThemeErrorBorder()),
       hintStyle: AppTextStyles.titleLarge.copyWith(
         fontSize: AppSize.textSizeSp13,
         fontWeight: FontWeightHelper.regular,
@@ -93,30 +95,5 @@ ThemeData buildDarkTheme() {
       //selectedItemColor: AppColors.primary,
       //unselectedItemColor: AppColors.textGrayDark,
     ),
-  );
-}
-
-OutlineInputBorder themeErrorBorder() {
-  return OutlineInputBorder(
-    borderSide: BorderSide(
-      color: AppColors.alertError500,
-      width: AppSize.width1,
-    ),
-    borderRadius: AppSpacing.borderRadius8,
-  );
-}
-
-OutlineInputBorder themeFocusedBorder() {
-  return OutlineInputBorder(
-    borderRadius: AppSpacing.borderRadius8,
-
-    borderSide: BorderSide(color: Color(0xff6a70ff), width: AppSize.width1),
-  );
-}
-OutlineInputBorder themeEnabledBorder() {
-  return OutlineInputBorder(
-    borderRadius: AppSpacing.borderRadius8,
-
-    borderSide: BorderSide(color: AppColors.griy500, width: AppSize.width1),
   );
 }

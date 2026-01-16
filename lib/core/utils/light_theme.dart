@@ -4,6 +4,7 @@ import 'package:shopzen/core/constants/app_spacing.dart';
 import 'package:shopzen/core/utils/app_color.dart';
 import 'package:shopzen/core/utils/app_text_styles.dart';
 import 'package:shopzen/core/utils/font_weight_helper.dart';
+import 'package:shopzen/core/utils/theme_borders.dart';
 
 ThemeData buildLightTheme() {
   final base = ThemeData.light();
@@ -50,10 +51,10 @@ ThemeData buildLightTheme() {
       filled: true,
       fillColor: AppColors.lightBackground,
       contentPadding: AppSpacing.paddingH16V12,
-      focusedBorder: themeFocusedBorder(),
-      enabledBorder: themeEnabledBorder(),
-      errorBorder: themeErrorBorder(),
-      focusedErrorBorder: themeErrorBorder(),
+      focusedBorder:ThemeDefaultBorder.outlineInputBorder(ThemeFocusedBorder()),
+      enabledBorder:ThemeDefaultBorder.outlineInputBorder(ThemeEnabledBorder()),
+      errorBorder:ThemeDefaultBorder.outlineInputBorder(ThemeErrorBorder()),
+      focusedErrorBorder: ThemeDefaultBorder.outlineInputBorder(ThemeErrorBorder()),
       prefixIconColor: AppColors.textGray,
       hintStyle: AppTextStyles.titleLarge.copyWith(
         fontSize: AppSize.textSizeSp13,
@@ -82,18 +83,4 @@ OutlineInputBorder themeErrorBorder() {
   );
 }
 
-OutlineInputBorder themeFocusedBorder() {
-  return OutlineInputBorder(
-    borderRadius: AppSpacing.borderRadius8,
 
-    borderSide: BorderSide(color: Color(0xff6a70ff), width: AppSize.width1),
-  );
-}
-
-OutlineInputBorder themeEnabledBorder() {
-  return OutlineInputBorder(
-    borderRadius: AppSpacing.borderRadius8,
-
-    borderSide: BorderSide(color: AppColors.griy500, width: AppSize.width1),
-  );
-}
