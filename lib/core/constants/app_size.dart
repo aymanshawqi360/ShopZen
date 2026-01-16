@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class AppSize {
   
   // ====== Width ======
-  static double get width1 => 1.5.w;
+  static double get width1 => 1.5;
   static double get checkboxWidth20 => 20.w;
   
   // ====== Height ======
