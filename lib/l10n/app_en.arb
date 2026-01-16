@@ -11,5 +11,18 @@
     "login":"Login",
     "noAccount": "Don't have an account? ",
     "signUp": "Sign Up",
-    "rememberMe": "Remember me"
+    "rememberMe": "Remember me",
+    "createYourAccount": "Create Your Account",
+    "signUpMessage": "Sign up to enjoy the best managing\n experience!",
+    "firstName":"First Name",
+    "lastName":"Last Name",
+    "enterYourFirstName":"Enter your first Name",
+    "enterYourLastName":"Enter your last Name",
+    "confirmPassword":"Confirm Password",
+    "enterYourConfirmPassword":"Enter your Confirm Password",
+    "enterYourPhoneNumber":"Enter your Phone Number ",
+    "phoneField":"Phone",
+    "register":"Register",
+    "alreadyHaveAccount":"Already have an account? "
+
 }

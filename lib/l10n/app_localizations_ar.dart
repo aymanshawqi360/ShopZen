@@ -47,4 +47,40 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get rememberMe => 'تذكرني';
+
+  @override
+  String get createYourAccount => 'أنشئ حسابك';
+
+  @override
+  String get signUpMessage => 'سجل للاستمتاع بأفضل تجربة إدارة!';
+
+  @override
+  String get firstName => 'الاسم الأول';
+
+  @override
+  String get lastName => 'اسم العائلة';
+
+  @override
+  String get enterYourFirstName => 'أدخل اسمك الأول';
+
+  @override
+  String get enterYourLastName => 'أدخل اسم العائلة';
+
+  @override
+  String get confirmPassword => 'تأكيد كلمة المرور';
+
+  @override
+  String get enterYourConfirmPassword => 'أدخل تأكيد كلمة المرور';
+
+  @override
+  String get enterYourPhoneNumber => 'أدخل رقم هاتفك ';
+
+  @override
+  String get phoneField => 'الهاتف';
+
+  @override
+  String get register => 'تسجيل';
+
+  @override
+  String get alreadyHaveAccount => 'هل لديك حساب بالفعل؟ ';
 }

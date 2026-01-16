@@ -68,6 +68,7 @@ class AppColors {
   
   static Color textGray = Color(0xff68656E);
   static Color textWhite = Color(0xffFBFBFC);
+  static Color textLight = Color(0xffE0E1E7);
   // ====== Dark Text ======
   static Color textBlack = Color(0xff323135);
   // static Color textWhite = Color(0xffFBFBFC);

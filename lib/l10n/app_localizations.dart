@@ -175,6 +175,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Remember me'**
   String get rememberMe;
+
+  /// No description provided for @createYourAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Your Account'**
+  String get createYourAccount;
+
+  /// No description provided for @signUpMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up to enjoy the best managing\n experience!'**
+  String get signUpMessage;
+
+  /// No description provided for @firstName.
+  ///
+  /// In en, this message translates to:
+  /// **'First Name'**
+  String get firstName;
+
+  /// No description provided for @lastName.
+  ///
+  /// In en, this message translates to:
+  /// **'Last Name'**
+  String get lastName;
+
+  /// No description provided for @enterYourFirstName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your first Name'**
+  String get enterYourFirstName;
+
+  /// No description provided for @enterYourLastName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your last Name'**
+  String get enterYourLastName;
+
+  /// No description provided for @confirmPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Password'**
+  String get confirmPassword;
+
+  /// No description provided for @enterYourConfirmPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your Confirm Password'**
+  String get enterYourConfirmPassword;
+
+  /// No description provided for @enterYourPhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your Phone Number '**
+  String get enterYourPhoneNumber;
+
+  /// No description provided for @phoneField.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get phoneField;
+
+  /// No description provided for @register.
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get register;
+
+  /// No description provided for @alreadyHaveAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account? '**
+  String get alreadyHaveAccount;
 }
 
 class _AppLocalizationsDelegate

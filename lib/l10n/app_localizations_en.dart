@@ -47,4 +47,41 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get rememberMe => 'Remember me';
+
+  @override
+  String get createYourAccount => 'Create Your Account';
+
+  @override
+  String get signUpMessage =>
+      'Sign up to enjoy the best managing\n experience!';
+
+  @override
+  String get firstName => 'First Name';
+
+  @override
+  String get lastName => 'Last Name';
+
+  @override
+  String get enterYourFirstName => 'Enter your first Name';
+
+  @override
+  String get enterYourLastName => 'Enter your last Name';
+
+  @override
+  String get confirmPassword => 'Confirm Password';
+
+  @override
+  String get enterYourConfirmPassword => 'Enter your Confirm Password';
+
+  @override
+  String get enterYourPhoneNumber => 'Enter your Phone Number ';
+
+  @override
+  String get phoneField => 'Phone';
+
+  @override
+  String get register => 'Register';
+
+  @override
+  String get alreadyHaveAccount => 'Already have an account? ';
 }
