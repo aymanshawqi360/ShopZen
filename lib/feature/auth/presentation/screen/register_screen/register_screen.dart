@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopzen/core/constants/app_size.dart';
 import 'package:shopzen/core/constants/app_spacing.dart';
+import 'package:shopzen/core/extension/app_extension.dart';
 import 'package:shopzen/core/utils/app_color.dart';
 import 'package:shopzen/feature/auth/presentation/widget/register/register_Info_column.dart';
 import 'package:shopzen/feature/auth/presentation/widget/register/register_already_have_account.dart';
@@ -23,7 +24,7 @@ class RegisterScreen extends StatelessWidget {
             child: CircleAvatar(
               radius: AppSize.radius170,
               backgroundColor: 
-               AppColors.darkGray
+              context.isDark()?AppColors.darkGray: AppColors.lightGray
             ),
           ),
              Padding(

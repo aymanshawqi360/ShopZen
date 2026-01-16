@@ -13,6 +13,7 @@ class AppColors {
 
   // ====== Light Mode ======
   static Color lightBackground = Color(0xffffffff);
+  static Color lightGray=Color(0xffDFE5F0);
 
   // ======= griy Colors ======
   static Color griy50 = Color(0xffFBFBFC);
