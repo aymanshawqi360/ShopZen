@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppSize {
+  // ====== Radius ======
+  static double get radius170 => 143.r;
+
+  // ====== Positioned ======
+  static double get positionedTop140 => -140;
+  static double get positionedRight95 => -95;
   
   // ====== Width ======
   static double get width1 => 1.5;
@@ -35,6 +41,7 @@ class AppSize {
   static double get textSizeSp12 => 12.sp;
   static double get textSizeSp13 => 13.sp;
   static double get textSizeSp14 => 14.sp;
+  static double get textSizeSp15 => 15.sp;
   static double get textSizeSp16 => 16.sp;
   static double get textSizeSp17 => 17.sp;
   static double get textSizeSp18 => 18.sp;
@@ -43,6 +50,7 @@ class AppSize {
   static double get textSizeSp22 => 22.sp;
   static double get textSizeSp23 => 23.sp;
   static double get textSizeSp24 => 24.sp;
+  static double get textSizeSp26 => 26.sp;
   static double get textSizeSp28 => 28.sp;
   static double get textSizeSp30 => 30.sp;
   static double get textSizeSp31 => 31.sp;
@@ -66,6 +74,7 @@ class AppSize {
   static SizedBox get gapH18 => SizedBox(height: 18.h);
   static SizedBox get gapH20 => SizedBox(height: 20.h);
   static SizedBox get gapH24 => SizedBox(height: 24.h);
+  static SizedBox get gapH26 => SizedBox(height: 26.h);
   static SizedBox get gapH27 => SizedBox(height: 27.h);
   static SizedBox get gapH28 => SizedBox(height: 28.h);
   static SizedBox get gapH30 => SizedBox(height: 30.h);
@@ -79,8 +88,10 @@ class AppSize {
   static SizedBox get gapH59 => SizedBox(height: 59.h);
   static SizedBox get gapH68 => SizedBox(height: 68.h);
   static SizedBox get gapH70 => SizedBox(height: 70.h);
+  static SizedBox get gapH84 => SizedBox(height: 84.h);
   static SizedBox get gapH88 => SizedBox(height: 88.h);
   static SizedBox get gapH100 => SizedBox(height: 100.h);
+  static SizedBox get gapH150 => SizedBox(height: 150.h);
 
   // ========= HORIZONTAL GAPS (SizedBox widths) =========
 

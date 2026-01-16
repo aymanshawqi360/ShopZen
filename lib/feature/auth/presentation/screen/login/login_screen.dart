@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shopzen/core/common_ui/widgets/custom_button.dart';
 import 'package:shopzen/core/common_ui/widgets/custom_text_span.dart';
 import 'package:shopzen/core/constants/app_size.dart';
 import 'package:shopzen/core/constants/app_spacing.dart';
 import 'package:shopzen/core/extension/app_extension.dart';
+import 'package:shopzen/core/routing/route_name.dart';
 import 'package:shopzen/feature/auth/presentation/widget/login/email_and_password.dart';
 import 'package:shopzen/feature/auth/presentation/widget/login/login_title.dart';
 import 'package:shopzen/feature/auth/presentation/widget/login/password_validation.dart';
@@ -29,7 +31,7 @@ class LoginScreen extends StatelessWidget {
               const Spacer(),
               CustomTextSpan(
                 onTap: () {
-                  // context.goNamed(  Routes.signUpScreen);
+                  context.go( AppRoutes.register);                              
                 },
                 fristText: context.l10n.noAccount,
                 lateText: context.l10n.signUp,

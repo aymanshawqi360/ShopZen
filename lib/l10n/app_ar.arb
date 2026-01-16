@@ -11,5 +11,17 @@
     "login":"تسجيل الدخول",
     "noAccount": "ليس لديك حساب؟ ",
     "signUp": "إنشاء حساب",
-    "rememberMe": "تذكرني"
+    "rememberMe": "تذكرني",
+    "createYourAccount": "أنشئ حسابك",
+    "signUpMessage": "سجل للاستمتاع بأفضل تجربة إدارة!",
+    "firstName":"الاسم الأول",
+    "lastName":"اسم العائلة",
+    "enterYourFirstName":"أدخل اسمك الأول",
+    "enterYourLastName":"أدخل اسم العائلة",
+    "confirmPassword":"تأكيد كلمة المرور",
+    "enterYourConfirmPassword":"أدخل تأكيد كلمة المرور",
+    "enterYourPhoneNumber":"أدخل رقم هاتفك ",
+    "phoneField":"الهاتف",
+    "register":"تسجيل",
+    "alreadyHaveAccount":"هل لديك حساب بالفعل؟ "
 }

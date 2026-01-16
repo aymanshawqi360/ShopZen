@@ -8,10 +8,12 @@ class AppColors {
 
   // ===== Dark Mode =====
   static Color darkBackground =  Color(0xff121212);
+  static Color darkGray=Color(0xff2A2A2A);
   
 
   // ====== Light Mode ======
   static Color lightBackground = Color(0xffffffff);
+  static Color lightGray=Color(0xffDFE5F0);
 
   // ======= griy Colors ======
   static Color griy50 = Color(0xffFBFBFC);
@@ -68,6 +70,7 @@ class AppColors {
   
   static Color textGray = Color(0xff68656E);
   static Color textWhite = Color(0xffFBFBFC);
+  static Color textLight = Color(0xffE0E1E7);
   // ====== Dark Text ======
   static Color textBlack = Color(0xff323135);
   // static Color textWhite = Color(0xffFBFBFC);
