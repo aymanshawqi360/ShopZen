@@ -36,6 +36,8 @@ class CustomTextField extends StatelessWidget {
           : AppColors.darkBackground,
       cursorHeight: AppSize.cursorHeight,
       decoration: InputDecoration(
+        filled: context.appTheme.inputDecorationTheme.filled,
+        fillColor: backgroundColor ?? context.appTheme.inputDecorationTheme.fillColor,
         contentPadding: AppSpacing.paddingH16V12,
         focusedBorder:
             focusedBorder ??
@@ -52,6 +54,7 @@ class CustomTextField extends StatelessWidget {
         prefixIcon: prefixIcon,
       ),
       obscureText: isObscureText ?? false,
+      
       // style: AppTextStyles.titleLarge.copyWith(
       //   fontSize: AppSize.textSizeSp13,
       //   fontWeight: FontWeightHelper.regular,
