@@ -53,6 +53,7 @@ class AppTextStyles {
   // Titles
   static const TextStyle titleLarge = TextStyle(
    // fontFamily: AppStrings.appFontNameLato,
+   
     fontSize: 16,
     fontWeight: FontWeight.w700,
   );
@@ -76,7 +77,7 @@ class AppTextStyles {
   );
 
   static const TextStyle bodyMedium = TextStyle(
-  //  fontFamily: AppStrings.appFontNameLato,
+   fontFamily: AppStrings.satoshiFont,
     fontSize: 14,
     fontWeight: FontWeight.w400,
   );

@@ -25,7 +25,25 @@ class AppColors {
   static Color griy700 = Color(0xff7f7b87);
   static Color griy800 = Color(0xff68656e);
   static Color griy900 = Color(0xff57545b);
+  static Color griy950 =  Color(0xff323135);
+  
 
+   // ======= blue Colors ======
+  static Color blue50 = Color(0xffebefff);
+  static Color blue100 = Color(0xffdae2ff);
+  static Color blue200 = Color(0xffbcc8ff);
+  static Color blue300 = Color(0xff94a3ff);
+  static Color blue400 = Color(0xff6a70ff);
+  static Color blue500 = Color(0xff4f48ff);
+  static Color blue600 = Color(0xff4027ff);
+  static Color blue700 = Color(0xff452ce8);
+  static Color blue800 = Color(0xff2c1ab9);
+  static Color blue900 = Color(0xff291e91);
+  static Color blue950 = Color(0xff1a1254);
+
+  
+
+  
   // ====== Alert Colors ======
 
   //Error

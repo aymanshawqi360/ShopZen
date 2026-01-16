@@ -6,4 +6,6 @@ class AppAssets {
 
   //Svg
   static const String onboarding = '$_assets${_svg}onboarding.svg';
+  static const String email='$_assets${_svg}email.svg';
+  static const String password='$_assets${_svg}password.svg';
 }

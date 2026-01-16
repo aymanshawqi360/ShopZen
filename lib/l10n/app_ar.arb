@@ -1,5 +1,15 @@
 {
     "onboardingAppDescription": "وجهتك المثالية للتسوق عبر الإنترنت\nبسهولة ودون عناء",
     "onboardingWelcome": "مرحباً بك في ShopZen",
-    "onboardingGetStarted": "ابدأ الآن"
+    "onboardingGetStarted": "ابدأ الآن",
+    "loginWithEmail":"تسجيل الدخول بالبريد الإلكتروني",
+    "passwordField":"كلمة المرور",
+    "emailField":"البريد الإلكتروني",
+    "forgotPassword":"هل نسيت كلمة المرور؟",
+    "enterYourEmail":"أدخل بريدك الإلكتروني",
+    "enterYourPassword":"أدخل كلمة المرور الخاصة بك",
+    "login":"تسجيل الدخول",
+    "noAccount": "ليس لديك حساب؟ ",
+    "signUp": "إنشاء حساب",
+    "rememberMe": "تذكرني"
 }
