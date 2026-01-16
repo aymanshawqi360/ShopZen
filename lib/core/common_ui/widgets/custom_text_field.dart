@@ -13,7 +13,8 @@ class CustomTextField extends StatelessWidget {
   final String? hintText;
   final Color? backgroundColor;
   final bool? isObscureText;
-  final Function(String?) validator;
+  final String? Function(String?)? validator;
+  //Function(String?) validator;
   const CustomTextField({
     super.key,
     this.prefixIcon,
@@ -57,9 +58,11 @@ class CustomTextField extends StatelessWidget {
       //   color: Colors.red
       //   // context.isDark() ? AppColors.textWhite : AppColors.textBlack,
       // ),
-      validator: (value) {
+      validator:validator
+      /* (value) {
         return validator(value);
       },
+      */
     );
   }
 }
