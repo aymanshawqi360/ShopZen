@@ -1,5 +1,15 @@
 {
     "onboardingAppDescription": "Your one-stop destination for hassle-\nfree online shopping",
     "onboardingWelcome": "Welcome to ShopZen",
-    "onboardingGetStarted": "Get Started"
+    "onboardingGetStarted": "Get Started",
+    "loginWithEmail":"Login with Email",
+    "passwordField":"Password",
+    "emailField":"Email",
+    "forgotPassword":"Forgot Password?",
+    "enterYourEmail":"Enter your email",
+    "enterYourPassword":"Enter your password",
+    "login":"Login",
+    "noAccount": "Don't have an account? ",
+    "signUp": "Sign Up",
+    "rememberMe": "Remember me"
 }

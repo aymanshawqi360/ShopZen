@@ -13,3 +13,7 @@ extension LocalizationExtension on BuildContext {
   //String t(String key) => AppLocalizations.of(this)!.translate(key);
   AppLocalizations get l10n => AppLocalizations.of(this)!;
 }
+
+extension ThemeExtension on BuildContext {
+  ThemeData get appTheme => Theme.of(this);
+}
