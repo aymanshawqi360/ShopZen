@@ -84,4 +84,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get alreadyHaveAccount => 'Already have an account? ';
+
+  @override
+  String get forgotPassword2 => 'Forgot Password';
+
+  @override
+  String get forgotPasswordMessage =>
+      'Enter your email id for the verification process, we will send 6 digit to your email';
+
+  @override
+  String get forgotPasswordContinue => 'Continue';
 }

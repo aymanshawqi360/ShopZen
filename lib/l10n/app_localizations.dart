@@ -247,6 +247,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Already have an account? '**
   String get alreadyHaveAccount;
+
+  /// No description provided for @forgotPassword2.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot Password'**
+  String get forgotPassword2;
+
+  /// No description provided for @forgotPasswordMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email id for the verification process, we will send 6 digit to your email'**
+  String get forgotPasswordMessage;
+
+  /// No description provided for @forgotPasswordContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get forgotPasswordContinue;
 }
 
 class _AppLocalizationsDelegate

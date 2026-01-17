@@ -24,7 +24,7 @@ class EmailAndPassword extends StatelessWidget {
                   fontSize: AppSize.textSizeSp13,
                   color: context.isDark()
                       ? AppColors.textWhite
-                      : AppColors.textBlack,
+                      : AppColors.griy1000,
                 ),
               ),
           AppSize.gapH4,
@@ -55,7 +55,7 @@ class EmailAndPassword extends StatelessWidget {
               fontSize: AppSize.textSizeSp13,
               color: context.isDark()
                   ? AppColors.textWhite
-                  : AppColors.textBlack,
+                  : AppColors.griy1000,
             ),
           ),
           AppSize.gapH4,

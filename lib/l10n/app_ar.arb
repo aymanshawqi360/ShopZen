@@ -23,5 +23,8 @@
     "enterYourPhoneNumber":"أدخل رقم هاتفك ",
     "phoneField":"الهاتف",
     "register":"تسجيل",
-    "alreadyHaveAccount":"هل لديك حساب بالفعل؟ "
+    "alreadyHaveAccount":"هل لديك حساب بالفعل؟ ",
+    "forgotPassword2":"هل نسيت كلمة المرور",
+    "forgotPasswordMessage":"أدخل بريدك الإلكتروني لعملية التحقق، سنرسل رمزًا مكونًا من 6 أرقام إلى بريدك الإلكتروني",
+    "forgotPasswordContinue":"استمرار"
 }

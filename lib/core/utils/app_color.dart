@@ -28,7 +28,7 @@ class AppColors {
   static Color griy800 = Color(0xff68656e);
   static Color griy900 = Color(0xff57545b);
   static Color griy950 =  Color(0xff323135);
-  
+  static Color griy1000 = Color(0xff323135);
 
    // ======= blue Colors ======
   static Color blue50 = Color(0xffebefff);
@@ -42,7 +42,7 @@ class AppColors {
   static Color blue800 = Color(0xff2c1ab9);
   static Color blue900 = Color(0xff291e91);
   static Color blue950 = Color(0xff1a1254);
-
+  
   
 
   
@@ -67,11 +67,13 @@ class AppColors {
   static Color shadowColor = Color(0xff000000);
 
   // ====== Light Text ======
-  
   static Color textGray = Color(0xff68656E);
   static Color textWhite = Color(0xffFBFBFC);
   static Color textLight = Color(0xffE0E1E7);
+  
   // ====== Dark Text ======
-  static Color textBlack = Color(0xff323135);
-  // static Color textWhite = Color(0xffFBFBFC);
+  static Color textDark = Color(0xff323135);
+ 
+
+  
 }

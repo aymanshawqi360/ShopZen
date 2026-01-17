@@ -22,7 +22,7 @@ class LoginTitle extends StatelessWidget {
                     fontWeight: FontWeightHelper.bold,
                     color: context.isDark()
                         ? AppColors.textWhite
-                        : AppColors.textBlack,
+                        : AppColors.griy1000,
                   ),
                 ),
               ),

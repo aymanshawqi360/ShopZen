@@ -21,7 +21,7 @@ class RegisterInfoColumn extends StatelessWidget {
               style: AppTextStyles.bodyLarge.copyWith(
                 color: context.isDark()
                     ? AppColors.textWhite
-                    : AppColors.textBlack,
+                    : AppColors.griy1000,
                 fontSize: AppSize.textSizeSp24,
                 fontWeight: FontWeightHelper.bold,
               ),
@@ -37,7 +37,7 @@ class RegisterInfoColumn extends StatelessWidget {
               style: AppTextStyles.bodyLarge.copyWith(
                 color: context.isDark()
                     ? AppColors.textLight
-                    : AppColors.textBlack,
+                    : AppColors.griy1000,
                 fontSize: AppSize.textSizeSp16,
                 fontWeight: FontWeightHelper.regular,
               ),

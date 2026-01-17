@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shopzen/core/constants/app_size.dart';
 import 'package:shopzen/core/extension/app_extension.dart';
+import 'package:shopzen/core/routing/route_name.dart';
 import 'package:shopzen/core/utils/app_color.dart';
 import 'package:shopzen/core/utils/app_text_styles.dart';
 
@@ -54,11 +56,16 @@ class _PasswordValidationState extends State<PasswordValidation> {
           ],
         ),
 
-        Text(
-          context.l10n.forgotPassword,
-          style: AppTextStyles.bodyMedium.copyWith(
-            fontSize: AppSize.textSizeSp12,
-            color: context.isDark() ? AppColors.textWhite : AppColors.textBlack,
+        GestureDetector(
+          onTap: () {
+            context.go(AppRoutes.forgotPassword);
+          },
+          child: Text(
+            context.l10n.forgotPassword,
+            style: AppTextStyles.bodyMedium.copyWith(
+              fontSize: AppSize.textSizeSp12,
+              color: context.isDark() ? AppColors.textWhite : AppColors.griy1000,
+            ),
           ),
         ),
       ],

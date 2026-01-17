@@ -23,6 +23,9 @@
     "enterYourPhoneNumber":"Enter your Phone Number ",
     "phoneField":"Phone",
     "register":"Register",
-    "alreadyHaveAccount":"Already have an account? "
+    "alreadyHaveAccount":"Already have an account? ",
+    "forgotPassword2":"Forgot Password",
+    "forgotPasswordMessage":"Enter your email id for the verification process, we will send 6 digit to your email",
+    "forgotPasswordContinue":"Continue"
 
 }
