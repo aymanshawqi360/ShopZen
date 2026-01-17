@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopzen/core/common_ui/widgets/circle_avatar_positioned.dart';
 import 'package:shopzen/core/constants/app_size.dart';
 import 'package:shopzen/core/constants/app_spacing.dart';
 import 'package:shopzen/feature/auth/presentation/widget/forgot_password/forgot_password_button.dart';
@@ -11,17 +12,21 @@ class ForgotPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: AppSpacing.paddingL20R20,
-        child: Column(
-          children: [
-            const ForgotPasswordMessage(),
-            AppSize.gapH48,
-          const ForgotPasswordField(),
-          const ForgotPasswordButton()
-          
-          ],
-        ),
+      body: Stack(
+        children: [
+          const CircleAvatarPositioned(),
+          Padding(
+            padding: AppSpacing.paddingL20R20,
+            child: Column(
+              children: [
+                const ForgotPasswordMessage(),
+                AppSize.gapH48,
+                const ForgotPasswordField(),
+                const ForgotPasswordButton(),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
