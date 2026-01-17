@@ -30,7 +30,7 @@ ThemeData buildLightTheme() {
       titleLarge: AppTextStyles.titleLarge.copyWith(),
 
       titleMedium: AppTextStyles.titleMedium.copyWith(
-        color: AppColors.textBlack,
+        color: AppColors.griy1000,
       ),
 
       titleSmall: AppTextStyles.titleSmall.copyWith(
@@ -39,13 +39,13 @@ ThemeData buildLightTheme() {
 
       bodySmall: AppTextStyles.bodySmall.copyWith(),
       bodyMedium: AppTextStyles.bodyMedium.copyWith(color: AppColors.textGray),
-      bodyLarge: AppTextStyles.bodyLarge.copyWith(color: AppColors.textBlack),
+      bodyLarge: AppTextStyles.bodyLarge.copyWith(color: AppColors.griy1000),
       //labelLarge: AppTextStyles.labelLarge.copyWith(color: AppColors.primary),
     ),
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.lightBackground,
       elevation: 0,
-      foregroundColor: AppColors.textBlack,
+      foregroundColor: AppColors.griy1000,
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,

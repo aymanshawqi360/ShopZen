@@ -16,7 +16,7 @@ class OnboardingDescriptionAndTitle extends StatelessWidget {
           context.l10n.onboardingWelcome,
           style: AppTextStyles.onboardingLarge.copyWith(
             fontSize: AppSize.textSizeSp28,
-            color: context.isDark() ? AppColors.textWhite : AppColors.textBlack,
+            color: context.isDark() ? AppColors.textWhite : AppColors.griy1000,
           ),
         ),
         Text(

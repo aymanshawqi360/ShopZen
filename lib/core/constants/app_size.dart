@@ -12,6 +12,7 @@ class AppSize {
   // ====== Width ======
   static double get width1 => 1.5;
   static double get checkboxWidth20 => 20.w;
+  static double get boxConstraintsMaxWidth => 330.w;
   
   // ====== Height ======
   static double get cursorHeight => 14.h;

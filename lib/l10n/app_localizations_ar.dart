@@ -83,4 +83,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get alreadyHaveAccount => 'هل لديك حساب بالفعل؟ ';
+
+  @override
+  String get forgotPassword2 => 'هل نسيت كلمة المرور';
+
+  @override
+  String get forgotPasswordMessage =>
+      'أدخل بريدك الإلكتروني لعملية التحقق، سنرسل رمزًا مكونًا من 6 أرقام إلى بريدك الإلكتروني';
+
+  @override
+  String get forgotPasswordContinue => 'استمرار';
 }
