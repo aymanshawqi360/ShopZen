@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopzen/core/constants/app_size.dart';
-import 'package:shopzen/core/constants/app_spacing.dart';
+import 'package:shopzen/core/di/di.dart';
 import 'package:shopzen/core/extension/app_extension.dart';
 import 'package:shopzen/core/utils/app_color.dart';
-import 'package:shopzen/feature/auth/presentation/widget/register/register_Info_column.dart';
-import 'package:shopzen/feature/auth/presentation/widget/register/register_already_have_account.dart';
-import 'package:shopzen/feature/auth/presentation/widget/register/register_button.dart';
-import 'package:shopzen/feature/auth/presentation/widget/register/register_form_screen.dart';
+import 'package:shopzen/feature/auth/presentation/cubit/register/register_cubit.dart';
+import 'package:shopzen/feature/auth/presentation/widget/register/anumation_register.dart';
+
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -14,35 +14,29 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Stack(
-
-          children:[
+      body: BlocProvider(
+        create: (context) => sl<RegisterCubit>(),
+        child: SafeArea(
+          child: Stack(
+            children: [
               Positioned(
-            top: AppSize.positionedTop140,
-            right: AppSize.positionedRight95,
-            child: CircleAvatar(
-              radius: AppSize.radius170,
-              backgroundColor: 
-              context.isDark()?AppColors.darkGray: AppColors.lightGray
-            ),
+                top: AppSize.positionedTop140,
+                right: AppSize.positionedRight95,
+                child: CircleAvatar(
+                  radius: AppSize.radius170,
+                  backgroundColor: context.isDark()
+                      ? AppColors.darkGray
+                      : AppColors.lightGray,
+                ),
+              ),
+             const AnimationRegister(),
+            ],
           ),
-             Padding(
-            padding: AppSpacing.paddingL20R20,
-            child: CustomScrollView(
-              slivers: [
-                const SliverToBoxAdapter(child: RegisterInfoColumn()),
-                const SliverToBoxAdapter(child: RegisterFormScreen()),
-                const SliverToBoxAdapter(child: RegisterButton()),
-                const SliverToBoxAdapter(child: RegisterAlreadyHaveAccount()),
-              ],
-            ),
-          ),
-        ]),
+        ),
       ),
     );
   }
 }
 
 
- 
+
