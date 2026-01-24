@@ -93,4 +93,28 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get forgotPasswordContinue => 'استمرار';
+
+  @override
+  String get somethingWentWrong => 'عذراً! حدث خطأ ما';
+
+  @override
+  String get dismiss => 'رفض';
+
+  @override
+  String get pleaseEnterYourPhoneNumber => 'يرجى إدخال رقم هاتفك';
+
+  @override
+  String get pleaseEnterYourConfirmPassword => 'يرجى إدخال تأكيد كلمة المرور';
+
+  @override
+  String get pleaseEnterYourPassword => 'يرجى إدخال كلمة المرور';
+
+  @override
+  String get pleaseEnterYourEmail => 'يرجى إدخال بريدك الإلكتروني';
+
+  @override
+  String get pleaseEnterYourLastName => 'يرجى إدخال اسم العائلة';
+
+  @override
+  String get pleaseEnterYourFirstName => 'يرجى إدخال الاسم الأول';
 }

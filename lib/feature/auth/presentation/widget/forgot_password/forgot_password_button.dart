@@ -11,7 +11,7 @@ class ForgotPasswordButton extends StatelessWidget {
     return Column(
       children: [
         AppSize.gapH48,
-        CustomButton(text: context.l10n.forgotPasswordContinue),
+        CustomButton.text(text: context.l10n.forgotPasswordContinue),
       ],
     );
   }

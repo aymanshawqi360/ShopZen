@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shopzen/core/constants/app_size.dart';
-import 'package:shopzen/core/constants/app_spacing.dart';
 import 'package:shopzen/core/extension/app_extension.dart';
 import 'package:shopzen/core/utils/app_color.dart';
 
 class CustomTextField extends StatelessWidget {
+  final TextEditingController? controller;
   final Widget? prefixIcon;
   final InputBorder? focusedBorder;
   final InputBorder? enabledBorder;
@@ -14,9 +14,9 @@ class CustomTextField extends StatelessWidget {
   final Color? backgroundColor;
   final bool? isObscureText;
   final String? Function(String?)? validator;
-  //Function(String?) validator;
   const CustomTextField({
     super.key,
+    this.controller,
     this.prefixIcon,
     this.enabledBorder,
     this.focusedBorder,
@@ -31,14 +31,13 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       cursorColor: context.isDark()
           ? AppColors.lightBackground
           : AppColors.darkBackground,
       cursorHeight: AppSize.cursorHeight,
       decoration: InputDecoration(
         filled: context.appTheme.inputDecorationTheme.filled,
-        fillColor: backgroundColor ?? context.appTheme.inputDecorationTheme.fillColor,
-        contentPadding: AppSpacing.paddingH16V12,
         focusedBorder:
             focusedBorder ??
             context.appTheme.inputDecorationTheme.focusedBorder,
@@ -54,18 +53,7 @@ class CustomTextField extends StatelessWidget {
         prefixIcon: prefixIcon,
       ),
       obscureText: isObscureText ?? false,
-      
-      // style: AppTextStyles.titleLarge.copyWith(
-      //   fontSize: AppSize.textSizeSp13,
-      //   fontWeight: FontWeightHelper.regular,
-      //   color: Colors.red
-      //   // context.isDark() ? AppColors.textWhite : AppColors.textBlack,
-      // ),
-      validator:validator
-      /* (value) {
-        return validator(value);
-      },
-      */
+      validator: validator,
     );
   }
 }

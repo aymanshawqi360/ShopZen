@@ -59,6 +59,7 @@ class _PasswordValidationState extends State<PasswordValidation> {
         GestureDetector(
           onTap: () {
             context.go(AppRoutes.forgotPassword);
+            
           },
           child: Text(
             context.l10n.forgotPassword,

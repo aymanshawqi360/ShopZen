@@ -20,12 +20,20 @@
     "enterYourLastName":"Enter your last Name",
     "confirmPassword":"Confirm Password",
     "enterYourConfirmPassword":"Enter your Confirm Password",
-    "enterYourPhoneNumber":"Enter your Phone Number ",
+    "enterYourPhoneNumber":"Enter your phone number",
     "phoneField":"Phone",
     "register":"Register",
     "alreadyHaveAccount":"Already have an account? ",
     "forgotPassword2":"Forgot Password",
     "forgotPasswordMessage":"Enter your email id for the verification process, we will send 6 digit to your email",
-    "forgotPasswordContinue":"Continue"
+    "forgotPasswordContinue":"Continue",
+    "somethingWentWrong":"Oops! Something went wrong",
+    "dismiss":"Dismiss",
+    "pleaseEnterYourPhoneNumber":"Please enter your phone number",
+    "pleaseEnterYourConfirmPassword":"Please enter your confirm password",
+    "pleaseEnterYourPassword":"Please enter your password",
+    "pleaseEnterYourEmail":"Please enter your email",
+    "pleaseEnterYourLastName":"Please enter your last name",
+    "pleaseEnterYourFirstName":"Please enter your first name"
 
 }

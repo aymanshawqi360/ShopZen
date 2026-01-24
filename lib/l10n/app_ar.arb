@@ -26,5 +26,14 @@
     "alreadyHaveAccount":"هل لديك حساب بالفعل؟ ",
     "forgotPassword2":"هل نسيت كلمة المرور",
     "forgotPasswordMessage":"أدخل بريدك الإلكتروني لعملية التحقق، سنرسل رمزًا مكونًا من 6 أرقام إلى بريدك الإلكتروني",
-    "forgotPasswordContinue":"استمرار"
+    "forgotPasswordContinue":"استمرار",
+    "somethingWentWrong":"عذراً! حدث خطأ ما",
+    "dismiss":"رفض",
+    "pleaseEnterYourPhoneNumber":"يرجى إدخال رقم هاتفك",
+    "pleaseEnterYourConfirmPassword":"يرجى إدخال تأكيد كلمة المرور",
+    "pleaseEnterYourPassword":"يرجى إدخال كلمة المرور",
+    "pleaseEnterYourEmail":"يرجى إدخال بريدك الإلكتروني",
+    "pleaseEnterYourLastName":"يرجى إدخال اسم العائلة",
+    "pleaseEnterYourFirstName":"يرجى إدخال الاسم الأول"
+
 }

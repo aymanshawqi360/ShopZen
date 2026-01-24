@@ -19,7 +19,7 @@ class OnboardingScreen extends StatelessWidget {
             AppSize.gapH16,
             OnboardingImage(),
             OnboardingDescriptionAndTitle(),
-            CustomButton(
+            CustomButton.text(
               text: context.l10n.onboardingGetStarted,
             ),
           ],
