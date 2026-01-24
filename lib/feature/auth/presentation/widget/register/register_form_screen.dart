@@ -1,106 +1,184 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopzen/core/common_ui/widgets/custom_svg.dart';
 import 'package:shopzen/core/common_ui/widgets/custom_text_field.dart';
+import 'package:shopzen/core/common_ui/widgets/intl_phone_number_input.dart';
 import 'package:shopzen/core/constants/app_assets.dart';
 import 'package:shopzen/core/constants/app_size.dart';
 import 'package:shopzen/core/extension/app_extension.dart';
+import 'package:shopzen/feature/auth/domain/validation/check_user_value.dart';
 import 'package:shopzen/core/utils/app_color.dart';
+import 'package:shopzen/feature/auth/data/model/register/register_request_model.dart';
+import 'package:shopzen/core/common_ui/widgets/custom_hidden_text_field.dart';
+import 'package:shopzen/feature/auth/presentation/cubit/register/register_cubit.dart';
+import 'package:shopzen/feature/auth/presentation/widget/register/register_button.dart';
 
-class RegisterFormScreen extends StatelessWidget {
+class RegisterFormScreen extends StatefulWidget {
   const RegisterFormScreen({super.key});
 
   @override
+  State<RegisterFormScreen> createState() => _RegisterFormScreenState();
+}
+
+class _RegisterFormScreenState extends State<RegisterFormScreen> {
+  late TextEditingController firstNameController;
+  late TextEditingController lastNameController;
+  late TextEditingController emailController;
+  late TextEditingController passwordController;
+  late TextEditingController confirmPasswordController;
+  late TextEditingController phoneController;
+  late GlobalKey<FormState> formKey;
+
+  @override
+  void initState() {
+    super.initState();
+    firstNameController = TextEditingController();
+    lastNameController = TextEditingController();
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+    confirmPasswordController = TextEditingController();
+    phoneController = TextEditingController();
+    formKey = GlobalKey<FormState>();
+  }
+
+  @override
+  void dispose() {
+    firstNameController.dispose();
+    lastNameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    phoneController.dispose();
+    debugPrint("dispose");
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final isDark=ColorFilter.mode(
-                    context.isDark()
-                        ? AppColors.griy400
-                        : AppColors.darkBackground,
-                    BlendMode.srcIn,
-                  );
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        AppSize.gapH30,
-        Text(context.l10n.firstName),
-        AppSize.gapH8,
-        CustomTextField(
-          hintText: context.l10n.enterYourFirstName,
-          prefixIcon: Transform.scale(
-            scale: AppSize.loginEmailSvg,
+    final isDark = ColorFilter.mode(
+      context.isDark() ? AppColors.griy400 : AppColors.darkBackground,
+      BlendMode.srcIn,
+    );
 
-            child: CustomSvg(svgAsset: AppAssets.account,colorFilter: isDark),
+    return Form(
+      key: formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // ==== first name ===
+          AppSize.gapH30,
+          Text(context.l10n.firstName),
+          AppSize.gapH8,
+          CustomTextField(
+            controller: firstNameController,
+            hintText: context.l10n.enterYourFirstName,
+            prefixIcon: Transform.scale(
+              scale: AppSize.loginEmailSvg,
+
+              child: CustomSvg(
+                svgAsset: AppAssets.account,
+                colorFilter: isDark,
+              ),
+            ),
+
+            validator: (String? value) {
+              if (value == null || value.isEmpty) {
+                return context.l10n.pleaseEnterYourFirstName;
+              }
+            },
+          ),
+          // ==== last name ===
+          AppSize.gapH8,
+          Text(context.l10n.lastName),
+          AppSize.gapH8,
+          CustomTextField(
+            controller: lastNameController,
+            hintText: context.l10n.enterYourLastName,
+            prefixIcon: Transform.scale(
+              scale: AppSize.loginEmailSvg,
+
+              child: CustomSvg(
+                svgAsset: AppAssets.account,
+                colorFilter: isDark,
+              ),
+            ),
+
+            validator: (String? value) {
+              if (value == null || value.isEmpty) {
+                return context.l10n.pleaseEnterYourLastName;
+              }
+            },
+          ),
+          // ==== Email ====
+          AppSize.gapH8,
+          Text(context.l10n.emailField),
+          AppSize.gapH8,
+          CustomTextField(
+            controller: emailController,
+            hintText: context.l10n.enterYourEmail,
+            prefixIcon: Transform.scale(
+              scale: AppSize.loginEmailSvg,
+
+              child: CustomSvg(svgAsset: AppAssets.email, colorFilter: isDark),
+            ),
+
+            validator: (String? value) {
+              if (value == null || value.isEmpty) {
+                return context.l10n.pleaseEnterYourEmail;
+              }
+            },
+          ),
+          // ==== Password ====
+          AppSize.gapH8,
+          Text(context.l10n.passwordField),
+          AppSize.gapH8,
+          CustomHiddenTextField(
+            hintText: context.l10n.enterYourPassword,
+            isDark: isDark,
+            validatorName: context.l10n.pleaseEnterYourPassword,
+            controller: passwordController,
           ),
 
-          validator: (String? p1) {},
-        ),
-        AppSize.gapH8,
-        Text(context.l10n.lastName),
-        AppSize.gapH8,
-        CustomTextField(
-          hintText: context.l10n.enterYourLastName,
-          prefixIcon: Transform.scale(
-            scale: AppSize.loginEmailSvg,
-
-            child: CustomSvg(svgAsset: AppAssets.account,colorFilter: isDark),
+          // ==== Confirm Password ====
+          AppSize.gapH8,
+          Text(context.l10n.confirmPassword),
+          AppSize.gapH8,
+          CustomHiddenTextField(
+            hintText: context.l10n.enterYourConfirmPassword,
+            isDark: isDark,
+            validatorName: context.l10n.enterYourConfirmPassword,
+            controller: confirmPasswordController,
           ),
+          // ==== Phone ===
+          AppSize.gapH8,
+          Text(context.l10n.phoneField),
+          AppSize.gapH8,
+          CustomPhoneNumberField(controller: phoneController),
 
-          validator: (String? p1) {},
-        ),
-        AppSize.gapH8,
-        Text(context.l10n.emailField),
-        AppSize.gapH8,
-         CustomTextField(
-          hintText: context.l10n.enterYourEmail,
-          prefixIcon: Transform.scale(
-            scale: AppSize.loginEmailSvg,
+          // ==== Button ===
+          _checkUserValueButton(),
+        ],
+      ),
+    );
+  }
 
-            child: CustomSvg(svgAsset: AppAssets.email,colorFilter: isDark),
+  RegisterButton _checkUserValueButton() {
+    return RegisterButton(
+      checkUserValue: () {
+        CheckUserValue.checkUserValue(
+          registerRequestModel: RegisterRequestModel(
+            firstName: firstNameController.text.trim(),
+            lastName: lastNameController.text.trim(),
+            phone: phoneController.text.trim(),
+            email: emailController.text.trim(),
+            password: passwordController.text.trim(),
+            confirmPassword: confirmPasswordController.text.trim(),
+            countryCode: context.read<RegisterCubit>().countryCode,
           ),
-
-          validator: (String? p1) {},
-        ),
-
-        AppSize.gapH8,
-        Text(context.l10n.passwordField),
-        AppSize.gapH8,
-         CustomTextField(
-          hintText: context.l10n.enterYourPassword,
-          prefixIcon: Transform.scale(
-            scale: AppSize.loginEmailSvg,
-
-            child: CustomSvg(svgAsset: AppAssets.password,colorFilter: isDark),
-          ),
-
-          validator: (String? p1) {},
-        ),
-       // ==== Confirm Password ====
-        AppSize.gapH8,
-        Text(context.l10n.confirmPassword),
-        AppSize.gapH8,
-         CustomTextField(
-          hintText: context.l10n.enterYourConfirmPassword,
-          prefixIcon: Transform.scale(
-            scale: AppSize.loginEmailSvg,
-
-            child: CustomSvg(svgAsset: AppAssets.password,colorFilter: isDark),
-          ),
-
-          validator: (String? p1) {},
-        ),
-        AppSize.gapH8,
-        Text(context.l10n.phoneField),
-        AppSize.gapH8,
-         CustomTextField(
-          hintText: 'xxx xxx xxxx',
-          prefixIcon: Transform.scale(
-            scale: AppSize.loginEmailSvg,
-
-            child: CustomSvg(svgAsset: AppAssets.phone,colorFilter: isDark),
-          ),
-
-          validator: (String? p1) {},
-        ),
-      ],
+          formKey: formKey,
+          context: context,
+        );
+      },
     );
   }
 }
