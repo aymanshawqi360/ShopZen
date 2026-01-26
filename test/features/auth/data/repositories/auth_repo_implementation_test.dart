@@ -48,8 +48,8 @@ void main() {
       firstName: "shawqi",
       email: "test2001@gmail.com",
       phone: "512345678",
-      password: "ayman123456789",
-      confirmPassword: "ayman123456789",
+      password: "test123456789",
+      confirmPassword: "test123456789",
       countryCode: "SA",
     );
 
