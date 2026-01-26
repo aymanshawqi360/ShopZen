@@ -71,6 +71,8 @@ class AppSpacing {
       EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h);
   static EdgeInsets get paddingH12V8 =>
       EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h);
+      static EdgeInsets get paddingH8V15 =>
+      EdgeInsets.symmetric(horizontal: 8.w, vertical: 15.h);
   static EdgeInsets get paddingH123V14 =>
       EdgeInsets.symmetric(horizontal: 123.w, vertical: 14.h);
 
@@ -104,8 +106,12 @@ class AppSpacing {
       EdgeInsets.only( left: 20.w,right: 20.w,bottom: 15.h);
       static EdgeInsets get paddingL20R20 =>
       EdgeInsets.only( left: 20.w,right: 20.w,);
+      static EdgeInsets get paddingL8R8 =>
+      EdgeInsets.only( left: 8.w,right: 8.w,);
   static EdgeInsets get paddingT24L19R19B19 =>
       EdgeInsets.only(top: 24.h, left: 19.w, right: 19.w, bottom: 19.h);
+      static EdgeInsets get paddingT5L8R8B19 =>
+      EdgeInsets.only(top: 5.h, left: 8.w, right: 8.w, bottom: 19.h);
 
   // Margin - All Sides
   static EdgeInsets get marginAll4 => EdgeInsets.all(4.w);

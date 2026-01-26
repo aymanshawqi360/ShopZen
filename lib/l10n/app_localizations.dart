@@ -227,7 +227,7 @@ abstract class AppLocalizations {
   /// No description provided for @enterYourPhoneNumber.
   ///
   /// In en, this message translates to:
-  /// **'Enter your Phone Number '**
+  /// **'Enter your phone number'**
   String get enterYourPhoneNumber;
 
   /// No description provided for @phoneField.
@@ -265,6 +265,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Continue'**
   String get forgotPasswordContinue;
+
+  /// No description provided for @somethingWentWrong.
+  ///
+  /// In en, this message translates to:
+  /// **'Oops! Something went wrong'**
+  String get somethingWentWrong;
+
+  /// No description provided for @dismiss.
+  ///
+  /// In en, this message translates to:
+  /// **'Dismiss'**
+  String get dismiss;
+
+  /// No description provided for @pleaseEnterYourPhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your phone number'**
+  String get pleaseEnterYourPhoneNumber;
+
+  /// No description provided for @pleaseEnterYourConfirmPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your confirm password'**
+  String get pleaseEnterYourConfirmPassword;
+
+  /// No description provided for @pleaseEnterYourPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your password'**
+  String get pleaseEnterYourPassword;
+
+  /// No description provided for @pleaseEnterYourEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your email'**
+  String get pleaseEnterYourEmail;
+
+  /// No description provided for @pleaseEnterYourLastName.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your last name'**
+  String get pleaseEnterYourLastName;
+
+  /// No description provided for @pleaseEnterYourFirstName.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your first name'**
+  String get pleaseEnterYourFirstName;
 }
 
 class _AppLocalizationsDelegate

@@ -2,43 +2,50 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppSize {
+  // ====== Scale ======
+  static const double progressIndicatorInLoadingState = 0.8;
+  // ====== Elevation ======
+  static const double elevation8 = 8;
   // ====== Radius ======
   static double get radius170 => 143.r;
 
   // ====== Positioned ======
-  static double get positionedTop140 => -140;
-  static double get positionedRight95 => -95;
-  
+  static const double positionedTop140 = -140;
+  static const double positionedRight95 = -95;
+
   // ====== Width ======
   static double get width1 => 1.5;
+  static const double width2 = 2;
   static double get checkboxWidth20 => 20.w;
   static double get boxConstraintsMaxWidth => 330.w;
-  
+  static const double progressIndicatorStrokeWidth = 3;
+
   // ====== Height ======
   static double get cursorHeight => 14.h;
   static double get checkboxHeight20 => 20.h;
+  static double get lottieErrorHeight150 => 150.h;
+  static double get maxHeight => 80;
+  static double get maxWidth => 80;
 
   //Icons Svg size
 
   static double get onboardingIconSvgWidth => 362.w;
-  static double get onboardingIconSvgHeight =>  359.91.h;
-  static double get loginEmailSvg=>0.48;
-  
+  static double get onboardingIconSvgHeight => 359.91.h;
+  static double get loginEmailSvg => 0.48;
+  static double get errorIcon => 40;
 
- //SizeBox
-  
+  //SizeBox
+
   // ====== Size ======
 
-  static Size get sizeW335H50=> Size(335.w, 50.h);
-
-    
+  static Size get sizeW335H50 => Size(335.w, 50.h);
 
   //Texts Style
 
   static double get textSizeSp4 => 4.sp;
   static double get textSizeSp6 => 6.sp;
   static double get textSizeSp8 => 8.sp;
-  static double get textSizeSp10 => 10.sp;
+  static double get textSizeSp10 => 10.4.sp;
   static double get textSizeSp12 => 12.sp;
   static double get textSizeSp13 => 13.sp;
   static double get textSizeSp14 => 14.sp;
@@ -61,9 +68,8 @@ class AppSize {
   static double get textSizeSp48 => 48.sp;
   static double get textSizeSp56 => 56.sp;
   static double get textSizeSp64 => 64.sp;
- 
 
-   // Vertical Gaps
+  // Vertical Gaps
 
   static SizedBox get gapH2 => SizedBox(height: 2.h);
   static SizedBox get gapH4 => SizedBox(height: 4.h);
@@ -115,8 +121,4 @@ class AppSize {
 
   static SizedBox get gapW123AndH14 => SizedBox(width: 123.w, height: 14.h);
   static SizedBox get gapWAndH20 => SizedBox(width: 20.w, height: 20.h);
-
-
-
 }
-

@@ -74,7 +74,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get enterYourConfirmPassword => 'Enter your Confirm Password';
 
   @override
-  String get enterYourPhoneNumber => 'Enter your Phone Number ';
+  String get enterYourPhoneNumber => 'Enter your phone number';
 
   @override
   String get phoneField => 'Phone';
@@ -94,4 +94,29 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get forgotPasswordContinue => 'Continue';
+
+  @override
+  String get somethingWentWrong => 'Oops! Something went wrong';
+
+  @override
+  String get dismiss => 'Dismiss';
+
+  @override
+  String get pleaseEnterYourPhoneNumber => 'Please enter your phone number';
+
+  @override
+  String get pleaseEnterYourConfirmPassword =>
+      'Please enter your confirm password';
+
+  @override
+  String get pleaseEnterYourPassword => 'Please enter your password';
+
+  @override
+  String get pleaseEnterYourEmail => 'Please enter your email';
+
+  @override
+  String get pleaseEnterYourLastName => 'Please enter your last name';
+
+  @override
+  String get pleaseEnterYourFirstName => 'Please enter your first name';
 }

@@ -15,7 +15,8 @@ class RegisterAlreadyHaveAccount extends StatelessWidget {
         AppSize.gapH30,
         CustomTextSpan(
           onTap: () {
-            context.go(AppRoutes.login);
+             context.go(AppRoutes.login);
+            
           },
           fristText: context.l10n.alreadyHaveAccount,
           lateText: context.l10n.login,

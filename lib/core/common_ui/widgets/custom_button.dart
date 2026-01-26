@@ -13,18 +13,35 @@ class CustomButton extends StatelessWidget {
   final WidgetStateProperty<Color?>? backgroundColor;
   final WidgetStateProperty<Color?>? overlayColor;
   final WidgetStateProperty<Color?>? shadowColor;
-  final TextStyle? style;
-  final  String? text ;
+  
+  
   final Size ? minimumSize;
+  final Widget ?child;
   const CustomButton({
     super.key,
     this.onPressed,
     this.minimumSize,
     this.padding,
     this.elevation,
-    this.backgroundColor, this.overlayColor, this.shadowColor, this.text, this.style,
+    this.child,
+    this.backgroundColor, this.overlayColor, this.shadowColor
   });
+ factory CustomButton.text({
+   final  String? text ,
+   final TextStyle? style,
+   final VoidCallback? onPressed,
 
+}
+ ){
+  return CustomButton(    
+    onPressed: onPressed,
+    child: Text(
+       text?? AppStrings.getStarted,
+        style:style?? AppTextStyles.onboardingSmall.copyWith(color: AppColors.textWhite,fontWeight: FontWeightHelper.bold,fontSize: AppSize.textSizeSp13),
+        
+      ),
+  );
+ }
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -47,11 +64,7 @@ class CustomButton extends StatelessWidget {
         overlayColor:overlayColor?? MaterialStateProperty.all(Colors.transparent),
         shadowColor:shadowColor?? MaterialStateProperty.all(Colors.black),
       ),
-      child: Text(
-       text?? AppStrings.getStarted,
-        style:style?? AppTextStyles.onboardingSmall.copyWith(color: AppColors.textWhite,fontWeight: FontWeightHelper.bold,fontSize: AppSize.textSizeSp13),
-        
-      ),
+      child: child
     );
   }
 }

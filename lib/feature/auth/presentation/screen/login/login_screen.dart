@@ -27,11 +27,12 @@ class LoginScreen extends StatelessWidget {
               AppSize.gapH8,
               const PasswordValidation(),
               AppSize.gapH24,
-              CustomButton(text: context.l10n.login),
+              CustomButton.text(text: context.l10n.login),
               const Spacer(),
               CustomTextSpan(
                 onTap: () {
-                  context.go( AppRoutes.register);                              
+                   context.go( AppRoutes.register);   
+                  // context.push( AppRoutes.register);                           
                 },
                 fristText: context.l10n.noAccount,
                 lateText: context.l10n.signUp,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopzen/core/constants/app_size.dart';
+import 'package:shopzen/core/constants/app_spacing.dart';
 import 'package:shopzen/core/utils/app_color.dart';
 import 'package:shopzen/core/utils/app_text_styles.dart';
 import 'package:shopzen/core/utils/font_weight_helper.dart';
@@ -44,18 +45,18 @@ ThemeData buildDarkTheme() {
       headlineSmall: AppTextStyles.headlineSmall.copyWith(
         color: AppColors.textWhite,
       ),
-      // titleLarge: AppTextStyles.titleLarge.copyWith(color: AppColors.textWhite),
+      titleLarge: AppTextStyles.titleLarge.copyWith(color: AppColors.textWhite),
 
-      // titleMedium:
-      //     AppTextStyles.titleMedium.copyWith(color: AppColors.textWhiteSoft),
-      // titleSmall:
-      //     AppTextStyles.titleSmall.copyWith(color: AppColors.textWhite),
-      // bodyLarge:
-      //     AppTextStyles.bodyLarge.copyWith(color: AppColors.textWhiteSoft),
-      // bodyMedium:
-      //     AppTextStyles.bodyMedium.copyWith(color: AppColors.textWhiteSoft),
-      // bodySmall:
-      //     AppTextStyles.bodySmall.copyWith(color: AppColors.textGrayDark),
+      titleMedium:
+          AppTextStyles.titleMedium.copyWith(color: AppColors.textWhite),
+      titleSmall:
+          AppTextStyles.titleSmall.copyWith(color: AppColors.textWhite),
+      bodyLarge:
+          AppTextStyles.bodyLarge.copyWith(color: AppColors.textWhite),
+      bodyMedium:
+          AppTextStyles.bodyMedium.copyWith(color: AppColors.textWhite),
+      bodySmall:
+          AppTextStyles.bodySmall.copyWith(color: AppColors.textWhite),
       // labelLarge: AppTextStyles.labelLarge.copyWith(color: AppColors.textWhite),
       // labelMedium:
       //     AppTextStyles.labelMedium.copyWith(color: AppColors.textWhite),
@@ -74,7 +75,8 @@ ThemeData buildDarkTheme() {
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: AppColors.darkBackground,
+      fillColor: Colors.transparent,
+      contentPadding:AppSpacing.paddingH16V12,
       focusedBorder:ThemeDefaultBorder.outlineInputBorder(ThemeFocusedBorder()),
       enabledBorder: ThemeDefaultBorder.outlineInputBorder(
           ThemeEnabledBorder()),

@@ -49,8 +49,8 @@ ThemeData buildLightTheme() {
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: AppColors.lightBackground,
-      contentPadding: AppSpacing.paddingH16V12,
+      fillColor: Colors.transparent,
+      contentPadding:AppSpacing.paddingH16V12,
       focusedBorder:ThemeDefaultBorder.outlineInputBorder(ThemeFocusedBorder()),
       enabledBorder:ThemeDefaultBorder.outlineInputBorder(ThemeEnabledBorder()),
       errorBorder:ThemeDefaultBorder.outlineInputBorder(ThemeErrorBorder()),
