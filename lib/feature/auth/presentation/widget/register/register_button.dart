@@ -22,6 +22,7 @@ class RegisterButton extends StatelessWidget {
           },
           builder: (context, state) {
             return CustomButton(
+              // key: Key("register_button"),
               child: state ? Transform.scale(
                 scale:AppSize.progressIndicatorInLoadingState,
                 child: CircularProgressIndicator(
@@ -29,6 +30,7 @@ class RegisterButton extends StatelessWidget {
                   backgroundColor: AppColors.lightBackground,
                 ),
               ) : Text(
+                
                 context.l10n.register,
                 style: context.appTheme.textTheme.bodyLarge?.copyWith(
                   color: AppColors.textWhite,

@@ -20,7 +20,7 @@ class AuthRepoImplementation implements AuthRepository {
   }) async {
     try {
       RegisterResponseModel response = await apiService.register(
-        body: authRequestModel.toJson(),
+        body: authRequestModel,
       );
 
       if (response.status == NetworkConfig.statusOk) {

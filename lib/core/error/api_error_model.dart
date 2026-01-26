@@ -1,14 +1,15 @@
 
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'api_error_model.g.dart';
 
 @JsonSerializable()
-class Failure {
+class Failure  extends Equatable{
   final int? errorCode;
   final String? errorMessage;
   @JsonKey(name: 'errors')
   final Map<String,dynamic>? errorData;
-  Failure({this.errorCode, this.errorData, this.errorMessage});
+  const Failure({this.errorCode, this.errorData, this.errorMessage});
 
   factory Failure.fromJson(Map<String, dynamic> json) =>
       _$FailureFromJson(json);
@@ -34,4 +35,12 @@ class Failure {
       
     return message.toString();
   }
+  
+  @override
+
+  List<Object?> get props => [
+    errorCode,
+    errorMessage,
+    errorData
+  ];
 }

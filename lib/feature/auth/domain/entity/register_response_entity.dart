@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class RegisterResponseEntity extends Equatable {
-    final int? status;
+  final int? status;
   final String? message;
   final String ?userData;
 

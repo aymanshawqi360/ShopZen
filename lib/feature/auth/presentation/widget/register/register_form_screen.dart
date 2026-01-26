@@ -70,6 +70,7 @@ class _RegisterFormScreenState extends State<RegisterFormScreen> {
           Text(context.l10n.firstName),
           AppSize.gapH8,
           CustomTextField(
+            key: Key("first_name"),
             controller: firstNameController,
             hintText: context.l10n.enterYourFirstName,
             prefixIcon: Transform.scale(
@@ -92,6 +93,7 @@ class _RegisterFormScreenState extends State<RegisterFormScreen> {
           Text(context.l10n.lastName),
           AppSize.gapH8,
           CustomTextField(
+            key: Key("last_name") ,
             controller: lastNameController,
             hintText: context.l10n.enterYourLastName,
             prefixIcon: Transform.scale(
@@ -114,6 +116,7 @@ class _RegisterFormScreenState extends State<RegisterFormScreen> {
           Text(context.l10n.emailField),
           AppSize.gapH8,
           CustomTextField(
+            key: Key("email"),
             controller: emailController,
             hintText: context.l10n.enterYourEmail,
             prefixIcon: Transform.scale(
@@ -133,6 +136,7 @@ class _RegisterFormScreenState extends State<RegisterFormScreen> {
           Text(context.l10n.passwordField),
           AppSize.gapH8,
           CustomHiddenTextField(
+            key: Key("password"),
             hintText: context.l10n.enterYourPassword,
             isDark: isDark,
             validatorName: context.l10n.pleaseEnterYourPassword,
@@ -144,6 +148,7 @@ class _RegisterFormScreenState extends State<RegisterFormScreen> {
           Text(context.l10n.confirmPassword),
           AppSize.gapH8,
           CustomHiddenTextField(
+            key:  Key("confirm_password"),
             hintText: context.l10n.enterYourConfirmPassword,
             isDark: isDark,
             validatorName: context.l10n.enterYourConfirmPassword,
@@ -153,7 +158,9 @@ class _RegisterFormScreenState extends State<RegisterFormScreen> {
           AppSize.gapH8,
           Text(context.l10n.phoneField),
           AppSize.gapH8,
-          CustomPhoneNumberField(controller: phoneController),
+          CustomPhoneNumberField(
+            key: Key("phone"),
+            controller: phoneController),
 
           // ==== Button ===
           _checkUserValueButton(),
@@ -164,6 +171,7 @@ class _RegisterFormScreenState extends State<RegisterFormScreen> {
 
   RegisterButton _checkUserValueButton() {
     return RegisterButton(
+      key: Key("register_button"),
       checkUserValue: () {
         CheckUserValue.checkUserValue(
           registerRequestModel: RegisterRequestModel(

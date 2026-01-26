@@ -9,7 +9,7 @@ class RegisterResponseModel {
   @JsonKey(name: 'data')
   final UserData userData;
 
-  RegisterResponseModel({required this.status, required this.message,required this.userData});
+  RegisterResponseModel({required this.status, required this.message,required this.userData, });
   factory RegisterResponseModel.fromJson(Map<String, dynamic> json) =>
       _$RegisterResponseModelFromJson(json);
   Map<String, dynamic> toJson() => _$RegisterResponseModelToJson(this);

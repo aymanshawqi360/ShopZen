@@ -21,22 +21,15 @@ class EncryptionServiceImpl implements IEncryptionService {
 
   //Encrypt data
   @override
-  Future<Either<Failure, String>> encrypt() async {
+  Future<Either<Failure, String>> encrypt({required String plaintext}) async {
     try {
       final key = await _createAndSaveKey();
-      final getToken = await flutterSecureStorage.read(
-        key: envConfig.getEncryptionToken(),
-      );
-      String? token = getToken.fold((_) => null, (token) => token);
-      if (token == null || token.isEmpty) {
-        return Left(Failure(errorMessage: StoargeFailureMessage.noToken));
-      }
 
       final iv = enc.IV.fromSecureRandom(16);
       final encrypter = enc.Encrypter(
         enc.AES(key, mode: enc.AESMode.cbc, padding: 'PKCS7'),
       );
-      final encrypt = encrypter.encrypt(token, iv: iv);
+      final encrypt = encrypter.encrypt(plaintext, iv: iv);
       final encode = base64Url.encode(iv.bytes + encrypt.bytes);
       return Right(encode);
     } catch (e) {
@@ -46,13 +39,14 @@ class EncryptionServiceImpl implements IEncryptionService {
 
   //Decrypt data
   @override
-  Future<Either<Failure, String>> decrypt({String? cipherText}) async {
+  Future<Either<Failure, String>> decrypt({required String cipherText}) async {
     try {
       final key = await _createAndSaveKey();
-
+/*
       if (cipherText == null || cipherText.isEmpty) {
         return Left(Failure(errorMessage: StoargeFailureMessage.noToken));
       }
+      */
       Uint8List decode = base64Url.decode(cipherText);
       final iv = enc.IV(decode.sublist(0, 16));
       final cipher = enc.Encrypted(decode.sublist(16));

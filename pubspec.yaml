@@ -85,8 +85,10 @@ dev_dependencies:
     sdk: flutter
 
 
-  json_serializable: ^6.11.4
+  json_serializable: ^6.11.2
   build_runner: ^2.10.5
+  mocktail: ^1.0.4
+  bloc_test: ^10.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
