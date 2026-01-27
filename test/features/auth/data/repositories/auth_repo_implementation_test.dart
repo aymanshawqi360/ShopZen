@@ -3,10 +3,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:shopzen/core/error/api_error_model.dart';
 import 'package:shopzen/feature/auth/data/data_sources/auth_remote_data_source.dart';
+import 'package:shopzen/feature/auth/data/model/login/login_request_model.dart';
 import 'package:shopzen/feature/auth/data/model/register/register_request_model.dart';
-import 'package:shopzen/feature/auth/data/model/register/register_response_model.dart';
+import 'package:shopzen/core/Shared/model/auth/auth_response_model.dart';
 import 'package:shopzen/feature/auth/data/repo_implementation/auth_repo_implementation.dart';
-import 'package:shopzen/feature/auth/domain/entity/register_response_entity.dart';
+import 'package:shopzen/core/Shared/auth/entity/register_response_entity.dart';
 
 class MockAuthApiService extends Mock implements AuthApiService {}
 
@@ -14,8 +15,10 @@ void main() {
   late MockAuthApiService mockAuthApiService;
   late AuthRepoImplementation authRepoImplementation;
   late RegisterRequestModel registerRequestModel;
-  late RegisterResponseModel registerResponseModel;
+  late AuthResponseModel registerResponseModel;
   late RegisterRequestModel registerRequestModelFailed;
+  late LoginRequestModel loginRequestModel;
+  late LoginRequestModel loginRequestModelFailed;
   late Failure failure;
   late UserData userData;
   setUp(() {
@@ -37,7 +40,7 @@ void main() {
       token: "dslkdsaldksalkwqewqpdlpqldpldsad5s4d56sdsa564dsa5d4sa56ds",
     );
 
-    registerResponseModel = RegisterResponseModel(
+    registerResponseModel = AuthResponseModel(
       status: 200,
       message: "success",
       userData: userData,
@@ -58,23 +61,28 @@ void main() {
         "password": ["The password field format is invalid."],
       },
     );
+
+    loginRequestModel = LoginRequestModel(
+      email: "test2001@gmail.com",
+      password: "Test123456789@",
+    );
+    loginRequestModelFailed = LoginRequestModel(
+      email: "test2001@gmail.com",
+      password: "test123456789",
+    );
   });
 
   group("Test register method in auth repo", () {
     test("should return session when login is successful", () async {
       when(
         () => mockAuthApiService.register(body: registerRequestModel),
-      ).thenAnswer(
-        (_) async =>registerResponseModel
-      );
+      ).thenAnswer((_) async => registerResponseModel);
       final result = await authRepoImplementation.register(
         authRequestModel: registerRequestModel,
       );
       result.fold((_) => null, (right) {
-        expect(
-          right.userData,
-          registerResponseModel.userData.token,
-        );
+        expect(right.status, 200);
+        expect(right.userData, registerResponseModel.userData.token);
       });
     });
 
@@ -88,8 +96,38 @@ void main() {
           authRequestModel: registerRequestModelFailed,
         );
         expect(result.isLeft(), true);
-        expect(result, isA<Either<Failure, RegisterResponseEntity>>());
+        expect(result, isA<Either<Failure, AuthResponseEntity>>());
       },
     );
+  });
+
+  group('Test login method', () {
+    test('should return session when login is successful', () async {
+      when(
+        () => mockAuthApiService.login(body: loginRequestModel),
+      ).thenAnswer((_) async => registerResponseModel);
+
+      final result = await authRepoImplementation.login(
+        authRequestModel: loginRequestModel,
+      );
+      result.fold((_) => null, (right) {
+        expect(right.status, 200);
+
+        expect(right.userData, registerResponseModel.userData.token);
+      });
+    });
+    test('should return session when login is failure', () async {
+      when(
+        () => mockAuthApiService.login(body: loginRequestModelFailed),
+      ).thenThrow(failure);
+      final result = await authRepoImplementation.login(
+        authRequestModel: loginRequestModel,
+      );
+
+      result.fold((failure) {
+        expect(failure, isA<Failure>());
+        expect(failure.errorData, failure.errorData);
+      }, (_) => null);
+    });
   });
 }

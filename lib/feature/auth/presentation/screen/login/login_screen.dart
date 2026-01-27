@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:shopzen/core/common_ui/widgets/custom_button.dart';
-import 'package:shopzen/core/common_ui/widgets/custom_text_span.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopzen/core/constants/app_size.dart';
 import 'package:shopzen/core/constants/app_spacing.dart';
+import 'package:shopzen/core/di/di.dart';
 import 'package:shopzen/core/extension/app_extension.dart';
-import 'package:shopzen/core/routing/route_name.dart';
-import 'package:shopzen/feature/auth/presentation/widget/login/email_and_password.dart';
-import 'package:shopzen/feature/auth/presentation/widget/login/login_title.dart';
-import 'package:shopzen/feature/auth/presentation/widget/login/password_validation.dart';
+import 'package:shopzen/core/utils/app_color.dart';
+import 'package:shopzen/feature/auth/presentation/cubit/login/login_cubit.dart';
+import 'package:shopzen/core/Shared/widget/auth/slide_and_fade_auth.dart';
+import 'package:shopzen/feature/auth/presentation/widget/login/body_login.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -16,26 +15,25 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: AppSpacing.paddingL20R20B15,
-          child: Column(
+      resizeToAvoidBottomInset: false,
+      body: BlocProvider(
+        create: (context) => sl<LoginCubit>(),
+        child: SafeArea(
+          child: Stack(
             children: [
-              AppSize.gapH40,
-              const LoginTitle(),
-              const EmailAndPassword(),
-              AppSize.gapH8,
-              const PasswordValidation(),
-              AppSize.gapH24,
-              CustomButton.text(text: context.l10n.login),
-              const Spacer(),
-              CustomTextSpan(
-                onTap: () {
-                   context.go( AppRoutes.register);   
-                  // context.push( AppRoutes.register);                           
-                },
-                fristText: context.l10n.noAccount,
-                lateText: context.l10n.signUp,
+              Positioned(
+                top: AppSize.positionedTop140,
+                right: AppSize.positionedRight95,
+                child: CircleAvatar(
+                  radius: AppSize.radius170,
+                  backgroundColor: context.isDark()
+                      ? AppColors.darkGray
+                      : AppColors.lightGray,
+                ),
+              ),
+              Padding(
+                padding: AppSpacing.paddingL20R20B15,
+                child: const SlideAndFadeAuth(child: BodyLogin()),
               ),
             ],
           ),

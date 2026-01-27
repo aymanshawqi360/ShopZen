@@ -5,8 +5,8 @@ import 'package:shopzen/core/di/di.dart';
 import 'package:shopzen/core/extension/app_extension.dart';
 import 'package:shopzen/core/utils/app_color.dart';
 import 'package:shopzen/feature/auth/presentation/cubit/register/register_cubit.dart';
-import 'package:shopzen/feature/auth/presentation/widget/register/anumation_register.dart';
-
+import 'package:shopzen/core/Shared/widget/auth/slide_and_fade_auth.dart';
+import 'package:shopzen/feature/auth/presentation/widget/register/body_register.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -29,7 +29,7 @@ class RegisterScreen extends StatelessWidget {
                       : AppColors.lightGray,
                 ),
               ),
-             const AnimationRegister(),
+              const SlideAndFadeAuth(child: BodyRegister()),
             ],
           ),
         ),
@@ -37,6 +37,3 @@ class RegisterScreen extends StatelessWidget {
     );
   }
 }
-
-
-

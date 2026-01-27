@@ -6,12 +6,11 @@ import 'package:shopzen/core/common_ui/widgets/intl_phone_number_input.dart';
 import 'package:shopzen/core/constants/app_assets.dart';
 import 'package:shopzen/core/constants/app_size.dart';
 import 'package:shopzen/core/extension/app_extension.dart';
-import 'package:shopzen/feature/auth/domain/validation/check_user_value.dart';
 import 'package:shopzen/core/utils/app_color.dart';
 import 'package:shopzen/feature/auth/data/model/register/register_request_model.dart';
 import 'package:shopzen/core/common_ui/widgets/custom_hidden_text_field.dart';
 import 'package:shopzen/feature/auth/presentation/cubit/register/register_cubit.dart';
-import 'package:shopzen/feature/auth/presentation/widget/register/register_button.dart';
+import 'package:shopzen/core/Shared/widget/auth/auth_loading_button.dart';
 
 class RegisterFormScreen extends StatefulWidget {
   const RegisterFormScreen({super.key});
@@ -93,7 +92,7 @@ class _RegisterFormScreenState extends State<RegisterFormScreen> {
           Text(context.l10n.lastName),
           AppSize.gapH8,
           CustomTextField(
-            key: Key("last_name") ,
+            key: Key("last_name"),
             controller: lastNameController,
             hintText: context.l10n.enterYourLastName,
             prefixIcon: Transform.scale(
@@ -148,7 +147,7 @@ class _RegisterFormScreenState extends State<RegisterFormScreen> {
           Text(context.l10n.confirmPassword),
           AppSize.gapH8,
           CustomHiddenTextField(
-            key:  Key("confirm_password"),
+            key: Key("confirm_password"),
             hintText: context.l10n.enterYourConfirmPassword,
             isDark: isDark,
             validatorName: context.l10n.enterYourConfirmPassword,
@@ -160,7 +159,8 @@ class _RegisterFormScreenState extends State<RegisterFormScreen> {
           AppSize.gapH8,
           CustomPhoneNumberField(
             key: Key("phone"),
-            controller: phoneController),
+            controller: phoneController,
+          ),
 
           // ==== Button ===
           _checkUserValueButton(),
@@ -169,12 +169,13 @@ class _RegisterFormScreenState extends State<RegisterFormScreen> {
     );
   }
 
-  RegisterButton _checkUserValueButton() {
-    return RegisterButton(
+  AuthLoadingButton _checkUserValueButton() {
+    return AuthLoadingButton<RegisterCubit, RegisterState>(
+      isLoading: (state) => state is RegisterLoading,
       key: Key("register_button"),
       checkUserValue: () {
-        CheckUserValue.checkUserValue(
-          registerRequestModel: RegisterRequestModel(
+        context.read<RegisterCubit>().register(
+          body: RegisterRequestModel(
             firstName: firstNameController.text.trim(),
             lastName: lastNameController.text.trim(),
             phone: phoneController.text.trim(),
@@ -183,8 +184,6 @@ class _RegisterFormScreenState extends State<RegisterFormScreen> {
             confirmPassword: confirmPasswordController.text.trim(),
             countryCode: context.read<RegisterCubit>().countryCode,
           ),
-          formKey: formKey,
-          context: context,
         );
       },
     );

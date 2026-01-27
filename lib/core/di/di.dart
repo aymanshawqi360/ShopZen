@@ -7,17 +7,18 @@ import 'package:shopzen/core/security/implementations/flutter_secure_storage_imp
 import 'package:shopzen/feature/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:shopzen/feature/auth/data/repo_implementation/auth_repo_implementation.dart';
 import 'package:shopzen/feature/auth/domain/repo/auth_repository.dart';
+import 'package:shopzen/feature/auth/domain/use_cases/login_use_cases.dart';
 import 'package:shopzen/feature/auth/domain/use_cases/register_use_cases.dart';
+import 'package:shopzen/feature/auth/presentation/cubit/login/login_cubit.dart';
 import 'package:shopzen/feature/auth/presentation/cubit/register/register_cubit.dart';
 
 final sl = GetIt.instance;
-Future <void> setupDependencies() async{
- await _setupCore();
- await _auth();
-
+Future<void> setupDependencies() async {
+  await _setupCore();
+  await _auth();
 }
 
-Future<void> _setupCore()async {
+Future<void> _setupCore() async {
   //Dio
   sl.registerLazySingleton<Dio>(() => DioFactory.createDio());
   //EnvConfig
@@ -32,7 +33,7 @@ Future<void> _setupCore()async {
   );
 }
 
-Future<void> _auth() async{
+Future<void> _auth() async {
   //ApiService
   sl.registerLazySingleton<AuthApiService>(() => AuthApiService(sl()));
 
@@ -42,11 +43,19 @@ Future<void> _auth() async{
   );
 
   //UseCases
+
+  //Register
   sl.registerLazySingleton<RegisterUseCases>(
     () => RegisterUseCases(authRepository: sl()),
   );
+  //Login
+  sl.registerLazySingleton<LoginUseCases>(
+    () => LoginUseCases(authRepository: sl()),
+  );
 
   //Cubit
+  
+  //Register Cubit
   sl.registerFactory(
     () => RegisterCubit(
       registerUseCases: sl(),
@@ -54,4 +63,6 @@ Future<void> _auth() async{
       envConfig: sl(),
     ),
   );
+  //Login Cubit
+  sl.registerFactory(() => LoginCubit(loginUseCases: sl()));
 }

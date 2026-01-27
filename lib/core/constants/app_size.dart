@@ -19,6 +19,7 @@ class AppSize {
   static double get checkboxWidth20 => 20.w;
   static double get boxConstraintsMaxWidth => 330.w;
   static const double progressIndicatorStrokeWidth = 3;
+  static const double borderSide = 1.5;
 
   // ====== Height ======
   static double get cursorHeight => 14.h;

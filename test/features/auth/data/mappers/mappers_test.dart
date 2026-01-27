@@ -1,13 +1,13 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shopzen/feature/auth/data/mappers/auth_mappers.dart';
-import 'package:shopzen/feature/auth/data/model/register/register_response_model.dart';
-import 'package:shopzen/feature/auth/domain/entity/register_response_entity.dart';
+import 'package:shopzen/core/Shared/model/auth/auth_response_model.dart';
+import 'package:shopzen/core/Shared/auth/entity/register_response_entity.dart';
 
 void main() {
-  late RegisterResponseModel registerResponseModel;
+  late AuthResponseModel registerResponseModel;
 
   setUp(() {
-    registerResponseModel = RegisterResponseModel(
+    registerResponseModel = AuthResponseModel(
       status: 200,
       message: 'success',
       userData: UserData(token: 'testToken'),
@@ -21,7 +21,7 @@ void main() {
 
     expect(
       result,
-      const RegisterResponseEntity(
+      const AuthResponseEntity(
         status: 200,
         message: 'success',
         userData: 'testToken',
