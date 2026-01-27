@@ -11,21 +11,21 @@ class LoginTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-              Expanded(
-                child: Text(
-                  context.l10n.loginWithEmail,
-                  style: AppTextStyles.bodyMedium.copyWith(
-                    fontSize: AppSize.textSizeSp22,
-                    fontWeight: FontWeightHelper.bold,
-                    color: context.isDark()
-                        ? AppColors.textWhite
-                        : AppColors.griy1000,
-                  ),
-                ),
-              ),
-    ],);
+        Expanded(
+          child: Text(
+            context.l10n.loginWithEmail,
+            style: AppTextStyles.bodyMedium.copyWith(
+              fontSize: AppSize.textSizeSp22,
+              fontWeight: FontWeightHelper.bold,
+              color: context.isDark()
+                  ? AppColors.textWhite
+                  : AppColors.griy1000,
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }

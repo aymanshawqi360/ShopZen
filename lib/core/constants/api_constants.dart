@@ -33,4 +33,7 @@ class EndPonts{
 
   //Register
   static const String register='$_apiEndPont$_v1EndPont$_auth/register';
+
+  //Login
+  static const String login='$_apiEndPont$_v1EndPont$_auth/login';
 }

@@ -1,11 +1,11 @@
-import 'package:shopzen/feature/auth/data/model/register/register_response_model.dart';
-import 'package:shopzen/feature/auth/domain/entity/register_response_entity.dart';
+import 'package:shopzen/core/Shared/model/auth/auth_response_model.dart';
+import 'package:shopzen/core/Shared/auth/entity/register_response_entity.dart';
 
 class AuthMappers {
-  static RegisterResponseEntity authResponseModelToAuthResponseEntity({
-    required RegisterResponseModel registerResponseModel,
+  static AuthResponseEntity authResponseModelToAuthResponseEntity({
+    required AuthResponseModel registerResponseModel,
   }) {
-    return RegisterResponseEntity(
+    return AuthResponseEntity(
       status: registerResponseModel.status ?? 200,
       message: registerResponseModel.message ?? "defaultMessage",
       userData: registerResponseModel.userData.token??"defaultToken",

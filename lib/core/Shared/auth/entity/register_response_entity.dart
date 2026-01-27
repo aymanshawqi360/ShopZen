@@ -1,11 +1,11 @@
 import 'package:equatable/equatable.dart';
 
-class RegisterResponseEntity extends Equatable {
+class AuthResponseEntity extends Equatable {
   final int? status;
   final String? message;
   final String ?userData;
 
-  const RegisterResponseEntity({
+  const AuthResponseEntity({
     required this.status,
     required this.message, this.userData,
   });
@@ -16,4 +16,6 @@ class RegisterResponseEntity extends Equatable {
     message,
     userData
   ];
+
+  isRight() {}
 }

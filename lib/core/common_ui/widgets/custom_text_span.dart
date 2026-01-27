@@ -2,6 +2,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:shopzen/core/constants/app_size.dart';
+import 'package:shopzen/core/extension/app_extension.dart';
 import 'package:shopzen/core/utils/app_color.dart';
 import 'package:shopzen/core/utils/app_text_styles.dart';
 
@@ -28,7 +29,7 @@ class CustomTextSpan extends StatelessWidget {
               recognizer: TapGestureRecognizer()..onTap = onTap,
               style:lateStyle?? AppTextStyles.bodyLarge.copyWith(
                 fontSize: AppSize.textSizeSp16,
-                color: AppColors.primaryColor,
+                color:context.islight()? AppColors.primaryColor:AppColors.textWhite,
               ),  
               text: lateText,
             ),

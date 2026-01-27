@@ -6,7 +6,7 @@ import 'package:shopzen/core/config/env_config.dart';
 import 'package:shopzen/core/error/api_error_model.dart';
 import 'package:shopzen/core/security/implementations/flutter_secure_storage_impl.dart';
 import 'package:shopzen/feature/auth/data/model/register/register_request_model.dart';
-import 'package:shopzen/feature/auth/domain/entity/register_response_entity.dart';
+import 'package:shopzen/core/Shared/auth/entity/register_response_entity.dart';
 import 'package:shopzen/feature/auth/domain/use_cases/register_use_cases.dart';
 
 part 'register_state.dart';
@@ -27,7 +27,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     try {
       emit(RegisterLoading());
 
-      Either<Failure, RegisterResponseEntity> response = await registerUseCases
+      Either<Failure, AuthResponseEntity> response = await registerUseCases
           .register(authRequestModel: body);
 
       response.fold(

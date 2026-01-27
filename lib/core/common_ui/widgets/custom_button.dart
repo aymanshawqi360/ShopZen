@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shopzen/core/constants/app_size.dart';
 import 'package:shopzen/core/constants/app_spacing.dart';
 import 'package:shopzen/core/constants/app_strings.dart';
+import 'package:shopzen/core/extension/app_extension.dart';
 import 'package:shopzen/core/utils/app_color.dart';
 import 'package:shopzen/core/utils/app_text_styles.dart';
 import 'package:shopzen/core/utils/font_weight_helper.dart';
@@ -50,7 +51,7 @@ class CustomButton extends StatelessWidget {
       style: ButtonStyle(
         backgroundColor:
             backgroundColor ??
-            MaterialStateProperty.all(AppColors.primaryColor),
+            MaterialStateProperty.all(context.islight()? AppColors.primaryColor:AppColors.lightBackground),
         elevation: elevation ?? MaterialStateProperty.all(1),
          padding:
              padding ?? MaterialStateProperty.all(EdgeInsets.zero),

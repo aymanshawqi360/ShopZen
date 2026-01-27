@@ -39,9 +39,9 @@ class _PasswordValidationState extends State<PasswordValidation> {
                   color: context.isDark()
                       ? AppColors.lightBackground
                       : AppColors.darkBackground,
-                  width: 1.5,
+                  width:AppSize.borderSide,
                 ),
-                activeColor: AppColors.blue500,
+                activeColor: AppColors.primaryColor,
                 checkColor: AppColors.lightBackground,
               ),
             ),
@@ -49,7 +49,9 @@ class _PasswordValidationState extends State<PasswordValidation> {
             Text(
               context.l10n.rememberMe,
               style: AppTextStyles.bodyMedium.copyWith(
-                color: AppColors.blue400,
+                color: context.islight()
+                    ? AppColors.primaryColor
+                    : AppColors.textWhite,
                 fontSize: AppSize.textSizeSp12,
               ),
             ),
@@ -59,13 +61,14 @@ class _PasswordValidationState extends State<PasswordValidation> {
         GestureDetector(
           onTap: () {
             context.go(AppRoutes.forgotPassword);
-            
           },
           child: Text(
             context.l10n.forgotPassword,
             style: AppTextStyles.bodyMedium.copyWith(
               fontSize: AppSize.textSizeSp12,
-              color: context.isDark() ? AppColors.textWhite : AppColors.griy1000,
+              color: context.isDark()
+                  ? AppColors.textWhite
+                  : AppColors.griy1000,
             ),
           ),
         ),
