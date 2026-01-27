@@ -7,7 +7,8 @@ import 'package:shopzen/core/utils/app_color.dart';
 import 'package:shopzen/core/utils/font_weight_helper.dart';
 
 class AuthLoadingButton<C extends Cubit<S>, S> extends StatelessWidget {
-  final void Function() checkUserValue;
+  final void Function()? checkUserValue;
+
   final bool Function(S state) isLoading;
 
   const AuthLoadingButton({
@@ -25,27 +26,28 @@ class AuthLoadingButton<C extends Cubit<S>, S> extends StatelessWidget {
           selector: (state) => isLoading(state),
           builder: (context, state) {
             return CustomButton(
+              onPressed: checkUserValue,
               // key: Key("register_button"),
               child: state
                   ? Transform.scale(
                       scale: AppSize.progressIndicatorInLoadingState,
                       child: CircularProgressIndicator(
                         strokeWidth: AppSize.progressIndicatorStrokeWidth,
-                        backgroundColor:context.islight()? AppColors.lightBackground: AppColors.darkBackground,
+                        backgroundColor: context.islight()
+                            ? AppColors.lightBackground
+                            : AppColors.darkBackground,
                       ),
                     )
                   : Text(
                       context.l10n.register,
                       style: context.appTheme.textTheme.bodyLarge?.copyWith(
-                        color:context.islight()? AppColors.textWhite:AppColors.textDark,
+                        color: context.islight()
+                            ? AppColors.textWhite
+                            : AppColors.textDark,
                         fontWeight: FontWeightHelper.bold,
                         fontSize: AppSize.textSizeSp13,
                       ),
                     ),
-
-              onPressed: () {
-                checkUserValue();
-              },
             );
           },
         ),
