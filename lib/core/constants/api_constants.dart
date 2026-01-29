@@ -36,4 +36,12 @@ class EndPonts{
 
   //Login
   static const String login='$_apiEndPont$_v1EndPont$_auth/login';
+  
+  //Change Password
+  static const String forgotPassword='$_apiEndPont$_v1EndPont$_auth/forgot-password';
 }
+
+// {
+//     "status": true,
+//     "message": "344903"
+// }

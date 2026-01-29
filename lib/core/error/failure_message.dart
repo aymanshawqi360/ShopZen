@@ -55,3 +55,8 @@ class StoargeFailureMessage {
  static const String noToken ='No token found';
   
 }
+
+class FailureMessage {
+  
+  static const String  theOperationFailed="The operation failed.";
+}

@@ -8,11 +8,11 @@ import 'package:shopzen/core/utils/font_weight_helper.dart';
 
 class AuthLoadingButton<C extends Cubit<S>, S> extends StatelessWidget {
   final void Function()? checkUserValue;
-
+  final String? title;
   final bool Function(S state) isLoading;
-
   const AuthLoadingButton({
     super.key,
+    this.title,
     required this.checkUserValue,
     required this.isLoading,
   });
@@ -39,7 +39,7 @@ class AuthLoadingButton<C extends Cubit<S>, S> extends StatelessWidget {
                       ),
                     )
                   : Text(
-                      context.l10n.register,
+                      title ?? context.l10n.register,
                       style: context.appTheme.textTheme.bodyLarge?.copyWith(
                         color: context.islight()
                             ? AppColors.textWhite

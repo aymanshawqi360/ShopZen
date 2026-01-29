@@ -1,20 +1,19 @@
 import 'package:equatable/equatable.dart';
 
-class AuthResponseEntity extends Equatable {
+class ForgotPasswordEntity extends Equatable {
   final int? status;
   final String? message;
-  final String ?userData;
+  
 
-  const AuthResponseEntity({
+  const ForgotPasswordEntity({
     required this.status,
-    required this.message, this.userData,
+    required this.message,
   });
 
   @override
   List<Object?> get props => [
     status,
     message,
-    userData
   ];
 
   

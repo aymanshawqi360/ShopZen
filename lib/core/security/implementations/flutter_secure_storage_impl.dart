@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:shopzen/core/error/stoarge_failure_message.dart';
+import 'package:shopzen/core/error/failure_message.dart';
 import 'package:shopzen/core/security/interfaces/i_secure_storage.dart';
 
 class FlutterSecureStorageImpl implements ISecureStorage {

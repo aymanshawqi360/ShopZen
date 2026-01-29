@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:shopzen/core/error/stoarge_failure_message.dart';
+import 'package:shopzen/core/error/failure_message.dart';
 
 
 /// Interface for secure storage operations

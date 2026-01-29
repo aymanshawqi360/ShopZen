@@ -4,9 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class AppSize {
   // ====== Scale ======
   static const double progressIndicatorInLoadingState = 0.8;
+  static const double iconBackButtonSize = 30;
   // ====== Elevation ======
   static const double elevation8 = 8;
-  // ====== Radius ======
+// ====== Radius ======
   static double get radius170 => 143.r;
 
   // ====== Positioned ======

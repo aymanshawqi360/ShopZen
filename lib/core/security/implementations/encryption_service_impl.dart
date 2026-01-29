@@ -5,7 +5,7 @@ import 'dart:typed_data';
 import 'package:dartz/dartz.dart';
 import 'package:shopzen/core/config/env_config.dart';
 import 'package:shopzen/core/error/api_error_model.dart';
-import 'package:shopzen/core/error/stoarge_failure_message.dart';
+import 'package:shopzen/core/error/failure_message.dart';
 import 'package:shopzen/core/security/implementations/flutter_secure_storage_impl.dart';
 import 'package:shopzen/core/security/interfaces/i_encryption_service.dart';
 import 'package:encrypt/encrypt.dart' as enc;

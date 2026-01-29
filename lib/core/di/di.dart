@@ -7,8 +7,10 @@ import 'package:shopzen/core/security/implementations/flutter_secure_storage_imp
 import 'package:shopzen/feature/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:shopzen/feature/auth/data/repo_implementation/auth_repo_implementation.dart';
 import 'package:shopzen/feature/auth/domain/repo/auth_repository.dart';
+import 'package:shopzen/feature/auth/domain/use_cases/forgot_password_use_cases.dart';
 import 'package:shopzen/feature/auth/domain/use_cases/login_use_cases.dart';
 import 'package:shopzen/feature/auth/domain/use_cases/register_use_cases.dart';
+import 'package:shopzen/feature/auth/presentation/cubit/forgot_password/forgot_password_cubit.dart';
 import 'package:shopzen/feature/auth/presentation/cubit/login/login_cubit.dart';
 import 'package:shopzen/feature/auth/presentation/cubit/register/register_cubit.dart';
 
@@ -19,13 +21,17 @@ Future<void> setupDependencies() async {
 }
 
 Future<void> _setupCore() async {
-  //Dio
+  
+  //===== Dio =====
   sl.registerLazySingleton<Dio>(() => DioFactory.createDio());
-  //EnvConfig
+  
+  //===== EnvConfig =====
   sl.registerLazySingleton<EnvConfig>(() => EnvConfig());
-  //FlutterSecureStorage
+  
+  //===== FlutterSecureStorage =====
   sl.registerLazySingleton<FlutterSecureStorage>(() => FlutterSecureStorage());
-  //FlutterSecureStorageImpl
+  
+  //===== FlutterSecureStorageImpl =====
   sl.registerLazySingleton<FlutterSecureStorageImpl>(
     () => FlutterSecureStorageImpl(
       flutterSecureStorage: sl<FlutterSecureStorage>(),
@@ -34,15 +40,16 @@ Future<void> _setupCore() async {
 }
 
 Future<void> _auth() async {
-  //ApiService
+   //===== ApiService =====
   sl.registerLazySingleton<AuthApiService>(() => AuthApiService(sl()));
 
-  //RepoImplementation
+  
+   //===== RepoImplementation =====
   sl.registerLazySingleton<AuthRepository>(
     () => AuthRepoImplementation(apiService: sl()),
   );
 
-  //UseCases
+  //===== UseCases =====
 
   //Register
   sl.registerLazySingleton<RegisterUseCases>(
@@ -52,9 +59,13 @@ Future<void> _auth() async {
   sl.registerLazySingleton<LoginUseCases>(
     () => LoginUseCases(authRepository: sl()),
   );
+  //ForgotPassword
+  sl.registerLazySingleton<ForgotPasswordUseCases>(()=>ForgotPasswordUseCases(authRepository: sl()));
 
-  //Cubit
   
+  
+  //===== Cubit =====
+
   //Register Cubit
   sl.registerFactory(
     () => RegisterCubit(
@@ -65,4 +76,7 @@ Future<void> _auth() async {
   );
   //Login Cubit
   sl.registerFactory(() => LoginCubit(loginUseCases: sl()));
+
+  //ForgotPassword Cubit
+  sl.registerFactory(()=>ForgotPasswordCubit(forgotPasswordUseCases: sl()));
 }
