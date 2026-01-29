@@ -17,5 +17,5 @@ class AuthResponseEntity extends Equatable {
     userData
   ];
 
-  isRight() {}
+  
 }

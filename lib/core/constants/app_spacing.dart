@@ -106,6 +106,8 @@ class AppSpacing {
       EdgeInsets.only( left: 20.w,right: 20.w,bottom: 15.h);
       static EdgeInsets get paddingL20R20 =>
       EdgeInsets.only( left: 20.w,right: 20.w,);
+      static EdgeInsets get paddingL20R20T10 =>
+      EdgeInsets.only( left: 20.w,right: 20.w,top: 10.h);
       static EdgeInsets get paddingL8R8 =>
       EdgeInsets.only( left: 8.w,right: 8.w,);
   static EdgeInsets get paddingT24L19R19B19 =>
