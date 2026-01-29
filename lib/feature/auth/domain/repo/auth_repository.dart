@@ -4,7 +4,7 @@ import 'package:shopzen/feature/auth/data/model/change_password/forgot_password_
 import 'package:shopzen/feature/auth/data/model/login/login_request_model.dart';
 import 'package:shopzen/feature/auth/data/model/register/register_request_model.dart';
 import 'package:shopzen/core/Shared/auth/entity/register_response_entity.dart';
-import 'package:shopzen/feature/auth/domain/entity/otp_entity.dart';
+import 'package:shopzen/feature/auth/domain/entity/forgot_password_entity.dart';
 
 abstract class AuthRepository {
   

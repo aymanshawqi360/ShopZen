@@ -3,7 +3,7 @@ import 'package:shopzen/feature/auth/data/mappers/auth_mappers.dart';
 import 'package:shopzen/core/Shared/model/auth/auth_response_model.dart';
 import 'package:shopzen/core/Shared/auth/entity/register_response_entity.dart';
 import 'package:shopzen/feature/auth/data/model/change_password/forgot_password_response_model.dart';
-import 'package:shopzen/feature/auth/domain/entity/otp_entity.dart';
+import 'package:shopzen/feature/auth/domain/entity/forgot_password_entity.dart';
 
 void main() {
   late AuthResponseModel registerResponseModel;

@@ -34,6 +34,11 @@
     "pleaseEnterYourPassword":"يرجى إدخال كلمة المرور",
     "pleaseEnterYourEmail":"يرجى إدخال بريدك الإلكتروني",
     "pleaseEnterYourLastName":"يرجى إدخال اسم العائلة",
-    "pleaseEnterYourFirstName":"يرجى إدخال الاسم الأول"
+    "pleaseEnterYourFirstName":"يرجى إدخال الاسم الأول",
+    "enter4DigitCode":"أدخل رمز مكون من 6 أرقام",
+    "enter4DigitCodeMessage":"أدخل الرمز المكون من 6 أرقام الذي تلقيته على بريدك الإلكتروني ",  
+    "emailNotReceived":"لم تستلم البريد الإلكتروني؟\t",
+    "resendCode":"إعادة إرسال الرمز",
+    "continueButton":"استمرار"
 
 }

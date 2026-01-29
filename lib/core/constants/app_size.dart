@@ -60,6 +60,7 @@ class AppSize {
   static double get textSizeSp22 => 22.sp;
   static double get textSizeSp23 => 23.sp;
   static double get textSizeSp24 => 24.sp;
+  static double get textSizeSp25 => 25.sp;
   static double get textSizeSp26 => 26.sp;
   static double get textSizeSp28 => 28.sp;
   static double get textSizeSp30 => 30.sp;

@@ -119,4 +119,20 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pleaseEnterYourFirstName => 'Please enter your first name';
+
+  @override
+  String get enter4DigitCode => 'Enter 6 Digit Code';
+
+  @override
+  String get enter4DigitCodeMessage =>
+      'Enter 6 digit code that your receive on your email ';
+
+  @override
+  String get emailNotReceived => 'Email not received?\t';
+
+  @override
+  String get resendCode => 'Resend Code';
+
+  @override
+  String get continueButton => 'Continue';
 }

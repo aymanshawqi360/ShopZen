@@ -117,4 +117,20 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get pleaseEnterYourFirstName => 'يرجى إدخال الاسم الأول';
+
+  @override
+  String get enter4DigitCode => 'أدخل رمز مكون من 6 أرقام';
+
+  @override
+  String get enter4DigitCodeMessage =>
+      'أدخل الرمز المكون من 6 أرقام الذي تلقيته على بريدك الإلكتروني ';
+
+  @override
+  String get emailNotReceived => 'لم تستلم البريد الإلكتروني؟\t';
+
+  @override
+  String get resendCode => 'إعادة إرسال الرمز';
+
+  @override
+  String get continueButton => 'استمرار';
 }
