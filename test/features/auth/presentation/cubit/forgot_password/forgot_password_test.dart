@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:shopzen/core/error/api_error_model.dart';
 import 'package:shopzen/feature/auth/data/model/change_password/forgot_password_request_model.dart';
-import 'package:shopzen/feature/auth/domain/entity/otp_entity.dart';
+import 'package:shopzen/feature/auth/domain/entity/forgot_password_entity.dart';
 import 'package:shopzen/feature/auth/domain/repo/auth_repository.dart';
 import 'package:shopzen/feature/auth/domain/use_cases/forgot_password_use_cases.dart';
 import 'package:shopzen/feature/auth/presentation/cubit/forgot_password/forgot_password_cubit.dart';

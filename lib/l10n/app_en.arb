@@ -34,6 +34,11 @@
     "pleaseEnterYourPassword":"Please enter your password",
     "pleaseEnterYourEmail":"Please enter your email",
     "pleaseEnterYourLastName":"Please enter your last name",
-    "pleaseEnterYourFirstName":"Please enter your first name"
+    "pleaseEnterYourFirstName":"Please enter your first name",
+    "enter4DigitCode":"Enter 6 Digit Code",
+    "enter4DigitCodeMessage":"Enter 6 digit code that your receive on your email ",
+    "emailNotReceived":"Email not received?\t",
+    "resendCode":"Resend Code",
+    "continueButton":"Continue"
 
 }

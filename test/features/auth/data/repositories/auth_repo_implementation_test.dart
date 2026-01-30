@@ -10,7 +10,7 @@ import 'package:shopzen/feature/auth/data/model/register/register_request_model.
 import 'package:shopzen/core/Shared/model/auth/auth_response_model.dart';
 import 'package:shopzen/feature/auth/data/repo_implementation/auth_repo_implementation.dart';
 import 'package:shopzen/core/Shared/auth/entity/register_response_entity.dart';
-import 'package:shopzen/feature/auth/domain/entity/otp_entity.dart';
+import 'package:shopzen/feature/auth/domain/entity/forgot_password_entity.dart';
 
 class MockAuthApiService extends Mock implements AuthApiService {}
 

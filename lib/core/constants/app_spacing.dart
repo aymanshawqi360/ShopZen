@@ -114,6 +114,8 @@ class AppSpacing {
       EdgeInsets.only(top: 24.h, left: 19.w, right: 19.w, bottom: 19.h);
       static EdgeInsets get paddingT5L8R8B19 =>
       EdgeInsets.only(top: 5.h, left: 8.w, right: 8.w, bottom: 19.h);
+      static EdgeInsets get paddingT68L24R24 =>
+      EdgeInsets.only(top: 68.h, left: 24.w, right: 24.w, );
 
   // Margin - All Sides
   static EdgeInsets get marginAll4 => EdgeInsets.all(4.w);

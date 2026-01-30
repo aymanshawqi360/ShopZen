@@ -71,7 +71,7 @@ class AppTextStyles {
   );
   // Body
   static const TextStyle bodyLarge = TextStyle(
-   // fontFamily: AppStrings.appFontNameLato,
+   fontFamily: AppStrings.satoshiFont,
     fontSize: 16,
     fontWeight: FontWeight.w400,
   );
@@ -83,7 +83,7 @@ class AppTextStyles {
   );
 
   static const TextStyle bodySmall = TextStyle(
-  //  fontFamily: AppStrings.appFontNameLato,
+   fontFamily: AppStrings.satoshiFont,
     fontSize: 12,
     fontWeight: FontWeight.w300,
   );

@@ -313,6 +313,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please enter your first name'**
   String get pleaseEnterYourFirstName;
+
+  /// No description provided for @enter4DigitCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter 6 Digit Code'**
+  String get enter4DigitCode;
+
+  /// No description provided for @enter4DigitCodeMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter 6 digit code that your receive on your email '**
+  String get enter4DigitCodeMessage;
+
+  /// No description provided for @emailNotReceived.
+  ///
+  /// In en, this message translates to:
+  /// **'Email not received?\t'**
+  String get emailNotReceived;
+
+  /// No description provided for @resendCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend Code'**
+  String get resendCode;
+
+  /// No description provided for @continueButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continueButton;
 }
 
 class _AppLocalizationsDelegate
