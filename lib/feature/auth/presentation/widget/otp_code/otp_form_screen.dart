@@ -28,20 +28,25 @@ class _OtpFormScreenState extends State<OtpFormScreen> {
     _sixthOtpController = TextEditingController();
     _formKey = GlobalKey<FormState>();
   }
+  
 
+
+  @override
   void dispose() {
-    super.dispose();
+    
     _firstOtpController.dispose();
     _secondOtpController.dispose();
     _thirdOtpController.dispose();
     _fourthOtpController.dispose();
     _fifthOtpController.dispose();
     _sixthOtpController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _formKey,
       child: Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
