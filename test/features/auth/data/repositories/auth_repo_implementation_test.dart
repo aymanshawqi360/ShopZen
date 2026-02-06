@@ -4,12 +4,14 @@ import 'package:mocktail/mocktail.dart';
 import 'package:shopzen/core/error/api_error_model.dart';
 import 'package:shopzen/feature/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:shopzen/feature/auth/data/model/change_password/forgot_password_request_model.dart';
-import 'package:shopzen/feature/auth/data/model/change_password/forgot_password_response_model.dart';
+import 'package:shopzen/core/Shared/model/auth/forgot_password_response_model.dart';
+import 'package:shopzen/feature/auth/data/model/change_password/resend_otp_request_model.dart';
+import 'package:shopzen/feature/auth/data/model/change_password/reset_password_request_mode.dart';
 import 'package:shopzen/feature/auth/data/model/login/login_request_model.dart';
 import 'package:shopzen/feature/auth/data/model/register/register_request_model.dart';
 import 'package:shopzen/core/Shared/model/auth/auth_response_model.dart';
 import 'package:shopzen/feature/auth/data/repo_implementation/auth_repo_implementation.dart';
-import 'package:shopzen/core/Shared/auth/entity/register_response_entity.dart';
+import 'package:shopzen/core/Shared/auth/entity/auth_response_entity.dart';
 import 'package:shopzen/feature/auth/domain/entity/forgot_password_entity.dart';
 
 class MockAuthApiService extends Mock implements AuthApiService {}
@@ -23,13 +25,32 @@ void main() {
   late LoginRequestModel loginRequestModel;
   late LoginRequestModel loginRequestModelFailed;
   late ForgotPasswordRequestModel forgotPasswordRequestModel;
+  late ForgotPasswordRequestModel forgotPasswordRequestModelFailed;
   late ForgotPasswordResponseModel forgotPasswordResponseModel;
+  late ForgotPasswordResponseModel forgotPasswordResponseFailureModel;
   late Failure failure;
   late UserData userData;
+  late ResendOtpRequestModel resendOtpRequestModelSuccess;
+  late ResendOtpRequestModel resendOtpRequestModelFailure;
+  late ResetPasswordRequestMode resetPasswordRequestMode;
+  late ResetPasswordRequestMode resetPasswordRequestFailureMode;
   setUp(() {
+    forgotPasswordResponseFailureModel = ForgotPasswordResponseModel(
+      message: 'failed',
+      status: 400,
+    );
+    resetPasswordRequestFailureMode = ResetPasswordRequestMode(
+      email: "test2001@gmail",
+    );
+    resetPasswordRequestMode = ResetPasswordRequestMode(
+      email: "test2001@gmail.com",
+    );
     forgotPasswordResponseModel = ForgotPasswordResponseModel(
       message: "success",
       status: 200,
+    );
+    forgotPasswordRequestModelFailed = ForgotPasswordRequestModel(
+      email: "test2001@gmai",
     );
     mockAuthApiService = MockAuthApiService();
     authRepoImplementation = AuthRepoImplementation(
@@ -82,6 +103,15 @@ void main() {
       email: "test2001@gmail.com",
       password: "test123456789",
     );
+
+    resendOtpRequestModelSuccess = ResendOtpRequestModel(
+      email: "test2001@gmail.com",
+      otp: '',
+    );
+    resendOtpRequestModelFailure = ResendOtpRequestModel(
+      email: "test2001@gmail",
+      otp: '',
+    );
   });
 
   group("Test register method in auth repo", () {
@@ -133,12 +163,11 @@ void main() {
         () => mockAuthApiService.login(body: loginRequestModelFailed),
       ).thenThrow(failure);
       final result = await authRepoImplementation.login(
-        authRequestModel: loginRequestModel,
+        authRequestModel: loginRequestModelFailed,
       );
-
+      expect(result.isLeft(), true);
       result.fold((failure) {
         expect(failure, isA<Failure>());
-        expect(failure.errorData, failure.errorData);
       }, (_) => null);
     });
   });
@@ -161,8 +190,9 @@ void main() {
 
     test("should return session when forgot password is failure", () async {
       when(
-        () =>
-            mockAuthApiService.forgotPassword(body: forgotPasswordRequestModel),
+        () => mockAuthApiService.forgotPassword(
+          body: forgotPasswordRequestModelFailed,
+        ),
       ).thenThrow(
         Failure(
           errorData: {
@@ -173,11 +203,85 @@ void main() {
       );
 
       final result = await authRepoImplementation.forgotPassword(
-        authRequestModel: forgotPasswordRequestModel,
+        authRequestModel: forgotPasswordRequestModelFailed,
       );
 
       expect(result, isA<Either<Failure, ForgotPasswordEntity>>());
       expect(result.isLeft(), true);
+      result.fold((failure) {
+        expect(failure, isA<Failure>());
+      }, (_) => null);
+    });
+  });
+
+  group(" Test resendOtp method ", () {
+    test("should return ResendOtp when resend otp is successful", () async {
+      when(
+        () => mockAuthApiService.otpVerification(body: resendOtpRequestModelSuccess),
+      ).thenAnswer((_) async => forgotPasswordResponseModel);
+
+      final resutls = await authRepoImplementation.resendOtp(
+        resendOtpRequestModel: resendOtpRequestModelSuccess,
+      );
+
+      expect(resutls.isRight(), true);
+      resutls.fold((_) => null, (i) {
+        expect(i.message, "success");
+        expect(i.status, 200);
+      });
+    });
+
+    test("should return  ResendOtp when resend otp is failure", () async {
+      when(
+        () => mockAuthApiService.otpVerification(body: resendOtpRequestModelFailure),
+      ).thenThrow({
+        "status": 404,
+        "errors": {"message": "No account found with this email"},
+      });
+
+      final result = await authRepoImplementation.resendOtp(
+        resendOtpRequestModel: resendOtpRequestModelFailure,
+      );
+
+      expect(result.isLeft(), true);
+      expect(result, isA<Either<Failure, ForgotPasswordEntity>>());
+      result.fold((failure) {
+        expect(failure, isA<Failure>());
+      }, (_) => null);
+    });
+  });
+
+  group('Test resetPassword method', () {
+    test('should return session when reset password is successful', () async {
+      when(
+        () => mockAuthApiService.resetPassword(body: resetPasswordRequestMode),
+      ).thenAnswer((_) async => forgotPasswordResponseModel);
+
+      final result = await authRepoImplementation.resetPassword(
+        resetPasswordRequestMode: resetPasswordRequestMode,
+      );
+
+      expect(result.isRight(), true);
+      result.fold((_) => null, (r) {
+        expect(r.status, 200);
+        expect(r.message, "success");
+      });
+    });
+
+    test('should return session when reset password is failure', () async {
+      when(
+        () => mockAuthApiService.resetPassword(
+          body: resetPasswordRequestFailureMode,
+        ),
+      ).thenAnswer((_) async => forgotPasswordResponseFailureModel);
+      final result = await authRepoImplementation.resetPassword(
+        resetPasswordRequestMode: resetPasswordRequestFailureMode,
+      );
+      expect(result.isLeft(), true);
+      result.fold((f) {
+        expect(f.errorCode, 400);
+        expect(f.errorMessage, "The operation failed.");
+      }, (_) => null);
     });
   });
 }

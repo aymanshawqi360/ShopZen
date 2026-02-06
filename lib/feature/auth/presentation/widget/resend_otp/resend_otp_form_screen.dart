@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopzen/core/common_ui/widgets/otp_code_text_field.dart';
+import 'package:shopzen/feature/auth/domain/validation/validate_otp_impl.dart';
 import 'package:shopzen/feature/auth/domain/validation/validate_user_Iinputs.dart';
 
 class ResendOtpFormScreen extends StatefulWidget {
@@ -14,51 +15,51 @@ class _ResendOtpFormScreenState extends State<ResendOtpFormScreen> {
   @override
   void initState() {
     super.initState();
-    ValidateUserIinputs.initController();
+    ValidateUserIinputs.initController(controller: ValidateOtpImpl());
   }
 
   @override
   void dispose() {
     super.dispose();
 
-    ValidateUserIinputs.disposeController();
+    ValidateUserIinputs.disposeController(disposeController: ValidateOtpImpl());
   }
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: ValidateUserIinputs.formKey,
+      key: ValidateUserIinputs.formKey(formKey: ValidateOtpImpl.formKey),
       child: Row(
         spacing: 3.w,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           OtpCodeTextField(
-            controller: ValidateUserIinputs.otpControllers[0],
+            controller: ValidateUserIinputs.otpControllers(otpControllers: ValidateOtpImpl.otpControllers[0]),
             lastNumber: false,
             fristNumber: true,
           ),
           OtpCodeTextField(
-            controller: ValidateUserIinputs.otpControllers[1],
+            controller:  ValidateUserIinputs.otpControllers(otpControllers: ValidateOtpImpl.otpControllers[1]),
             lastNumber: false,
             fristNumber: false,
           ),
           OtpCodeTextField(
-            controller: ValidateUserIinputs.otpControllers[2],
+            controller: ValidateUserIinputs.otpControllers(otpControllers: ValidateOtpImpl.otpControllers[2]),
             lastNumber: false,
             fristNumber: false,
           ),
           OtpCodeTextField(
-            controller: ValidateUserIinputs.otpControllers[3],
+            controller:  ValidateUserIinputs.otpControllers(otpControllers: ValidateOtpImpl.otpControllers[3]),
             lastNumber: false,
             fristNumber: false,
           ),
           OtpCodeTextField(
-            controller: ValidateUserIinputs.otpControllers[4],
+            controller: ValidateUserIinputs.otpControllers(otpControllers: ValidateOtpImpl.otpControllers[4]),
             lastNumber: false,
             fristNumber: false,
           ),
           OtpCodeTextField(
-            controller: ValidateUserIinputs.otpControllers[5],
+            controller: ValidateUserIinputs.otpControllers(otpControllers: ValidateOtpImpl.otpControllers[5]),
             lastNumber: true,
             fristNumber: false,
           ),

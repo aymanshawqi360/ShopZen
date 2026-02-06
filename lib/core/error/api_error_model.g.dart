@@ -7,13 +7,13 @@ part of 'api_error_model.dart';
 // **************************************************************************
 
 Failure _$FailureFromJson(Map<String, dynamic> json) => Failure(
-  errorCode: (json['errorCode'] as num?)?.toInt(),
+  errorCode: (json['status'] as num?)?.toInt(),
   errorData: json['errors'] as Map<String, dynamic>?,
   errorMessage: json['errorMessage'] as String?,
 );
 
 Map<String, dynamic> _$FailureToJson(Failure instance) => <String, dynamic>{
-  'errorCode': instance.errorCode,
+  'status': instance.errorCode,
   'errorMessage': instance.errorMessage,
   'errors': instance.errorData,
 };

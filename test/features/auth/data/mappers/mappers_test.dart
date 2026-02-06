@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shopzen/feature/auth/data/mappers/auth_mappers.dart';
 import 'package:shopzen/core/Shared/model/auth/auth_response_model.dart';
-import 'package:shopzen/core/Shared/auth/entity/register_response_entity.dart';
-import 'package:shopzen/feature/auth/data/model/change_password/forgot_password_response_model.dart';
+import 'package:shopzen/core/Shared/auth/entity/auth_response_entity.dart';
+import 'package:shopzen/core/Shared/model/auth/forgot_password_response_model.dart';
 import 'package:shopzen/feature/auth/domain/entity/forgot_password_entity.dart';
 
 void main() {
@@ -37,9 +37,17 @@ void main() {
   });
 
   test("should map ForgotPasswordResponseModel to OtpResponseEntity", () {
-    ForgotPasswordEntity result = AuthMappers.forgotPasswordResponseModelToOtpResponseEntity(
-      forgotPasswordResponseModel: forgotPasswordResponseModel,
-    );
+    ForgotPasswordEntity result =
+        AuthMappers.forgotPasswordResponseModelToOtpResponseEntity(
+          forgotPasswordResponseModel: forgotPasswordResponseModel,
+        );
+    expect(result, const ForgotPasswordEntity(status: 200, message: "success"));
+  });
+  test('should map ResetPasswordResponseModel to OtpResponseEntity', () {
+    ForgotPasswordEntity result =
+        AuthMappers.resetPasswordResponseModelToOtpResponseEntity(
+          forgotPasswordResponseModel: forgotPasswordResponseModel,
+        );
     expect(result, const ForgotPasswordEntity(status: 200, message: "success"));
   });
 }

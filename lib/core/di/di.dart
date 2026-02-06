@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shopzen/core/config/env_config.dart';
+import 'package:shopzen/core/error/failure_message.dart';
 import 'package:shopzen/core/notworking/dio_factory.dart';
 import 'package:shopzen/core/security/implementations/flutter_secure_storage_impl.dart';
 import 'package:shopzen/feature/auth/data/data_sources/auth_remote_data_source.dart';
@@ -10,9 +11,12 @@ import 'package:shopzen/feature/auth/domain/repo/auth_repository.dart';
 import 'package:shopzen/feature/auth/domain/use_cases/forgot_password_use_cases.dart';
 import 'package:shopzen/feature/auth/domain/use_cases/login_use_cases.dart';
 import 'package:shopzen/feature/auth/domain/use_cases/register_use_cases.dart';
-import 'package:shopzen/feature/auth/presentation/cubit/forgot_password/forgot_password_cubit.dart';
+import 'package:shopzen/feature/auth/domain/use_cases/resend_otp_use_cases.dart';
+import 'package:shopzen/feature/auth/domain/use_cases/reset_password_use_cases.dart';
+import 'package:shopzen/feature/auth/presentation/cubit/verify_email_cubit/verify_email_cubit.dart';
 import 'package:shopzen/feature/auth/presentation/cubit/login/login_cubit.dart';
 import 'package:shopzen/feature/auth/presentation/cubit/register/register_cubit.dart';
+import 'package:shopzen/feature/auth/presentation/cubit/resend_otp/resend_otp_cubit.dart';
 
 final sl = GetIt.instance;
 Future<void> setupDependencies() async {
@@ -21,30 +25,30 @@ Future<void> setupDependencies() async {
 }
 
 Future<void> _setupCore() async {
-  
   //===== Dio =====
   sl.registerLazySingleton<Dio>(() => DioFactory.createDio());
-  
+
   //===== EnvConfig =====
   sl.registerLazySingleton<EnvConfig>(() => EnvConfig());
-  
+
   //===== FlutterSecureStorage =====
   sl.registerLazySingleton<FlutterSecureStorage>(() => FlutterSecureStorage());
-  
+
   //===== FlutterSecureStorageImpl =====
   sl.registerLazySingleton<FlutterSecureStorageImpl>(
     () => FlutterSecureStorageImpl(
       flutterSecureStorage: sl<FlutterSecureStorage>(),
     ),
   );
+
+  // sl.registerLazySingleton<StorageErrorModel>(()=>StorageErrorModel(message: ''));
 }
 
 Future<void> _auth() async {
-   //===== ApiService =====
+  //===== ApiService =====
   sl.registerLazySingleton<AuthApiService>(() => AuthApiService(sl()));
 
-  
-   //===== RepoImplementation =====
+  //===== RepoImplementation =====
   sl.registerLazySingleton<AuthRepository>(
     () => AuthRepoImplementation(apiService: sl()),
   );
@@ -60,10 +64,20 @@ Future<void> _auth() async {
     () => LoginUseCases(authRepository: sl()),
   );
   //ForgotPassword
-  sl.registerLazySingleton<ForgotPasswordUseCases>(()=>ForgotPasswordUseCases(authRepository: sl()));
+  sl.registerLazySingleton<ForgotPasswordUseCases>(
+    () => ForgotPasswordUseCases(authRepository: sl()),
+  );
 
-  
-  
+  //ResendOtp
+  sl.registerLazySingleton<ResendOtpUseCases>(
+    () => ResendOtpUseCases(authRepository: sl()),
+  );
+
+  //ResetPassword
+  sl.registerLazySingleton<ResetPasswordUseCases>(
+    () => ResetPasswordUseCases(authRepository: sl()),
+  );
+
   //===== Cubit =====
 
   //Register Cubit
@@ -78,5 +92,21 @@ Future<void> _auth() async {
   sl.registerFactory(() => LoginCubit(loginUseCases: sl()));
 
   //ForgotPassword Cubit
-  sl.registerFactory(()=>ForgotPasswordCubit(forgotPasswordUseCases: sl()));
+  sl.registerFactory(
+    () => VerifyEmailCubit(
+      forgotPasswordUseCases: sl(),
+      flutterSecureStorage: sl(),
+      envConfig: sl(),
+    ),
+  );
+
+  //ResendOtp Cubit
+  sl.registerFactory(
+    () => ResendOtpCubit(
+      flutterSecureStorage: sl(),
+      resetPasswordUseCases: sl(),
+      resendOtpUseCases: sl(),
+      envConfig: sl(),
+    ),
+  );
 }

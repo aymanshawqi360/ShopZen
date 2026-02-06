@@ -50,7 +50,7 @@ class AppSpacing {
   static EdgeInsets get paddingH12V12 =>
       EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h);
   static EdgeInsets get paddingH16V8 =>
-      EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h);      
+      EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h);
   static EdgeInsets get paddingH24V12 =>
       EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.h);
   static EdgeInsets get paddingH10V4 =>
@@ -63,7 +63,7 @@ class AppSpacing {
       EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h);
   static EdgeInsets get paddingH16V10 =>
       EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h);
-      static EdgeInsets get paddingH16V12 =>
+  static EdgeInsets get paddingH16V12 =>
       EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h);
   static EdgeInsets get paddingH16V45 =>
       EdgeInsets.symmetric(horizontal: 16.w, vertical: 45.h);
@@ -71,7 +71,7 @@ class AppSpacing {
       EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h);
   static EdgeInsets get paddingH12V8 =>
       EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h);
-      static EdgeInsets get paddingH8V15 =>
+  static EdgeInsets get paddingH8V15 =>
       EdgeInsets.symmetric(horizontal: 8.w, vertical: 15.h);
   static EdgeInsets get paddingH123V14 =>
       EdgeInsets.symmetric(horizontal: 123.w, vertical: 14.h);
@@ -92,6 +92,8 @@ class AppSpacing {
 
   static EdgeInsets get paddingL28R24 =>
       EdgeInsets.only(left: 28.w, right: 24.w);
+  static EdgeInsets get paddingT10B10 =>
+      EdgeInsets.only(top: 10.h, bottom: 10.h);
   static EdgeInsets get paddingR20T10 =>
       EdgeInsets.only(right: 20.w, top: 10.h);
   static EdgeInsets get paddingL16R16B23 =>
@@ -100,22 +102,22 @@ class AppSpacing {
       EdgeInsets.only(left: 22.w, bottom: 5.h);
   static EdgeInsets get paddingL23R23T15B15 =>
       EdgeInsets.only(left: 23.w, right: 23.w, top: 15.h, bottom: 15.h);
-      static EdgeInsets get paddingT5 =>
-      EdgeInsets.only( top: 2.8.h, );
-      static EdgeInsets get paddingL20R20B15 =>
-      EdgeInsets.only( left: 20.w,right: 20.w,bottom: 15.h);
-      static EdgeInsets get paddingL20R20 =>
-      EdgeInsets.only( left: 20.w,right: 20.w,);
-      static EdgeInsets get paddingL20R20T10 =>
-      EdgeInsets.only( left: 20.w,right: 20.w,top: 10.h);
-      static EdgeInsets get paddingL8R8 =>
-      EdgeInsets.only( left: 8.w,right: 8.w,);
+  static EdgeInsets get paddingT5 => EdgeInsets.only(top: 2.8.h);
+  static EdgeInsets get paddingL20R20B15 =>
+      EdgeInsets.only(left: 20.w, right: 20.w, bottom: 15.h);
+  static EdgeInsets get paddingL20R20 =>
+      EdgeInsets.only(left: 20.w, right: 20.w);
+  static EdgeInsets get paddingL20R20T10 =>
+      EdgeInsets.only(left: 20.w, right: 20.w, top: 10.h);
+  static EdgeInsets get paddingL8R8 => EdgeInsets.only(left: 8.w, right: 8.w);
   static EdgeInsets get paddingT24L19R19B19 =>
       EdgeInsets.only(top: 24.h, left: 19.w, right: 19.w, bottom: 19.h);
-      static EdgeInsets get paddingT5L8R8B19 =>
+  static EdgeInsets get paddingT5L8R8B19 =>
       EdgeInsets.only(top: 5.h, left: 8.w, right: 8.w, bottom: 19.h);
-      static EdgeInsets get paddingT68L24R24 =>
-      EdgeInsets.only(top: 68.h, left: 24.w, right: 24.w, );
+  static EdgeInsets get paddingT80L24R24 =>
+      EdgeInsets.only(top: 80.h, left: 24.w, right: 24.w);
+  static EdgeInsets get paddingL24R24T15 =>
+      EdgeInsets.only(left: 24.w, right: 24.w, top: 15.h);
 
   // Margin - All Sides
   static EdgeInsets get marginAll4 => EdgeInsets.all(4.w);
@@ -157,7 +159,6 @@ class AppSpacing {
 
   static EdgeInsets get marginR8 => EdgeInsets.only(right: 8.w);
 
- 
   // ========= CUSTOM GAPS =========
 
   static SizedBox customGapH(double height) => SizedBox(height: height.h);
@@ -190,7 +191,6 @@ class AppSpacing {
     bottom: (bottom ?? 0).h,
   );
 
-  
   static EdgeInsets get screenPaddingH => paddingH20;
   static EdgeInsets get screenPaddingH16 => paddingH16;
   static EdgeInsets get buttonPadding => paddingH20;

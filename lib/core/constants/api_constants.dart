@@ -39,9 +39,11 @@ class EndPonts{
   
   //Change Password
   static const String forgotPassword='$_apiEndPont$_v1EndPont$_auth/forgot-password';
+
+  //Resend Otp
+  static const String otpVerification='$_apiEndPont$_v1EndPont$_auth/otp-verification';
+
+  //Reset Password
+  static const String resetPassword='$_apiEndPont$_v1EndPont$_auth/reset-password';
 }
 
-// {
-//     "status": true,
-//     "message": "344903"
-// }

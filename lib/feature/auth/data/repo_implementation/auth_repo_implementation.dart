@@ -6,11 +6,13 @@ import 'package:shopzen/core/error/failure_message.dart';
 import 'package:shopzen/feature/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:shopzen/feature/auth/data/mappers/auth_mappers.dart';
 import 'package:shopzen/feature/auth/data/model/change_password/forgot_password_request_model.dart';
-import 'package:shopzen/feature/auth/data/model/change_password/forgot_password_response_model.dart';
+import 'package:shopzen/core/Shared/model/auth/forgot_password_response_model.dart';
+import 'package:shopzen/feature/auth/data/model/change_password/resend_otp_request_model.dart';
+import 'package:shopzen/feature/auth/data/model/change_password/reset_password_request_mode.dart';
 import 'package:shopzen/feature/auth/data/model/login/login_request_model.dart';
 import 'package:shopzen/feature/auth/data/model/register/register_request_model.dart';
 import 'package:shopzen/core/Shared/model/auth/auth_response_model.dart';
-import 'package:shopzen/core/Shared/auth/entity/register_response_entity.dart';
+import 'package:shopzen/core/Shared/auth/entity/auth_response_entity.dart';
 import 'package:shopzen/feature/auth/domain/entity/forgot_password_entity.dart';
 import 'package:shopzen/feature/auth/domain/repo/auth_repository.dart';
 
@@ -100,6 +102,49 @@ class AuthRepoImplementation implements AuthRepository {
       }
     } catch (error) {
       return Left(ApiErrorHundler.errorHundel(error));
+    }
+  }
+
+  @override
+  Future<Either<Failure, ForgotPasswordEntity>> resendOtp({required ResendOtpRequestModel resendOtpRequestModel}) async{
+   try {
+     ForgotPasswordResponseModel result = await apiService.otpVerification(body: resendOtpRequestModel);
+
+     if(result.status == NetworkConfig.statusOk){
+       ForgotPasswordEntity forgotPasswordEntity = AuthMappers.forgotPasswordResponseModelToOtpResponseEntity(forgotPasswordResponseModel: result);
+       return Right(forgotPasswordEntity);
+     }else {
+       return Left(
+         Failure(
+           errorMessage: FailureMessage.theOperationFailed,
+           errorCode: NetworkConfig.statusBadRequest,
+         ),
+       );
+     }
+   } catch (error) {
+     return Left(ApiErrorHundler.errorHundel(error));
+   }
+  }
+
+  @override
+  Future<Either<Failure, ForgotPasswordEntity>> resetPassword({required ResetPasswordRequestMode resetPasswordRequestMode}) async{
+    try {
+      ForgotPasswordResponseModel result=await apiService.resetPassword(body: resetPasswordRequestMode);
+  
+      if(result.status == NetworkConfig.statusOk){
+        ForgotPasswordEntity forgotPasswordEntity = AuthMappers.resetPasswordResponseModelToOtpResponseEntity(forgotPasswordResponseModel: result);
+        return Right(forgotPasswordEntity);
+      }else {
+        return Left(
+          Failure(
+            errorMessage: FailureMessage.theOperationFailed,
+            errorCode: NetworkConfig.statusBadRequest,
+          ),
+        );
+      }
+    } catch (error) {
+      return Left(ApiErrorHundler.errorHundel(error));
+      
     }
   }
 }

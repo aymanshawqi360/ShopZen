@@ -7,6 +7,7 @@ import 'package:shopzen/core/extension/app_extension.dart';
 import 'package:shopzen/core/utils/app_color.dart';
 import 'package:shopzen/core/utils/app_text_styles.dart';
 import 'package:shopzen/core/utils/font_weight_helper.dart';
+import 'package:shopzen/feature/auth/domain/validation/validate_otp_impl.dart';
 import 'package:shopzen/feature/auth/domain/validation/validate_user_Iinputs.dart';
 import 'package:shopzen/feature/auth/presentation/cubit/resend_otp/resend_otp_cubit.dart';
 import 'package:shopzen/feature/auth/presentation/widget/resend_otp/loading_button.dart';
@@ -39,7 +40,7 @@ class ContinueButtonWithCountdown extends StatelessWidget {
                   () {
                     log(isLoading.toString());
                     log("ValidateUserIinputs.otp(context: context);");
-                    ValidateUserIinputs.otp(context: context);
+                    ValidateUserIinputs.validateThenDoSignup(context: context, validateThenDoSignup: ValidateOtpImpl());
                   },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

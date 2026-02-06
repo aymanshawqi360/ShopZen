@@ -36,7 +36,7 @@ class CustomTextField extends StatelessWidget {
           ? AppColors.lightBackground
           : AppColors.darkBackground,
       cursorHeight: AppSize.cursorHeight,
-      decoration: InputDecoration(
+      decoration: InputDecoration(  
         filled: context.appTheme.inputDecorationTheme.filled,
         focusedBorder:
             focusedBorder ??
