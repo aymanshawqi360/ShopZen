@@ -5,8 +5,8 @@ import 'package:shopzen/core/utils/app_color.dart';
 import 'package:shopzen/core/utils/app_text_styles.dart';
 import 'package:shopzen/core/utils/font_weight_helper.dart';
 
-class ForgotPasswordTitleAndDescription extends StatelessWidget {
-  const ForgotPasswordTitleAndDescription({super.key});
+class VerifyEmailTitleAndDescription extends StatelessWidget {
+  const VerifyEmailTitleAndDescription({super.key});
 
   @override 
   Widget build(BuildContext context) {

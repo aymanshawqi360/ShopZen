@@ -1,24 +1,26 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shopzen/core/error/show_error_message.dart';
-import 'package:shopzen/feature/auth/presentation/cubit/forgot_password/forgot_password_cubit.dart';
+import 'package:shopzen/core/routing/route_name.dart';
+import 'package:shopzen/feature/auth/presentation/cubit/verify_email_cubit/verify_email_cubit.dart';
 
-class ForgotPasswordLisener extends StatelessWidget {
-  const ForgotPasswordLisener({super.key});
+class VerifyEmailBlocLisener extends StatelessWidget {
+  const VerifyEmailBlocLisener({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ForgotPasswordCubit, ForgotPasswordState>(
+    return BlocConsumer<VerifyEmailCubit, VerifyEmailState>(
       buildWhen: (previous, current) =>
-          current is ForgotPasswordSuccess ||
-          current is ForgotPasswordFailure ||
-          current is ForgotPasswordLoading,
+          current is VerifyEmailSuccess ||
+          current is VerifyEmailFailure ||
+          current is VerifyEmailLoading,
       listener: (context, state) {
-        if (state is ForgotPasswordSuccess) {
+        if (state is VerifyEmailSuccess) {
           _buildSuccessState(context: context);
           return;
         }
-        if (state is ForgotPasswordFailure) {
+        if (state is VerifyEmailFailure) {
           _buildFailureState(context: context, state: state);
           return;
         }
@@ -30,12 +32,12 @@ class ForgotPasswordLisener extends StatelessWidget {
   }
 
   void _buildSuccessState({required BuildContext context}) {
-    // context.go(AppRoutes.login);
+    context.go(AppRoutes.otpScreen);
   }
 
   void _buildFailureState({
     required BuildContext context,
-    required ForgotPasswordFailure state,
+    required VerifyEmailFailure state,
   }) {
     AppDialog.showApiError(context, state.errorMessage);
   }

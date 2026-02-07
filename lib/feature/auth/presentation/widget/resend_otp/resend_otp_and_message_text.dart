@@ -4,8 +4,8 @@ import 'package:shopzen/core/extension/app_extension.dart';
 import 'package:shopzen/core/utils/app_color.dart';
 import 'package:shopzen/core/utils/font_weight_helper.dart';
 
-class OtpCodeAndMessageText extends StatelessWidget {
-  const OtpCodeAndMessageText({super.key});
+class ResendOtpAndMessageText extends StatelessWidget {
+  const ResendOtpAndMessageText({super.key});
 
   @override
   Widget build(BuildContext context) {

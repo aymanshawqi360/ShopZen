@@ -5,6 +5,7 @@ part 'api_error_model.g.dart';
 
 @JsonSerializable()
 class Failure  extends Equatable{
+  @JsonKey(name: 'status')
   final int? errorCode;
   final String? errorMessage;
   @JsonKey(name: 'errors')

@@ -74,8 +74,10 @@ ThemeData buildDarkTheme() {
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
+      isDense: true,
       filled: true,
       fillColor: Colors.transparent,
+      errorStyle: const TextStyle(height: 1),
       contentPadding:AppSpacing.paddingH16V12,
       focusedBorder:ThemeDefaultBorder.outlineInputBorder(ThemeFocusedBorder()),
       enabledBorder: ThemeDefaultBorder.outlineInputBorder(

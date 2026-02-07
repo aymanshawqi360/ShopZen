@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shopzen/core/routing/route_name.dart';
-import 'package:shopzen/feature/auth/presentation/screen/forgot_password/forgot_password_screen.dart';
+import 'package:shopzen/feature/auth/presentation/screen/verify_email/verify_email_screen.dart';
 import 'package:shopzen/feature/auth/presentation/screen/login/login_screen.dart';
-import 'package:shopzen/feature/auth/presentation/screen/otp_screen/otp_screen.dart';
+import 'package:shopzen/feature/auth/presentation/screen/resend_otp_screen/resend_otp_screen.dart';
 import 'package:shopzen/feature/auth/presentation/screen/register_screen/register_screen.dart';
 import 'package:shopzen/feature/onboarding/screen/onboarding_screen.dart';
 
@@ -11,7 +11,7 @@ class RoutGenerator {
   static final GoRouter mainAppRouter = GoRouter(
     errorBuilder: (context, state) =>
         Scaffold(body: Center(child: Text(state.error.toString()))),
-    initialLocation: AppRoutes.otpScreen,
+    initialLocation: AppRoutes.login,
     routes: [
       GoRoute(
         path: AppRoutes.onboarding,
@@ -29,11 +29,11 @@ class RoutGenerator {
 
       GoRoute(
         path: AppRoutes.forgotPassword,
-        builder: (context, state) => const ForgotPasswordScreen(),
+        builder: (context, state) => const VerifyEmailScreen(),
       ),
       GoRoute(
         path: AppRoutes.otpScreen,
-        builder: (context, state) => const OtpScreen(),
+        builder: (context, state) => const ResendOtpScreen(),
       ),
     ],
   );

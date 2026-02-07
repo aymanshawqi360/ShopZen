@@ -4,12 +4,12 @@ import 'package:shopzen/core/common_ui/widgets/custom_arrow_back_button.dart';
 import 'package:shopzen/core/constants/app_size.dart';
 import 'package:shopzen/core/constants/app_spacing.dart';
 import 'package:shopzen/core/routing/route_name.dart';
-import 'package:shopzen/feature/auth/presentation/widget/forgot_password/forgot_password_field.dart';
-import 'package:shopzen/feature/auth/presentation/widget/forgot_password/forgot_password_lisener.dart';
-import 'package:shopzen/feature/auth/presentation/widget/forgot_password/forgot_password_title_and_description.dart';
+import 'package:shopzen/feature/auth/presentation/widget/verify_email/verify_email_field.dart';
+import 'package:shopzen/feature/auth/presentation/widget/verify_email/verify_email_bloc_lisener.dart';
+import 'package:shopzen/feature/auth/presentation/widget/verify_email/verify_email_title_and_description.dart';
 
-class ForgotPasswordBody extends StatelessWidget {
-  const ForgotPasswordBody({super.key});
+class VerifyEmailBody extends StatelessWidget {
+  const VerifyEmailBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +20,10 @@ class ForgotPasswordBody extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
            const CustomArrowBackButton(location: AppRoutes.login),
-            const ForgotPasswordTitleAndDescription(),
+            const VerifyEmailTitleAndDescription(),
             AppSize.gapH48,
-            const ForgotPasswordField(),
-            const ForgotPasswordLisener(),
+            const VerifyEmailField(),
+            const VerifyEmailBlocLisener(),
           ],  
         ),
       ),

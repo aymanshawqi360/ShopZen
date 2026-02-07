@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:shopzen/core/error/api_error_model.dart';
 import 'package:shopzen/feature/auth/data/model/register/register_request_model.dart';
-import 'package:shopzen/core/Shared/auth/entity/register_response_entity.dart';
+import 'package:shopzen/core/Shared/auth/entity/auth_response_entity.dart';
 import 'package:shopzen/feature/auth/domain/repo/auth_repository.dart';
 import 'package:shopzen/feature/auth/domain/use_cases/register_use_cases.dart';
 

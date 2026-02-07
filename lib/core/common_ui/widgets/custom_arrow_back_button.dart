@@ -17,10 +17,16 @@ final double? size;
       onTap: () {
         context.go(location);
       },
-      child:child?? Icon(
-       icon?? Icons.arrow_back_outlined,
-        size:size??AppSize.iconBackButtonSize,
-        color: context.isDark() ? AppColors.textWhite : AppColors.textDark,
+      child:Align(
+        alignment: Alignment.topLeft,
+        child: Directionality(
+          textDirection: TextDirection.ltr,
+          child: child?? Icon(
+           icon?? Icons.arrow_back_outlined,
+            size:size??AppSize.iconBackButtonSize,
+            color: context.isDark() ? AppColors.textWhite : AppColors.textDark,
+          ),
+        ),
       ),
     );
   }

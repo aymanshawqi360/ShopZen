@@ -28,6 +28,8 @@ class AppSize {
   static double get lottieErrorHeight150 => 150.h;
   static double get maxHeight => 80;
   static double get maxWidth => 80;
+  static double get errorTextHeight =>10.h;
+  static double get cursorHeight15 => 15.h;
 
   //Icons Svg size
 
@@ -35,6 +37,8 @@ class AppSize {
   static double get onboardingIconSvgHeight => 359.91.h;
   static double get loginEmailSvg => 0.48;
   static double get errorIcon => 40;
+  static const double transparencyIsOnePercent = 1.0;
+  static const double transparencyIsFivePercent = 0.5;
 
   //SizeBox
 
@@ -43,7 +47,7 @@ class AppSize {
   static Size get sizeW335H50 => Size(335.w, 50.h);
 
   //Texts Style
-
+ static double get textSizeSp0 => 0.sp;
   static double get textSizeSp4 => 4.sp;
   static double get textSizeSp6 => 6.sp;
   static double get textSizeSp8 => 8.sp;
