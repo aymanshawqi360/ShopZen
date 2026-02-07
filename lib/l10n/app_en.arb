@@ -39,7 +39,12 @@
     "enter4DigitCodeMessage":"Enter 6 digit code that your receive on your email ",
     "emailNotReceived":"Email not received?\t",
     "resendCode":"Resend Code",
-    "continueButton":"Continue"
+    "continueButton":"Continue",
+    "createNewPassword":"Create New Password",
+    "newPassword":"New Password",
+     "pleaseEnterYourNewPassword":"Please enter your new password",
+     "updatePassword":"Update Password",
+     "enterYourNewPassword":"Enter your new password"
 
     
 

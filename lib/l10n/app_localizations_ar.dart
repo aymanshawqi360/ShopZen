@@ -133,4 +133,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get continueButton => 'استمرار';
+
+  @override
+  String get createNewPassword => 'إنشاء كلمة مرور جديدة';
+
+  @override
+  String get newPassword => 'كلمة المرور الجديدة';
+
+  @override
+  String get pleaseEnterYourNewPassword => 'يرجى إدخال كلمة المرور الجديدة';
+
+  @override
+  String get updatePassword => 'تحديث كلمة المرور';
+
+  @override
+  String get enterYourNewPassword => 'ادخل كلمة المرور الجديدة';
 }

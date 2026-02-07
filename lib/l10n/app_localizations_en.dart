@@ -135,4 +135,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get continueButton => 'Continue';
+
+  @override
+  String get createNewPassword => 'Create New Password';
+
+  @override
+  String get newPassword => 'New Password';
+
+  @override
+  String get pleaseEnterYourNewPassword => 'Please enter your new password';
+
+  @override
+  String get updatePassword => 'Update Password';
+
+  @override
+  String get enterYourNewPassword => 'Enter your new password';
 }

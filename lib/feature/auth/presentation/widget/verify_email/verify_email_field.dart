@@ -53,7 +53,7 @@ class _VerifyEmailFieldState extends State<VerifyEmailField> {
                   : AppColors.griy1000,
             ),
           ),
-          AppSize.gapH8,
+          AppSize.gapH4,
           CustomTextField(
             controller: _emailController,
             validator: (String? value) {

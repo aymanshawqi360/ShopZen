@@ -122,7 +122,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
               ),
             ),
           ),
-          AppSize.gapH8,
+          AppSize.gapH4,
           // ==== Password Validation ===
           const PasswordValidation(),
           AppSize.gapH24,

@@ -39,6 +39,11 @@
     "enter4DigitCodeMessage":"أدخل الرمز المكون من 6 أرقام الذي تلقيته على بريدك الإلكتروني ",  
     "emailNotReceived":"لم تستلم البريد الإلكتروني؟\t",
     "resendCode":"إعادة إرسال الرمز",
-    "continueButton":"استمرار"
+    "continueButton":"استمرار",
+    "createNewPassword":"إنشاء كلمة مرور جديدة",
+    "newPassword":"كلمة المرور الجديدة",
+    "pleaseEnterYourNewPassword":"يرجى إدخال كلمة المرور الجديدة",
+    "updatePassword":"تحديث كلمة المرور",
+    "enterYourNewPassword":"ادخل كلمة المرور الجديدة"
 
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shopzen/core/routing/route_name.dart';
+import 'package:shopzen/feature/auth/presentation/screen/password_update/password_update_screen.dart';
 import 'package:shopzen/feature/auth/presentation/screen/verify_email/verify_email_screen.dart';
 import 'package:shopzen/feature/auth/presentation/screen/login/login_screen.dart';
 import 'package:shopzen/feature/auth/presentation/screen/resend_otp_screen/resend_otp_screen.dart';
@@ -11,7 +12,7 @@ class RoutGenerator {
   static final GoRouter mainAppRouter = GoRouter(
     errorBuilder: (context, state) =>
         Scaffold(body: Center(child: Text(state.error.toString()))),
-    initialLocation: AppRoutes.login,
+    initialLocation: AppRoutes.passwordUpdate,
     routes: [
       GoRoute(
         path: AppRoutes.onboarding,
@@ -34,6 +35,10 @@ class RoutGenerator {
       GoRoute(
         path: AppRoutes.otpScreen,
         builder: (context, state) => const ResendOtpScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.passwordUpdate,
+        builder: (context, state) => const PasswordUpdateScreen(),
       ),
     ],
   );
