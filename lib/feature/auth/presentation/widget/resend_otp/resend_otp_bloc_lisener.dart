@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shopzen/core/error/show_error_message.dart';
+import 'package:shopzen/core/routing/route_name.dart';
 import 'package:shopzen/feature/auth/presentation/cubit/resend_otp/resend_otp_cubit.dart';
 
 class ResendOtpBlocLisener extends StatelessWidget {
@@ -27,8 +29,8 @@ class ResendOtpBlocLisener extends StatelessWidget {
     );
   }
 
-  void _buildSuccessState({required BuildContext context}) {
-    // context.go(AppRoutes.login);
+  void _buildSuccessState({required BuildContext context}) { 
+    context.go(AppRoutes.passwordUpdate);
   }
 
   void _buildFailureState({
