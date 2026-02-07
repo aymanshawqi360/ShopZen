@@ -22,7 +22,7 @@ class ResendOtpCubit extends Cubit<ResendOtpState> {
   final EnvConfig envConfig;
   ResendOtpCubit({
     required this.envConfig,
-   required this.resetPasswordUseCases,
+    required this.resetPasswordUseCases,
     required this.resendOtpUseCases,
     required this.flutterSecureStorage,
   }) : super(ResendOtpInitial());
@@ -54,9 +54,7 @@ class ResendOtpCubit extends Cubit<ResendOtpState> {
               ),
             );
           },
-          (response){
-
-
+          (response) {
             emit(ResendOtpSuccess());
           },
         );
@@ -93,32 +91,40 @@ class ResendOtpCubit extends Cubit<ResendOtpState> {
             );
           },
           (response) {
-
             emit(ResetPasswordSuccess());
           },
         );
       },
     );
   }
-int  _start = 60;
-bool isButtonDisabled =true;
+
+  Timer? _timer;
+  int _start = 60;
+  bool isButtonDisabled = true;
   void startTimer() {
     isButtonDisabled = false;
     emit(IsButtonDisabled(isButtonDisabled: isButtonDisabled));
-     _start = 60;
-    
-    Timer.periodic(Duration(seconds: 1), (timer) {
-      
-        if (_start == 0) {
-          isButtonDisabled = true;
-          emit(IsButtonDisabled(isButtonDisabled: isButtonDisabled));
-          timer.cancel();
-        } else {
-          _start--;
-          emit(ResendOtpCounter(counter: _start));
-          
-        }
-      
+    _start = 60;
+
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      if (isClosed) {
+        timer.cancel();
+        return;
+      }
+      if (_start == 0) {
+        isButtonDisabled = true;
+        emit(IsButtonDisabled(isButtonDisabled: isButtonDisabled));
+        timer.cancel();
+      } else {
+        _start--;
+        emit(ResendOtpCounter(counter: _start));
+      }
     });
+  }
+
+  @override
+  Future<void> close() {
+    _timer?.cancel();
+    return super.close();
   }
 }
