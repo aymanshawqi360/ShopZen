@@ -67,7 +67,7 @@ class _RegisterFormScreenState extends State<RegisterFormScreen> {
           // ==== first name ===
           AppSize.gapH30,
           Text(context.l10n.firstName),
-          AppSize.gapH8,
+          AppSize.gapH4,
           CustomTextField(
             key: Key("first_name"),
             controller: firstNameController,
@@ -88,9 +88,9 @@ class _RegisterFormScreenState extends State<RegisterFormScreen> {
             },
           ),
           // ==== last name ===
-          AppSize.gapH8,
+          AppSize.gapH4,
           Text(context.l10n.lastName),
-          AppSize.gapH8,
+          AppSize.gapH4,
           CustomTextField(
             key: Key("last_name"),
             controller: lastNameController,
@@ -111,9 +111,9 @@ class _RegisterFormScreenState extends State<RegisterFormScreen> {
             },
           ),
           // ==== Email ====
-          AppSize.gapH8,
+          AppSize.gapH4,
           Text(context.l10n.emailField),
-          AppSize.gapH8,
+          AppSize.gapH4,
           CustomTextField(
             key: Key("email"),
             controller: emailController,
@@ -131,9 +131,9 @@ class _RegisterFormScreenState extends State<RegisterFormScreen> {
             },
           ),
           // ==== Password ====
-          AppSize.gapH8,
+          AppSize.gapH4,
           Text(context.l10n.passwordField),
-          AppSize.gapH8,
+          AppSize.gapH4,
           CustomHiddenTextField(
             key: Key("password"),
             hintText: context.l10n.enterYourPassword,
@@ -143,9 +143,9 @@ class _RegisterFormScreenState extends State<RegisterFormScreen> {
           ),
 
           // ==== Confirm Password ====
-          AppSize.gapH8,
+          AppSize.gapH4,
           Text(context.l10n.confirmPassword),
-          AppSize.gapH8,
+          AppSize.gapH4,
           CustomHiddenTextField(
             key: Key("confirm_password"),
             hintText: context.l10n.enterYourConfirmPassword,
@@ -154,9 +154,9 @@ class _RegisterFormScreenState extends State<RegisterFormScreen> {
             controller: confirmPasswordController,
           ),
           // ==== Phone ===
-          AppSize.gapH8,
+          AppSize.gapH4,
           Text(context.l10n.phoneField),
-          AppSize.gapH8,
+          AppSize.gapH4,
           CustomPhoneNumberField(
             key: Key("phone"),
             controller: phoneController,

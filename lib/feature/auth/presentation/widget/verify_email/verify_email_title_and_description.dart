@@ -22,7 +22,7 @@ class VerifyEmailTitleAndDescription extends StatelessWidget {
             fontWeight: FontWeightHelper.bold,
           ),
         ),
-        AppSize.gapH8,
+        AppSize.gapH4,
         Container(
           alignment: Alignment.centerLeft,
           constraints: BoxConstraints(maxWidth: AppSize.boxConstraintsMaxWidth),
