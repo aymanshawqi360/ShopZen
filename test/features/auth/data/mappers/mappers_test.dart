@@ -38,16 +38,10 @@ void main() {
 
   test("should map ForgotPasswordResponseModel to OtpResponseEntity", () {
     ForgotPasswordEntity result =
-        AuthMappers.forgotPasswordResponseModelToOtpResponseEntity(
+        AuthMappers.forgotPasswordResponseModelToForgotResponseEntity(
           forgotPasswordResponseModel: forgotPasswordResponseModel,
         );
     expect(result, const ForgotPasswordEntity(status: 200, message: "success"));
   });
-  test('should map ResetPasswordResponseModel to OtpResponseEntity', () {
-    ForgotPasswordEntity result =
-        AuthMappers.resetPasswordResponseModelToOtpResponseEntity(
-          forgotPasswordResponseModel: forgotPasswordResponseModel,
-        );
-    expect(result, const ForgotPasswordEntity(status: 200, message: "success"));
-  });
+ 
 }

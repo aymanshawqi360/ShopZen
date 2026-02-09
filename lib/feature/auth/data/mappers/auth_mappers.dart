@@ -14,7 +14,7 @@ class AuthMappers {
     );
   }
 
-  static ForgotPasswordEntity forgotPasswordResponseModelToOtpResponseEntity({
+  static ForgotPasswordEntity forgotPasswordResponseModelToForgotResponseEntity({
     required ForgotPasswordResponseModel forgotPasswordResponseModel,
   }) {
     return ForgotPasswordEntity(
@@ -22,12 +22,6 @@ class AuthMappers {
       message: forgotPasswordResponseModel.message ?? "defaultMessage",
     );
   }
-  static ForgotPasswordEntity resetPasswordResponseModelToOtpResponseEntity({
-    required ForgotPasswordResponseModel forgotPasswordResponseModel,
-  }) {
-    return ForgotPasswordEntity(
-      status: forgotPasswordResponseModel.status ?? 200,
-      message: forgotPasswordResponseModel.message ?? "defaultMessage",
-    );
-  }
+  
+  
 }

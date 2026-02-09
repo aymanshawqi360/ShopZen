@@ -12,7 +12,7 @@ class RoutGenerator {
   static final GoRouter mainAppRouter = GoRouter(
     errorBuilder: (context, state) =>
         Scaffold(body: Center(child: Text(state.error.toString()))),
-    initialLocation: AppRoutes.passwordUpdate,
+    initialLocation: AppRoutes.login,
     routes: [
       GoRoute(
         path: AppRoutes.onboarding,

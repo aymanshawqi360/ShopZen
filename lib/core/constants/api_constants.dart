@@ -45,5 +45,7 @@ class EndPonts{
 
   //Reset Password
   static const String resetPassword='$_apiEndPont$_v1EndPont$_auth/reset-password';
+  //Password Update
+  static const String passwordUpdate='$_apiEndPont$_v1EndPont$_auth/password-update';
 }
 
