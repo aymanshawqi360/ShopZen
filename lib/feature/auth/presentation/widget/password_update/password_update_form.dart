@@ -65,25 +65,8 @@ class _PasswordUpdateFormState extends State<PasswordUpdateForm> {
               }
             },
           ),
-          AppSize.gapH48,
-          CustomButton(
-            child: Text(
-              context.l10n.updatePassword,
-              style: context.appTheme.textTheme.bodyMedium?.copyWith(
-                fontSize: AppSize.textSizeSp13,
-                color: context.isDark()
-                    ? AppColors.textDark
-                    : AppColors.textWhite,
-                fontWeight: FontWeightHelper.bold,
-              ),
-            ),
-            onPressed: () => {
-              ValidateUserIinputs.validateThenDoSignup(
-                validateThenDoSignup: ValidatePasswordUpdate(),
-                context: context,
-              ),
-            },
-          ),
+        
+         
         ],
       ),
     );

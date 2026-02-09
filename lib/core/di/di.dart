@@ -10,9 +10,11 @@ import 'package:shopzen/feature/auth/data/repo_implementation/auth_repo_implemen
 import 'package:shopzen/feature/auth/domain/repo/auth_repository.dart';
 import 'package:shopzen/feature/auth/domain/use_cases/forgot_password_use_cases.dart';
 import 'package:shopzen/feature/auth/domain/use_cases/login_use_cases.dart';
+import 'package:shopzen/feature/auth/domain/use_cases/password_update_use_cases.dart';
 import 'package:shopzen/feature/auth/domain/use_cases/register_use_cases.dart';
 import 'package:shopzen/feature/auth/domain/use_cases/resend_otp_use_cases.dart';
 import 'package:shopzen/feature/auth/domain/use_cases/reset_password_use_cases.dart';
+import 'package:shopzen/feature/auth/presentation/cubit/password_update/password_update_cubit.dart';
 import 'package:shopzen/feature/auth/presentation/cubit/verify_email_cubit/verify_email_cubit.dart';
 import 'package:shopzen/feature/auth/presentation/cubit/login/login_cubit.dart';
 import 'package:shopzen/feature/auth/presentation/cubit/register/register_cubit.dart';
@@ -77,6 +79,10 @@ Future<void> _auth() async {
   sl.registerLazySingleton<ResetPasswordUseCases>(
     () => ResetPasswordUseCases(authRepository: sl()),
   );
+  //PasswrodUpdate
+  sl.registerLazySingleton<PasswordUpdateUseCases>(
+    () => PasswordUpdateUseCases(authRepository: sl()),
+  );
 
   //===== Cubit =====
 
@@ -107,6 +113,13 @@ Future<void> _auth() async {
       resetPasswordUseCases: sl(),
       resendOtpUseCases: sl(),
       envConfig: sl(),
+    ),
+  );
+  sl.registerFactory(
+    () => PasswordUpdateCubit(
+      passwordUpdateUseCases: sl(),
+      envConfig: sl(),
+      flutterSecureStorage:  sl(),
     ),
   );
 }

@@ -3,12 +3,12 @@ import 'package:retrofit/retrofit.dart';
 import 'package:shopzen/core/constants/api_constants.dart';
 import 'package:shopzen/feature/auth/data/model/change_password/forgot_password_request_model.dart';
 import 'package:shopzen/core/Shared/model/auth/forgot_password_response_model.dart';
+import 'package:shopzen/feature/auth/data/model/change_password/password_update_request_model.dart';
 import 'package:shopzen/feature/auth/data/model/change_password/resend_otp_request_model.dart';
 import 'package:shopzen/feature/auth/data/model/change_password/reset_password_request_mode.dart';
 import 'package:shopzen/feature/auth/data/model/login/login_request_model.dart';
 import 'package:shopzen/feature/auth/data/model/register/register_request_model.dart';
 import 'package:shopzen/core/Shared/model/auth/auth_response_model.dart';
-
 part 'auth_remote_data_source.g.dart';
 
 @RestApi()
@@ -30,5 +30,9 @@ abstract class AuthApiService {
   
   @POST(EndPonts.resetPassword)
   Future<ForgotPasswordResponseModel>resetPassword({@Body() required ResetPasswordRequestMode body});
+  
+  @POST(EndPonts.passwordUpdate)
+  Future<ForgotPasswordResponseModel>passwordUpdate({@Body() required PasswordUpdateRequestModel body});
+  
 }
 

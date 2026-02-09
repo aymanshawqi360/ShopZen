@@ -5,6 +5,7 @@ import 'package:shopzen/core/error/api_error_model.dart';
 import 'package:shopzen/feature/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:shopzen/feature/auth/data/model/change_password/forgot_password_request_model.dart';
 import 'package:shopzen/core/Shared/model/auth/forgot_password_response_model.dart';
+import 'package:shopzen/feature/auth/data/model/change_password/password_update_request_model.dart';
 import 'package:shopzen/feature/auth/data/model/change_password/resend_otp_request_model.dart';
 import 'package:shopzen/feature/auth/data/model/change_password/reset_password_request_mode.dart';
 import 'package:shopzen/feature/auth/data/model/login/login_request_model.dart';
@@ -26,7 +27,7 @@ void main() {
   late LoginRequestModel loginRequestModelFailed;
   late ForgotPasswordRequestModel forgotPasswordRequestModel;
   late ForgotPasswordRequestModel forgotPasswordRequestModelFailed;
-  late ForgotPasswordResponseModel forgotPasswordResponseModel;
+  late ForgotPasswordResponseModel forgotPasswordResponseModelsuccess;
   late ForgotPasswordResponseModel forgotPasswordResponseFailureModel;
   late Failure failure;
   late UserData userData;
@@ -34,31 +35,73 @@ void main() {
   late ResendOtpRequestModel resendOtpRequestModelFailure;
   late ResetPasswordRequestMode resetPasswordRequestMode;
   late ResetPasswordRequestMode resetPasswordRequestFailureMode;
+  late PasswordUpdateRequestModel passwordUpdateRequestModelSuccess;
   setUp(() {
+    // ############# PasswordUseCases #############
+
+    // ========= PasswordUpdateUseCases ========
+    passwordUpdateRequestModelSuccess = PasswordUpdateRequestModel(
+      email: "test2001@gmail.com",
+      oldPassword: "Test123456789@",
+      newPassword: "Test123456789@",
+    );
+    // ========= passwordUpdateRequestModelSuccess ========
+    passwordUpdateRequestModelSuccess = PasswordUpdateRequestModel(
+      email: "test2001@gmail.com",
+      oldPassword: "Test123456789@",
+      newPassword: "Test123456789@",
+    );
+    //========================================================================
+    // ############# forgotPassword #############
+
+    forgotPasswordRequestModel = ForgotPasswordRequestModel(
+      email: "test2001@gmail.com",
+    );
+    // ========= ForgotPasswordResponseSuccess ========
+    forgotPasswordResponseModelsuccess = ForgotPasswordResponseModel(
+      message: "success",
+      status: 200,
+    );
+    // ========= ForgotPasswordResponseFailure =========
     forgotPasswordResponseFailureModel = ForgotPasswordResponseModel(
       message: 'failed',
       status: 400,
     );
+
     resetPasswordRequestFailureMode = ResetPasswordRequestMode(
       email: "test2001@gmail",
     );
     resetPasswordRequestMode = ResetPasswordRequestMode(
       email: "test2001@gmail.com",
     );
-    forgotPasswordResponseModel = ForgotPasswordResponseModel(
-      message: "success",
-      status: 200,
-    );
+    // ========= forgotPasswordRequestModelFailed =========
     forgotPasswordRequestModelFailed = ForgotPasswordRequestModel(
       email: "test2001@gmai",
     );
+    // ========================================================================
+
+    // ========= AuthApiService =========
     mockAuthApiService = MockAuthApiService();
     authRepoImplementation = AuthRepoImplementation(
       apiService: mockAuthApiService,
     );
-    forgotPasswordRequestModel = ForgotPasswordRequestModel(
-      email: "test2001@gmail.com",
+    //========================================================================
+
+    // ======== Token ========
+    userData = UserData(
+      token: "dslkdsaldksalkwqewqpdlpqldpldsad5s4d56sdsa564dsa5d4sa56ds",
     );
+
+    // ========= failure ========
+    failure = Failure(
+      errorData: {
+        "password": ["The password field format is invalid."],
+      },
+    );
+    //========================================================================
+    // ############# Register #############
+
+    // ========= RegisterRequestSuccess ========
     registerRequestModel = RegisterRequestModel(
       lastName: "ayman",
       firstName: "shawqi",
@@ -68,17 +111,7 @@ void main() {
       phone: "512345675",
       countryCode: "SA",
     );
-
-    userData = UserData(
-      token: "dslkdsaldksalkwqewqpdlpqldpldsad5s4d56sdsa564dsa5d4sa56ds",
-    );
-
-    registerResponseModel = AuthResponseModel(
-      status: 200,
-      message: "success",
-      userData: userData,
-    );
-
+    // ========= RegisterRequestFailed ========
     registerRequestModelFailed = RegisterRequestModel(
       lastName: "ayman",
       firstName: "shawqi",
@@ -88,26 +121,38 @@ void main() {
       confirmPassword: "test123456789",
       countryCode: "SA",
     );
-
-    failure = Failure(
-      errorData: {
-        "password": ["The password field format is invalid."],
-      },
+    // ======== RegisterResponseSuccess ========
+    registerResponseModel = AuthResponseModel(
+      status: 200,
+      message: "success",
+      userData: userData,
     );
+    // ========================================================================
+    // ############# Login #############
+
+    // ========= LoginRequestModeSuccess ========
 
     loginRequestModel = LoginRequestModel(
       email: "test2001@gmail.com",
       password: "Test123456789@",
     );
+    // ========= LoginRequestModelFailed ========
     loginRequestModelFailed = LoginRequestModel(
       email: "test2001@gmail.com",
       password: "test123456789",
     );
+    // ========================================================================
+    // ############# ResendOtp #############
+
+    // ========= ResendOtpRequestModelSuccess ========
 
     resendOtpRequestModelSuccess = ResendOtpRequestModel(
       email: "test2001@gmail.com",
       otp: '',
     );
+
+    // ========= ResendOtpRequestModelFailure ========
+
     resendOtpRequestModelFailure = ResendOtpRequestModel(
       email: "test2001@gmail",
       otp: '',
@@ -177,7 +222,7 @@ void main() {
       when(
         () =>
             mockAuthApiService.forgotPassword(body: forgotPasswordRequestModel),
-      ).thenAnswer((_) async => forgotPasswordResponseModel);
+      ).thenAnswer((_) async => forgotPasswordResponseModelsuccess);
 
       final result = await authRepoImplementation.forgotPassword(
         authRequestModel: forgotPasswordRequestModel,
@@ -217,8 +262,10 @@ void main() {
   group(" Test resendOtp method ", () {
     test("should return ResendOtp when resend otp is successful", () async {
       when(
-        () => mockAuthApiService.otpVerification(body: resendOtpRequestModelSuccess),
-      ).thenAnswer((_) async => forgotPasswordResponseModel);
+        () => mockAuthApiService.otpVerification(
+          body: resendOtpRequestModelSuccess,
+        ),
+      ).thenAnswer((_) async => forgotPasswordResponseModelsuccess);
 
       final resutls = await authRepoImplementation.resendOtp(
         resendOtpRequestModel: resendOtpRequestModelSuccess,
@@ -233,7 +280,9 @@ void main() {
 
     test("should return  ResendOtp when resend otp is failure", () async {
       when(
-        () => mockAuthApiService.otpVerification(body: resendOtpRequestModelFailure),
+        () => mockAuthApiService.otpVerification(
+          body: resendOtpRequestModelFailure,
+        ),
       ).thenThrow({
         "status": 404,
         "errors": {"message": "No account found with this email"},
@@ -255,7 +304,7 @@ void main() {
     test('should return session when reset password is successful', () async {
       when(
         () => mockAuthApiService.resetPassword(body: resetPasswordRequestMode),
-      ).thenAnswer((_) async => forgotPasswordResponseModel);
+      ).thenAnswer((_) async => forgotPasswordResponseModelsuccess);
 
       final result = await authRepoImplementation.resetPassword(
         resetPasswordRequestMode: resetPasswordRequestMode,
@@ -276,6 +325,40 @@ void main() {
       ).thenAnswer((_) async => forgotPasswordResponseFailureModel);
       final result = await authRepoImplementation.resetPassword(
         resetPasswordRequestMode: resetPasswordRequestFailureMode,
+      );
+      expect(result.isLeft(), true);
+      result.fold((f) {
+        expect(f.errorCode, 400);
+        expect(f.errorMessage, "The operation failed.");
+      }, (_) => null);
+    });
+  });
+
+  group('Test passwordUpdate method', () {
+    test('should return session when password update is successful', () async {
+      when(
+        () => mockAuthApiService.passwordUpdate(
+          body: passwordUpdateRequestModelSuccess,
+        ),
+      ).thenAnswer((_) async => forgotPasswordResponseModelsuccess);
+      final result = await authRepoImplementation.passwrodUpdate(
+        passwordUpdateRequestModel: passwordUpdateRequestModelSuccess,
+      );
+      expect(result.isRight(), true);
+      result.fold((_) => null, (r) {
+        expect(r.status, 200);
+        expect(r.message, "success");
+      });
+    });
+
+    test('should return session when password update is failure', () async {
+      when(
+        () => mockAuthApiService.passwordUpdate(
+          body: passwordUpdateRequestModelSuccess,
+        ),
+      ).thenAnswer((_) async => forgotPasswordResponseFailureModel);
+      final result = await authRepoImplementation.passwrodUpdate(
+        passwordUpdateRequestModel: passwordUpdateRequestModelSuccess,
       );
       expect(result.isLeft(), true);
       result.fold((f) {
