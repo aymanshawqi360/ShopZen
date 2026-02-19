@@ -66,6 +66,8 @@ dependencies:
   lottie: ^3.3.2
   #Intl Phone Number Input
   intl_phone_number_input: ^0.7.5
+  # Splash 
+  flutter_native_splash: ^2.4.7
   
 
 
@@ -121,11 +123,14 @@ flutter:
   fonts:
     - family: Satoshi
       fonts:
-        - asset: assets/fonts/Satoshi-Black.otf
+        - asset: assets/fonts/Satoshi-Black.otf        
         - asset: assets/fonts/Satoshi-Bold.otf
         - asset: assets/fonts/Satoshi-Light.otf
-        - asset: assets/fonts/Satoshi-Medium.otf
+        - asset: assets/fonts/Satoshi-Medium.otf  
         - asset: assets/fonts/Satoshi-Regular.otf
+        - asset: assets/fonts/Satoshi-BoldItalic.otf
+          style: italic
+        
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
 flutter_intl:

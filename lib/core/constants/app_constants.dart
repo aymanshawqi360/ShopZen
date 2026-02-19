@@ -1,4 +1,3 @@
-
 import 'package:flutter/services.dart';
 
 class AppConstants {
@@ -13,4 +12,14 @@ class AppConstants {
   ];
   static const String countryCode = "YE";
   static const String phoneNumbeInput = "phone_number_input";
+
+  //Durations
+  static const Duration splachDuration = Duration(milliseconds: 500);
+  static const Duration animatedPositionedDuration = Duration(seconds: 4);
+  static const Duration animatedOpacityDuration = Duration(seconds: 3);
+  static const double opacityZero = 0;
+  static const double opacityOne = 1;
+
+  //Splash
+  static const String shopZen = "ShopZen";
 }
