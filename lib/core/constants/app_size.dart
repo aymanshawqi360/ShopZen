@@ -7,7 +7,7 @@ class AppSize {
   static const double iconBackButtonSize = 30;
   // ====== Elevation ======
   static const double elevation8 = 8;
-// ====== Radius ======
+  // ====== Radius ======
   static double get radius170 => 143.r;
 
   // ====== Positioned ======
@@ -21,6 +21,9 @@ class AppSize {
   static double get boxConstraintsMaxWidth => 330.w;
   static const double progressIndicatorStrokeWidth = 3;
   static const double borderSide = 1.5;
+  static double animatedPositionedRightTrueCases = 80.w;
+  static double animatedPositionedRightFalseCases = 100.w;
+  static double animatedPositionedTop = 383;
 
   // ====== Height ======
   static double get cursorHeight => 14.h;
@@ -28,7 +31,7 @@ class AppSize {
   static double get lottieErrorHeight150 => 150.h;
   static double get maxHeight => 80;
   static double get maxWidth => 80;
-  static double get errorTextHeight =>10.h;
+  static double get errorTextHeight => 10.h;
   static double get cursorHeight15 => 15.h;
 
   //Icons Svg size
@@ -47,7 +50,7 @@ class AppSize {
   static Size get sizeW335H50 => Size(335.w, 50.h);
 
   //Texts Style
- static double get textSizeSp0 => 0.sp;
+  static double get textSizeSp0 => 0.sp;
   static double get textSizeSp4 => 4.sp;
   static double get textSizeSp6 => 6.sp;
   static double get textSizeSp8 => 8.sp;
@@ -71,6 +74,8 @@ class AppSize {
   static double get textSizeSp30 => 30.sp;
   static double get textSizeSp31 => 31.sp;
   static double get textSizeSp32 => 32.sp;
+  static double get textSizeSp33 => 33.sp;
+  static double get textSizeSp34 => 34.sp;
   static double get textSizeSp36 => 36.sp;
   static double get textSizeSp40 => 40.sp;
   static double get textSizeSp48 => 48.sp;

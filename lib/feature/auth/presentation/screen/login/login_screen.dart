@@ -18,25 +18,23 @@ class LoginScreen extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       body: BlocProvider(
         create: (context) => sl<LoginCubit>(),
-        child: SafeArea(
-          child: Stack(
-            children: [
-              Positioned(
-                top: AppSize.positionedTop140,
-                right: AppSize.positionedRight95,
-                child: CircleAvatar(
-                  radius: AppSize.radius170,
-                  backgroundColor: context.isDark()
-                      ? AppColors.darkGray
-                      : AppColors.lightGray,
-                ),
+        child: Stack(
+          children: [
+            Positioned(
+              top: AppSize.positionedTop140,
+              right: AppSize.positionedRight95,
+              child: CircleAvatar(
+                radius: AppSize.radius170,
+                backgroundColor: context.isDark()
+                    ? AppColors.darkGray
+                    : AppColors.lightGray,
               ),
-              Padding(
-                padding: AppSpacing.paddingL20R20B15,
-                child: const SlideAndFadeAuth(child: BodyLogin()),
-              ),
-            ],
-          ),
+            ),
+            Padding(
+              padding: AppSpacing.paddingL20R20B15,
+              child: const SlideAndFadeAuth(child: BodyLogin()),
+            ),
+          ],
         ),
       ),
     );
