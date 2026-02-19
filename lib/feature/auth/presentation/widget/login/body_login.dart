@@ -10,15 +10,17 @@ class BodyLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        AppSize.gapH40,
-        const LoginTitle(),
-        const EmailAndPassword(),
-        const Spacer(),
-        const CheckNoAccount(),
-        const LoginBlocLisener(),
-      ],
+    return SafeArea(
+      child: Column(
+        children: [
+          AppSize.gapH40,
+          const LoginTitle(),
+          const EmailAndPassword(),
+          const Spacer(),
+          const CheckNoAccount(),
+          const LoginBlocLisener(),
+        ],
+      ),
     );
   }
 }

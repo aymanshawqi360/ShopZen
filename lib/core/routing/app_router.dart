@@ -7,13 +7,18 @@ import 'package:shopzen/feature/auth/presentation/screen/login/login_screen.dart
 import 'package:shopzen/feature/auth/presentation/screen/resend_otp_screen/resend_otp_screen.dart';
 import 'package:shopzen/feature/auth/presentation/screen/register_screen/register_screen.dart';
 import 'package:shopzen/feature/onboarding/screen/onboarding_screen.dart';
+import 'package:shopzen/feature/splach/presentation/screen/splach_screen.dart';
 
 class RoutGenerator {
   static final GoRouter mainAppRouter = GoRouter(
     errorBuilder: (context, state) =>
         Scaffold(body: Center(child: Text(state.error.toString()))),
-    initialLocation: AppRoutes.login,
+    initialLocation: AppRoutes.splash,
     routes: [
+      GoRoute(
+        path: AppRoutes.splash,
+        builder: (context, state) => SplashScreen(),
+      ),
       GoRoute(
         path: AppRoutes.onboarding,
         builder: (context, state) => const OnboardingScreen(),
