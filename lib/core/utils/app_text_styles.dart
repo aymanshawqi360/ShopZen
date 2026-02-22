@@ -16,7 +16,7 @@ class AppTextStyles {
     fontWeight: FontWeight.w700,
   );
 
-   // Headlines
+  // Headlines
   static const TextStyle headlineLarge = TextStyle(
     fontFamily: AppStrings.satoshiFont,
     fontSize: 24,
@@ -52,38 +52,37 @@ class AppTextStyles {
   );
   // Titles
   static const TextStyle titleLarge = TextStyle(
-   // fontFamily: AppStrings.appFontNameLato,
-   
+    // fontFamily: AppStrings.appFontNameLato,
     fontSize: 16,
     fontWeight: FontWeight.w700,
   );
 
   static const TextStyle titleMedium = TextStyle(
-  //  fontFamily: AppStrings.appFontNameLato,
+    fontFamily: AppStrings.satoshiFont,
     fontSize: 16,
     fontWeight: FontWeight.w500,
   );
 
   static const TextStyle titleSmall = TextStyle(
-  //  fontFamily: AppStrings.appFontNameLato,
+    fontFamily: AppStrings.satoshiFont,
     fontSize: 14,
     fontWeight: FontWeight.w600,
   );
   // Body
   static const TextStyle bodyLarge = TextStyle(
-   fontFamily: AppStrings.satoshiFont,
+    fontFamily: AppStrings.satoshiFont,
     fontSize: 16,
     fontWeight: FontWeight.w400,
   );
 
   static const TextStyle bodyMedium = TextStyle(
-   fontFamily: AppStrings.satoshiFont,
+    fontFamily: AppStrings.satoshiFont,
     fontSize: 14,
     fontWeight: FontWeight.w400,
   );
 
   static const TextStyle bodySmall = TextStyle(
-   fontFamily: AppStrings.satoshiFont,
+    fontFamily: AppStrings.satoshiFont,
     fontSize: 12,
     fontWeight: FontWeight.w300,
   );

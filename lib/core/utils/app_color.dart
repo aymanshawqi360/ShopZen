@@ -58,6 +58,7 @@ class AppColors {
 
   // ====== Common Colors ======
   static Color black = Color(0xff000000);
+  static Color dark = Color(0xFF0D0D0D);
 
   static Color transparent = Colors.transparent;
 
