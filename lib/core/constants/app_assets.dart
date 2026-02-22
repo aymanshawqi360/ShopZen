@@ -12,6 +12,8 @@ class AppAssets {
   static const String account = '$_assets${_svg}account.svg';
   static const String phone = '$_assets${_svg}phone.svg';
   static const String appLogo = '$_assets${_svg}app_logo.svg';
+  static const String notification = '$_assets${_svg}notification.svg';
+  static const String search = '$_assets${_svg}search.svg';
 
   //Lottie
   static const String lottieError = '$_assets${_lottie}error_icon.json';

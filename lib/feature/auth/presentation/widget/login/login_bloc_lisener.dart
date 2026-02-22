@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shopzen/core/error/show_error_message.dart';
+import 'package:shopzen/core/routing/route_name.dart';
 import 'package:shopzen/feature/auth/presentation/cubit/login/login_cubit.dart';
 
 class LoginBlocLisener extends StatelessWidget {
@@ -14,11 +16,11 @@ class LoginBlocLisener extends StatelessWidget {
           current is LoginSuccess ||
           current is LoginLoading,
       listener: (context, state) {
-        if(state is LoginSuccess){
-          _buildSuccessState();
+        if (state is LoginSuccess) {
+          _buildSuccessState(context: context);
         }
-        if(state is LoginFailure){
-        _buildFailureState(context: context, state: state);
+        if (state is LoginFailure) {
+          _buildFailureState(context: context, state: state);
         }
       },
       child: SizedBox.shrink(),
@@ -27,11 +29,12 @@ class LoginBlocLisener extends StatelessWidget {
 
   void _buildFailureState({
     required BuildContext context,
-    required LoginFailure state,}){
-  return  AppDialog.showApiError(context, state.messageError);
+    required LoginFailure state,
+  }) {
+    return AppDialog.showApiError(context, state.messageError);
   }
 
-  void _buildSuccessState(){
-   // context.go(AppRoutes.login);
+  void _buildSuccessState({required BuildContext context}) {
+    context.go(AppRoutes.home);
   }
 }

@@ -14,6 +14,8 @@ class CustomTextField extends StatelessWidget {
   final Color? backgroundColor;
   final bool? isObscureText;
   final String? Function(String?)? validator;
+  final EdgeInsetsGeometry? contentPadding;
+  final double? cursorHeight;
   const CustomTextField({
     super.key,
     this.controller,
@@ -26,6 +28,8 @@ class CustomTextField extends StatelessWidget {
     this.backgroundColor,
     this.isObscureText,
     required this.validator,
+    this.contentPadding,
+    this.cursorHeight,
   });
 
   @override
@@ -35,8 +39,10 @@ class CustomTextField extends StatelessWidget {
       cursorColor: context.isDark()
           ? AppColors.lightBackground
           : AppColors.darkBackground,
-      cursorHeight: AppSize.cursorHeight,
-      decoration: InputDecoration(  
+      cursorHeight: cursorHeight ?? AppSize.cursorHeight,
+
+      decoration: InputDecoration(
+        contentPadding: contentPadding,
         filled: context.appTheme.inputDecorationTheme.filled,
         focusedBorder:
             focusedBorder ??

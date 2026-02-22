@@ -6,6 +6,7 @@ import 'package:shopzen/feature/auth/presentation/screen/verify_email/verify_ema
 import 'package:shopzen/feature/auth/presentation/screen/login/login_screen.dart';
 import 'package:shopzen/feature/auth/presentation/screen/resend_otp_screen/resend_otp_screen.dart';
 import 'package:shopzen/feature/auth/presentation/screen/register_screen/register_screen.dart';
+import 'package:shopzen/feature/home/presentation/screen/home_screen.dart';
 import 'package:shopzen/feature/onboarding/screen/onboarding_screen.dart';
 import 'package:shopzen/feature/splach/presentation/screen/splach_screen.dart';
 
@@ -44,6 +45,10 @@ class RoutGenerator {
       GoRoute(
         path: AppRoutes.passwordUpdate,
         builder: (context, state) => const PasswordUpdateScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.home,
+        builder: (context, state) => const HomeScreen(),
       ),
     ],
   );

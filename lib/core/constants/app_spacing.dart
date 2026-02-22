@@ -109,7 +109,7 @@ class AppSpacing {
       EdgeInsets.only(left: 20.w, right: 20.w);
   static EdgeInsets get paddingL20R20T10 =>
       EdgeInsets.only(left: 20.w, right: 20.w, top: 10.h);
-      static EdgeInsets get paddingL20R20T60 =>
+  static EdgeInsets get paddingL20R20T60 =>
       EdgeInsets.only(left: 20.w, right: 20.w, top: 60.h);
   static EdgeInsets get paddingL8R8 => EdgeInsets.only(left: 8.w, right: 8.w);
   static EdgeInsets get paddingT24L19R19B19 =>
@@ -202,6 +202,7 @@ class AppSpacing {
   static final borderRadius2 = BorderRadius.circular(2.0);
   static final borderRadius4 = BorderRadius.circular(4.0);
   static final borderRadius8 = BorderRadius.circular(8.0);
+  static final borderRadius10 = BorderRadius.circular(10.0);
   static final borderRadius12 = BorderRadius.circular(12.0);
   static final borderRadius16 = BorderRadius.circular(16.0);
   static final borderRadius20 = BorderRadius.circular(20.0);
