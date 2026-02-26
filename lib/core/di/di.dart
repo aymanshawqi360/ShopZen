@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shopzen/core/config/env_config.dart';
-import 'package:shopzen/core/error/failure_message.dart';
 import 'package:shopzen/core/notworking/dio_factory.dart';
 import 'package:shopzen/core/security/implementations/flutter_secure_storage_impl.dart';
 import 'package:shopzen/feature/auth/data/data_sources/auth_remote_data_source.dart';
@@ -19,11 +18,16 @@ import 'package:shopzen/feature/auth/presentation/cubit/verify_email_cubit/verif
 import 'package:shopzen/feature/auth/presentation/cubit/login/login_cubit.dart';
 import 'package:shopzen/feature/auth/presentation/cubit/register/register_cubit.dart';
 import 'package:shopzen/feature/auth/presentation/cubit/resend_otp/resend_otp_cubit.dart';
+import 'package:shopzen/feature/home/data/data_sources/home_remote_data_sources.dart';
+import 'package:shopzen/feature/home/data/repo_implementation/home_repo_implementation.dart';
+import 'package:shopzen/feature/home/domain/repo/home_repo.dart';
+import 'package:shopzen/feature/home/presentation/cubit/category/category_cubit.dart';
 
 final sl = GetIt.instance;
 Future<void> setupDependencies() async {
   await _setupCore();
   await _auth();
+  await _home();
 }
 
 Future<void> _setupCore() async {
@@ -42,8 +46,6 @@ Future<void> _setupCore() async {
       flutterSecureStorage: sl<FlutterSecureStorage>(),
     ),
   );
-
-  // sl.registerLazySingleton<StorageErrorModel>(()=>StorageErrorModel(message: ''));
 }
 
 Future<void> _auth() async {
@@ -119,7 +121,20 @@ Future<void> _auth() async {
     () => PasswordUpdateCubit(
       passwordUpdateUseCases: sl(),
       envConfig: sl(),
-      flutterSecureStorage:  sl(),
+      flutterSecureStorage: sl(),
     ),
   );
+}
+
+Future<void> _home() async {
+  //===== ApiService =====
+  sl.registerLazySingleton<HomeApiService>(() => HomeApiService(sl()));
+
+  //===== RepoImplementation =====
+  sl.registerLazySingleton<HomeRepo>(
+    () => HomeRepoImplementation(homeApiService: sl()),
+  );
+
+  //===== Cubit =====
+  sl.registerFactory(() => CategoryCubit(homeRepo: sl()));
 }
