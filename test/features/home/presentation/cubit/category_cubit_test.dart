@@ -3,24 +3,24 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:shopzen/core/error/api_error_model.dart';
-import 'package:shopzen/feature/home/domain/repo/home_repo.dart';
+import 'package:shopzen/feature/home/domain/use_cases/category_use_cases.dart';
 import 'package:shopzen/feature/home/presentation/cubit/category/category_cubit.dart';
 
-class MockHomeRepo extends Mock implements HomeRepo {}
+class MockCategoryUseCases extends Mock implements CategoryUseCases {}
 
 void main() {
-  late MockHomeRepo mockHomeRepo;
+  late MockCategoryUseCases mockCategoryUseCases;
   late CategoryCubit categoryCubit;
   setUp(() {
-    mockHomeRepo = MockHomeRepo();
-    categoryCubit = CategoryCubit(homeRepo: mockHomeRepo);
+    mockCategoryUseCases = MockCategoryUseCases();
+    categoryCubit = CategoryCubit(categoryUseCases: mockCategoryUseCases);
   });
 
   blocTest(
     "emits [CategoryLoading(), CategorySuccess()] when getCategories is called",
     build: () {
       when(
-        () => mockHomeRepo.getCategories(),
+        () => mockCategoryUseCases.getCategories(),
       ).thenAnswer((_) async => Right([]));
 
       return categoryCubit;
@@ -35,7 +35,7 @@ void main() {
     "emits [CategoryLoading(), CategoryFailure()] when getCategories is called",
     build: () {
       when(
-        () => mockHomeRepo.getCategories(),
+        () => mockCategoryUseCases.getCategories(),
       ).thenAnswer((_) async => Left(Failure(errorMessage: "error")));
 
       return categoryCubit;

@@ -136,5 +136,5 @@ Future<void> _home() async {
   );
 
   //===== Cubit =====
-  sl.registerFactory(() => CategoryCubit(homeRepo: sl()));
+  sl.registerFactory(() => CategoryCubit(categoryUseCases: sl()));
 }
