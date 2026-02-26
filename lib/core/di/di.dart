@@ -21,6 +21,7 @@ import 'package:shopzen/feature/auth/presentation/cubit/resend_otp/resend_otp_cu
 import 'package:shopzen/feature/home/data/data_sources/home_remote_data_sources.dart';
 import 'package:shopzen/feature/home/data/repo_implementation/home_repo_implementation.dart';
 import 'package:shopzen/feature/home/domain/repo/home_repo.dart';
+import 'package:shopzen/feature/home/domain/use_cases/category_use_cases.dart';
 import 'package:shopzen/feature/home/presentation/cubit/category/category_cubit.dart';
 
 final sl = GetIt.instance;
@@ -130,11 +131,15 @@ Future<void> _home() async {
   //===== ApiService =====
   sl.registerLazySingleton<HomeApiService>(() => HomeApiService(sl()));
 
-  //===== RepoImplementation =====
+  //===== Data Layer =====
   sl.registerLazySingleton<HomeRepo>(
     () => HomeRepoImplementation(homeApiService: sl()),
   );
 
+  //===== Domain Layer =====
+  sl.registerLazySingleton<CategoryUseCases>(
+    () => CategoryUseCases(homeRepo: sl()),
+  );
   //===== Cubit =====
   sl.registerFactory(() => CategoryCubit(categoryUseCases: sl()));
 }
