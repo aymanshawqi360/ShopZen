@@ -12,6 +12,9 @@ class AppSpacing {
   static EdgeInsets get paddingAll24 => EdgeInsets.all(24.w);
 
   // Padding - Horizontal
+
+  static EdgeInsets get paddingH6 => EdgeInsets.symmetric(horizontal: 6.w);
+  static EdgeInsets get paddingH7 => EdgeInsets.symmetric(horizontal: 7.w);
   static EdgeInsets get paddingH8 => EdgeInsets.symmetric(horizontal: 8.w);
   static EdgeInsets get paddingH10 => EdgeInsets.symmetric(horizontal: 10.w);
   static EdgeInsets get paddingH12 => EdgeInsets.symmetric(horizontal: 12.w);
@@ -73,6 +76,8 @@ class AppSpacing {
       EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h);
   static EdgeInsets get paddingH8V15 =>
       EdgeInsets.symmetric(horizontal: 8.w, vertical: 15.h);
+  static EdgeInsets get paddingH8V5 =>
+      EdgeInsets.symmetric(horizontal: 8.w, vertical: 5.h);
   static EdgeInsets get paddingH123V14 =>
       EdgeInsets.symmetric(horizontal: 123.w, vertical: 14.h);
 
@@ -200,6 +205,7 @@ class AppSpacing {
 
   // ========= circular spacing =========
   static final borderRadius2 = BorderRadius.circular(2.0);
+  static final borderRadius3 = BorderRadius.circular(3.0);
   static final borderRadius4 = BorderRadius.circular(4.0);
   static final borderRadius8 = BorderRadius.circular(8.0);
   static final borderRadius10 = BorderRadius.circular(10.0);
