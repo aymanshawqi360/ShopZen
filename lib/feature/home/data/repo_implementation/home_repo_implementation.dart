@@ -27,6 +27,9 @@ class HomeRepoImplementation implements HomeRepo {
                   ),
             )
             .toList();
+        if (categoryResponseEntity.isEmpty) {
+          throw Exception();
+        }
         return Right(categoryResponseEntity);
       } else {
         return Left(
