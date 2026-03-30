@@ -5,23 +5,27 @@ import 'package:flutter/material.dart';
 import 'package:shopzen/core/config/env_config.dart';
 import 'package:shopzen/core/error/api_error_model.dart';
 import 'package:shopzen/core/security/implementations/flutter_secure_storage_impl.dart';
+import 'package:shopzen/core/security/interfaces/i_encryption_service.dart';
+import 'package:shopzen/core/security/interfaces/i_secure_storage.dart';
 import 'package:shopzen/feature/auth/data/model/register/register_request_model.dart';
 import 'package:shopzen/core/Shared/auth/entity/auth_response_entity.dart';
 import 'package:shopzen/feature/auth/domain/use_cases/register_use_cases.dart';
+import 'dart:developer';
 
 part 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
   final RegisterUseCases registerUseCases;
-  final FlutterSecureStorageImpl flutterSecureStorageImpl;
+  // final ISecureStorage flutterSecureStorageImpl;
+  final IEncryptionService iEncryptionService;
   final EnvConfig envConfig;
 
   RegisterCubit({
     required this.registerUseCases,
-    required this.flutterSecureStorageImpl,
+    required this.iEncryptionService,
     required this.envConfig,
   }) : super(RegisterInitial());
-  final  formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   Future<void> register({required RegisterRequestModel body}) async {
     try {
@@ -43,10 +47,14 @@ class RegisterCubit extends Cubit<RegisterState> {
           );
         },
         (ifRight) async {
-          await flutterSecureStorageImpl.write(
-            key: envConfig.getEncryptionToken(),
-            value: ifRight.message ?? '',
+          log(
+            "Token -------------------------------------------${ifRight.userData}",
           );
+          iEncryptionService.encrypt(plaintext: ifRight.userData ?? "");
+          // await flutterSecureStorageImpl.write(
+          //   key: envConfig.getEncryptionToken(),
+          //   value: ifRight.message ?? '',
+          // );
           emit(RegisterSuccess());
         },
       );
@@ -57,11 +65,10 @@ class RegisterCubit extends Cubit<RegisterState> {
     }
   }
 
-
   /// Use this function to input the country code
-  String countryCode="";
-  void getCountryCode({required String countryCode}){
-     this.countryCode=countryCode;
+  String countryCode = "";
+  void getCountryCode({required String countryCode}) {
+    this.countryCode = countryCode;
     emit(RegisterCountryCode(countryCode: this.countryCode));
   }
 }

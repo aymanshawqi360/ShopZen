@@ -29,6 +29,9 @@ class Endpoints {
   static const String passwordUpdate =
       '$_apiEndPont$_v1EndPont$_auth/password-update';
 
+  static const String refreshToken = '$_apiEndPont$_v1EndPont$_auth/refresh';
+
   //===========[Home]===========
-  static const String categories = '$_apiEndPont$_v1EndPont/get-categories';
+  static const String categories =
+      '$_apiEndPont$_v1EndPont$_v1EndPont get-categories';
 }

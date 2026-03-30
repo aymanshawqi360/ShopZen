@@ -21,7 +21,7 @@ void main() {
     mockFlutterSecureStorageImpl = MockFlutterSecureStorageImpl();
     envConfig = MokeEnvConfig();
     encryptionServiceImpl = EncryptionServiceImpl(
-      flutterSecureStorage: mockFlutterSecureStorageImpl,
+      flutterSecureStorageImpl: mockFlutterSecureStorageImpl,
       envConfig: envConfig,
     );
   });

@@ -44,6 +44,7 @@ dependencies:
   go_router: ^17.0.1
   # notWorking
   dio: ^5.9.0
+  flutter_secure_storage: ^10.0.0
   json_annotation: ^4.9.0
   retrofit: ^4.9.2
   retrofit_generator: ^10.2.1
@@ -53,7 +54,6 @@ dependencies:
   get_it: ^9.2.0
   #security
   shared_preferences: ^2.2.0
-  flutter_secure_storage: ^10.0.0
   encrypt: ^5.0.3
   flutter_dotenv: ^6.0.0
   #image

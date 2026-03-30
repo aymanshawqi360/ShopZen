@@ -4,12 +4,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shopzen/core/di/di.dart';
 import 'package:shopzen/core/error/api_error_model.dart';
-import 'package:shopzen/core/security/interfaces/i_decrypt_token.dart';
+import 'package:shopzen/core/security/interfaces/i_token_decryption.dart';
 import 'package:shopzen/core/security/interfaces/i_refresh_token.dart';
 
 class ApiInterceptorsWrapper extends Interceptor {
-  final IDecryptToken iDecryptToken;
-  final IRefreshToken iRefreshToken;
+  final ITokenDecrtyption iDecryptToken;
+  final ITokenRefresh iRefreshToken;
   // final Dio dio;
 
   const ApiInterceptorsWrapper({
