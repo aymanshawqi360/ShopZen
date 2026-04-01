@@ -29,7 +29,7 @@ class _HomeApiService implements HomeApiService {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'api/v1//get-categories',
+            'api/v1/get-categories',
             queryParameters: queryParameters,
             data: _data,
           )

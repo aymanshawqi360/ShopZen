@@ -3,7 +3,14 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shopzen/core/config/env_config.dart';
 import 'package:shopzen/core/notworking/dio_factory.dart';
+import 'package:shopzen/core/security/implementations/token_decryption_impl.dart';
+import 'package:shopzen/core/security/implementations/encryption_service_impl.dart';
 import 'package:shopzen/core/security/implementations/flutter_secure_storage_impl.dart';
+import 'package:shopzen/core/security/implementations/token_refresh_impl.dart';
+import 'package:shopzen/core/security/interfaces/i_token_decryption.dart';
+import 'package:shopzen/core/security/interfaces/i_encryption_service.dart';
+import 'package:shopzen/core/security/interfaces/i_token_refresh.dart';
+import 'package:shopzen/core/security/interfaces/i_secure_storage.dart';
 import 'package:shopzen/feature/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:shopzen/feature/auth/data/repo_implementation/auth_repo_implementation.dart';
 import 'package:shopzen/feature/auth/domain/repo/auth_repository.dart';
@@ -26,15 +33,13 @@ import 'package:shopzen/feature/home/presentation/cubit/category/category_cubit.
 
 final sl = GetIt.instance;
 Future<void> setupDependencies() async {
+  // Dio dio = await DioFactory.createDio();
   await _setupCore();
   await _auth();
   await _home();
 }
 
 Future<void> _setupCore() async {
-  //===== Dio =====
-  sl.registerLazySingleton<Dio>(() => DioFactory.createDio());
-
   //===== EnvConfig =====
   sl.registerLazySingleton<EnvConfig>(() => EnvConfig());
 
@@ -42,11 +47,27 @@ Future<void> _setupCore() async {
   sl.registerLazySingleton<FlutterSecureStorage>(() => FlutterSecureStorage());
 
   //===== FlutterSecureStorageImpl =====
-  sl.registerLazySingleton<FlutterSecureStorageImpl>(
+  sl.registerLazySingleton<ISecureStorage>(
     () => FlutterSecureStorageImpl(
       flutterSecureStorage: sl<FlutterSecureStorage>(),
     ),
   );
+  // ===== EncryptionService =====
+  sl.registerLazySingleton<IEncryptionService>(
+    () => EncryptionServiceImpl(flutterSecureStorageImpl: sl<ISecureStorage>()),
+  );
+  // ===== IDecryptToken =====
+  sl.registerLazySingleton<ITokenDecrtyption>(
+    () => TokenDecryptionImpl(encryptionService: sl(), iSecureStorage: sl()),
+  );
+
+  // ===== IRefreshToken =====
+  sl.registerLazySingleton<ITokenRefresh>(
+    () => TokenRefreshImpl(iDecryptToken: sl()),
+  );
+
+  //===== Dio =====
+  sl.registerLazySingleton<Dio>(() => DioFactory.createDio());
 }
 
 Future<void> _auth() async {
@@ -55,7 +76,7 @@ Future<void> _auth() async {
 
   //===== RepoImplementation =====
   sl.registerLazySingleton<AuthRepository>(
-    () => AuthRepoImplementation(apiService: sl()),
+    () => AuthRepoImplementation(apiService: sl(), iEncryptionService: sl()),
   );
 
   //===== UseCases =====
@@ -91,14 +112,12 @@ Future<void> _auth() async {
 
   //Register Cubit
   sl.registerFactory(
-    () => RegisterCubit(
-      registerUseCases: sl(),
-      flutterSecureStorageImpl: sl(),
-      envConfig: sl(),
-    ),
+    () => RegisterCubit(registerUseCases: sl(), iEncryptionService: sl()),
   );
   //Login Cubit
-  sl.registerFactory(() => LoginCubit(loginUseCases: sl()));
+  sl.registerFactory(
+    () => LoginCubit(loginUseCases: sl(), iEncryptionService: sl()),
+  );
 
   //ForgotPassword Cubit
   sl.registerFactory(

@@ -3,6 +3,7 @@ import 'package:shopzen/core/config/network_config.dart';
 import 'package:shopzen/core/error/api_error_hundler.dart';
 import 'package:shopzen/core/error/api_error_model.dart';
 import 'package:shopzen/core/error/failure_message.dart';
+import 'package:shopzen/core/security/interfaces/i_encryption_service.dart';
 import 'package:shopzen/feature/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:shopzen/feature/auth/data/mappers/auth_mappers.dart';
 import 'package:shopzen/feature/auth/data/model/change_password/forgot_password_request_model.dart';
@@ -19,8 +20,12 @@ import 'package:shopzen/feature/auth/domain/repo/auth_repository.dart';
 
 class AuthRepoImplementation implements AuthRepository {
   final AuthApiService apiService;
+  final IEncryptionService iEncryptionService;
 
-  AuthRepoImplementation({required this.apiService});
+  const AuthRepoImplementation({
+    required this.apiService,
+    required this.iEncryptionService,
+  });
 
   @override
   Future<Either<Failure, AuthResponseEntity>> register({
@@ -32,10 +37,11 @@ class AuthRepoImplementation implements AuthRepository {
       );
 
       if (response.status == NetworkConfig.statusOk) {
-        AuthResponseEntity resulte;
-        resulte = AuthMappers.authResponseModelToAuthResponseEntity(
-          registerResponseModel: response,
-        );
+        AuthResponseEntity resulte =
+            AuthMappers.authResponseModelToAuthResponseEntity(
+              registerResponseModel: response,
+            );
+
         return Right(resulte);
       } else {
         return Left(
