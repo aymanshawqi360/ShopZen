@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:shopzen/core/error/api_error_model.dart';
@@ -36,9 +34,6 @@ class LoginCubit extends Cubit<LoginState> {
         );
       },
       (response) {
-        log(
-          "Token -------------------------------------------${response.userData}",
-        );
         iEncryptionService.encrypt(plaintext: response.userData ?? "");
         emit(LoginSuccess());
       },

@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:math';
+import 'dart:math' hide log;
 import 'dart:typed_data';
 import 'package:dartz/dartz.dart';
 import 'package:shopzen/core/config/env_config.dart';
@@ -11,11 +11,11 @@ import 'package:shopzen/core/security/interfaces/i_secure_storage.dart';
 
 class EncryptionServiceImpl implements IEncryptionService {
   final ISecureStorage flutterSecureStorageImpl;
-  final EnvConfig envConfig;
+  // final EnvConfig envConfig;
 
   const EncryptionServiceImpl({
     required this.flutterSecureStorageImpl,
-    required this.envConfig,
+    //  required this.envConfig,
   });
 
   //Encrypt data
@@ -30,7 +30,10 @@ class EncryptionServiceImpl implements IEncryptionService {
       final encrypt = encrypter.encrypt(plaintext, iv: iv);
       final encode = base64Url.encode(iv.bytes + encrypt.bytes);
       if (encode.isNotEmpty) {
-        flutterSecureStorageImpl.write(key: "token", value: encode);
+        flutterSecureStorageImpl.write(
+          key: EnvConfig.instance.token,
+          value: encode,
+        );
       } else {
         return Left(Failure(errorMessage: StoargeFailureMessage.noToken));
       }
@@ -42,14 +45,14 @@ class EncryptionServiceImpl implements IEncryptionService {
 
   //Decrypt data
   @override
-  Future<Either<Failure, String>> decrypt({required String cipherText}) async {
+  Future<Either<Failure, String>> decrypt({required String? cipherText}) async {
     try {
       final key = await _createAndSaveKey();
-      /*
+
       if (cipherText == null || cipherText.isEmpty) {
         return Left(Failure(errorMessage: StoargeFailureMessage.noToken));
       }
-      */
+
       Uint8List decode = base64Url.decode(cipherText);
       final iv = enc.IV(decode.sublist(0, 16));
       final cipher = enc.Encrypted(decode.sublist(16));
@@ -65,8 +68,7 @@ class EncryptionServiceImpl implements IEncryptionService {
 
   Future<enc.Key> _createAndSaveKey() async {
     final key = await flutterSecureStorageImpl.read(
-      key: envConfig.encryptKey,
-      // envConfig.getEncryptionKey(),
+      key: EnvConfig.instance.encryptKey,
     );
 
     String? keyValue = key.fold((_) => null, (key) => key);
@@ -78,7 +80,7 @@ class EncryptionServiceImpl implements IEncryptionService {
     final keyBytes = List<int>.generate(32, (index) => random.nextInt(256));
     final encode = base64UrlEncode(keyBytes);
     await flutterSecureStorageImpl.write(
-      key: envConfig.encryptKey,
+      key: EnvConfig.instance.encryptKey,
       value: encode,
     );
     return enc.Key(Uint8List.fromList(keyBytes));

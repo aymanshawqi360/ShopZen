@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:shopzen/core/error/api_error_model.dart';
+import 'package:shopzen/core/security/interfaces/i_encryption_service.dart';
 import 'package:shopzen/feature/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:shopzen/feature/auth/data/model/change_password/forgot_password_request_model.dart';
 import 'package:shopzen/core/Shared/model/auth/forgot_password_response_model.dart';
@@ -17,7 +18,10 @@ import 'package:shopzen/feature/auth/domain/entity/forgot_password_entity.dart';
 
 class MockAuthApiService extends Mock implements AuthApiService {}
 
+class MockIEncryptionService extends Mock implements IEncryptionService {}
+
 void main() {
+  late MockIEncryptionService mockIEncryptionService;
   late MockAuthApiService mockAuthApiService;
   late AuthRepoImplementation authRepoImplementation;
   late RegisterRequestModel registerRequestModel;
@@ -82,8 +86,10 @@ void main() {
 
     // ========= AuthApiService =========
     mockAuthApiService = MockAuthApiService();
+    mockIEncryptionService = MockIEncryptionService();
     authRepoImplementation = AuthRepoImplementation(
       apiService: mockAuthApiService,
+      iEncryptionService: mockIEncryptionService,
     );
     //========================================================================
 
@@ -227,6 +233,7 @@ void main() {
       final result = await authRepoImplementation.forgotPassword(
         authRequestModel: forgotPasswordRequestModel,
       );
+      expect(result.isRight(), true);
       result.fold((_) => null, (right) {
         expect(right.status, 200);
         expect(right.message, "success");
@@ -250,9 +257,8 @@ void main() {
       final result = await authRepoImplementation.forgotPassword(
         authRequestModel: forgotPasswordRequestModelFailed,
       );
-
-      expect(result, isA<Either<Failure, ForgotPasswordEntity>>());
       expect(result.isLeft(), true);
+      expect(result, isA<Either<Failure, ForgotPasswordEntity>>());
       result.fold((failure) {
         expect(failure, isA<Failure>());
       }, (_) => null);

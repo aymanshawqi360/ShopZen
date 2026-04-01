@@ -1,8 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:shopzen/core/config/env_config.dart';
+import 'package:shopzen/core/error/api_error_hundler.dart';
 import 'package:shopzen/core/error/api_error_model.dart';
 import 'package:shopzen/core/error/failure_message.dart';
-import 'package:shopzen/core/security/interfaces/i_decrypt_token.dart';
+import 'package:shopzen/core/security/interfaces/i_token_decryption.dart';
 
 class TokenDecryptionImpl extends ITokenDecrtyption {
   TokenDecryptionImpl({
@@ -14,36 +16,36 @@ class TokenDecryptionImpl extends ITokenDecrtyption {
   Future<Either<Failure, String>> decryptToken() async {
     try {
       Either<StorageErrorModel, String?> accessTokenResult =
-          await iSecureStorage.read(key: "token");
-      if (accessTokenResult.isLeft()) {
-        return throw Exception();
-      }
-
-      final String? encryptedToken = accessTokenResult.fold(
-        (l) => null,
-        (r) => r,
+          await iSecureStorage.read(key: EnvConfig.instance.token);
+      return await accessTokenResult.fold(
+        (storageError) {
+          return Left(ApiErrorHundler.errorHundel(storageError));
+        },
+        (encryptedToken) async {
+          if (encryptedToken == null || encryptedToken.isEmpty) {
+            return Left(Failure(errorMessage: (StoargeFailureMessage.noToken)));
+          }
+          Either<Failure, String> decryptedResult = await encryptionService
+              .decrypt(cipherText: encryptedToken);
+          return decryptedResult.fold(
+            (failure) => Left(ApiErrorHundler.errorHundel(failure)),
+            (finalToken) {
+              if (finalToken.isNotEmpty) {
+                return Right(finalToken);
+              } else {
+                return Left(
+                  Failure(
+                    errorMessage: (StoargeFailureMessage.decryptedTokenIsEmpty),
+                  ),
+                );
+              }
+            },
+          );
+        },
       );
-      if (encryptedToken == null || encryptedToken.isEmpty) {
-        throw Exception();
-      }
-
-      final Either<Failure, String> decryptedResult = await encryptionService
-          .decrypt(cipherText: encryptedToken);
-
-      if (decryptedResult.isLeft()) {
-        throw Exception();
-      }
-
-      final String finalToken = decryptedResult.fold((l) => "", (r) => r);
-
-      if (finalToken.isNotEmpty) {
-        return Right(finalToken);
-      } else {
-        throw Exception();
-      }
     } catch (e) {
-      debugPrint("Error during token decryption: $e");
-      rethrow;
+      debugPrint("Unexpected Error during token decryption: $e");
+      return Left(ApiErrorHundler.errorHundel(e));
     }
   }
 }

@@ -5,7 +5,7 @@ import 'package:shopzen/core/constants/api_constants.dart';
 import 'package:shopzen/core/di/di.dart';
 import 'package:shopzen/core/notworking/interceptor.dart';
 import 'package:shopzen/core/security/interfaces/i_token_decryption.dart';
-import 'package:shopzen/core/security/interfaces/i_refresh_token.dart';
+import 'package:shopzen/core/security/interfaces/i_token_refresh.dart';
 
 class DioFactory {
   DioFactory._();
@@ -22,19 +22,12 @@ class DioFactory {
           headers: APiHeaders.headers,
         ),
       );
-      // cleateInterceptor(
-      //   interceptor: ApiInterceptorsWrapper(
-      //     iDecryptToken: sl<IDecryptToken>(),
-      //     iRefreshToken: sl<IRefreshToken>(),
-      //   ),
-      // );
+
       _cleateInterceptor();
       return dio!;
     } else {
       return dio!;
     }
-
-    // cleateInterceptor(dio: dio);
   }
 
   static void _cleateInterceptor() {
@@ -49,14 +42,12 @@ class DioFactory {
           error: true,
         ),
       );
-      dio!.interceptors.add(
-        ApiInterceptorsWrapper(
-          iDecryptToken: sl<ITokenDecrtyption>(),
-          iRefreshToken: sl<ITokenRefresh>(),
-        ),
-      );
     }
-    // aaaa@gmail.com
-    //Aeee123@
+    dio!.interceptors.add(
+      ApiInterceptorsWrapper(
+        iDecryptToken: sl<ITokenDecrtyption>(),
+        iRefreshToken: sl<ITokenRefresh>(),
+      ),
+    );
   }
 }

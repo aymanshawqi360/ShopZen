@@ -4,19 +4,19 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shopzen/core/di/di.dart';
 import 'package:shopzen/core/error/api_error_model.dart';
+import 'package:shopzen/core/error/failure_message.dart';
 import 'package:shopzen/core/security/interfaces/i_token_decryption.dart';
-import 'package:shopzen/core/security/interfaces/i_refresh_token.dart';
+import 'package:shopzen/core/security/interfaces/i_token_refresh.dart';
 
 class ApiInterceptorsWrapper extends Interceptor {
   final ITokenDecrtyption iDecryptToken;
   final ITokenRefresh iRefreshToken;
-  // final Dio dio;
 
   const ApiInterceptorsWrapper({
-    // required this.dio,
     required this.iDecryptToken,
     required this.iRefreshToken,
   });
+
   @override
   void onRequest(
     RequestOptions options,
@@ -44,7 +44,7 @@ class ApiInterceptorsWrapper extends Interceptor {
             return handler.reject(
               DioException(
                 requestOptions: options,
-                error: "No Token Found",
+                error: StoargeFailureMessage.noToken,
                 type: DioExceptionType.badResponse,
               ),
             );
@@ -57,6 +57,12 @@ class ApiInterceptorsWrapper extends Interceptor {
         DioException(requestOptions: options, error: e.toString()),
       );
     }
+  }
+
+  @override
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
+    debugPrint("[RESPONSE] : ${response.statusCode}");
+    return super.onResponse(response, handler);
   }
 
   @override
@@ -94,10 +100,4 @@ class ApiInterceptorsWrapper extends Interceptor {
 
     return super.onError(err, handler);
   }
-}
-
-@override
-void onResponse(Response response, ResponseInterceptorHandler handler) {
-  debugPrint("[RESPONSE] : ${response.statusCode}");
-  return handler.next(response);
 }

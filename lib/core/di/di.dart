@@ -3,7 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shopzen/core/config/env_config.dart';
 import 'package:shopzen/core/notworking/dio_factory.dart';
-import 'package:shopzen/core/security/implementations/decrypt_token_impl.dart';
+import 'package:shopzen/core/security/implementations/token_decryption_impl.dart';
 import 'package:shopzen/core/security/implementations/encryption_service_impl.dart';
 import 'package:shopzen/core/security/implementations/flutter_secure_storage_impl.dart';
 import 'package:shopzen/core/security/implementations/token_refresh_impl.dart';
@@ -54,10 +54,7 @@ Future<void> _setupCore() async {
   );
   // ===== EncryptionService =====
   sl.registerLazySingleton<IEncryptionService>(
-    () => EncryptionServiceImpl(
-      flutterSecureStorageImpl: sl<ISecureStorage>(),
-      envConfig: sl(),
-    ),
+    () => EncryptionServiceImpl(flutterSecureStorageImpl: sl<ISecureStorage>()),
   );
   // ===== IDecryptToken =====
   sl.registerLazySingleton<ITokenDecrtyption>(
@@ -115,12 +112,7 @@ Future<void> _auth() async {
 
   //Register Cubit
   sl.registerFactory(
-    () => RegisterCubit(
-      registerUseCases: sl(),
-
-      envConfig: sl(),
-      iEncryptionService: sl(),
-    ),
+    () => RegisterCubit(registerUseCases: sl(), iEncryptionService: sl()),
   );
   //Login Cubit
   sl.registerFactory(

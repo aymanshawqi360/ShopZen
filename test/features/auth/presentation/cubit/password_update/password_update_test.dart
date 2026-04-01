@@ -11,15 +11,13 @@ import 'package:shopzen/feature/auth/domain/entity/forgot_password_entity.dart';
 import 'package:shopzen/feature/auth/domain/use_cases/password_update_use_cases.dart';
 import 'package:shopzen/feature/auth/presentation/cubit/password_update/password_update_cubit.dart';
 
-import '../../../../../core/security/encryption_service_impl_test.dart';
-
 class MokePasswordUpdateUseCases extends Mock
     implements PasswordUpdateUseCases {}
 
 class MokeFlutterSecureStorageImpl extends Mock
     implements FlutterSecureStorageImpl {}
 
-class MockEnvConfig extends Mock implements EnvConfig {}
+class MokeEnvConfig extends Mock implements EnvConfig {}
 
 void main() {
   late MokeEnvConfig mokeEnvConfig;
@@ -27,12 +25,10 @@ void main() {
   late MokeFlutterSecureStorageImpl mokeFlutterSecureStorageImpl;
   late PasswordUpdateCubit passwordUpdateCubit;
 
-
   setUp(() {
-    registerFallbackValue(PasswordUpdateRequestModel(
-      email: '', oldPassword: '', newPassword: ''
-    ));
- 
+    registerFallbackValue(
+      PasswordUpdateRequestModel(email: '', oldPassword: '', newPassword: ''),
+    );
     mokeEnvConfig = MokeEnvConfig();
     mokePasswordUpdateUseCases = MokePasswordUpdateUseCases();
     mokeFlutterSecureStorageImpl = MokeFlutterSecureStorageImpl();
@@ -43,10 +39,8 @@ void main() {
     );
   });
 
-  
-
   blocTest<PasswordUpdateCubit, PasswordUpdateState>(
-    "emits [PasswordUpdateLoading(), PasswordUpdateSuccess()] when passwordUpdate is called",
+    "emits [PasswordUpdateLoading, PasswordUpdateSuccess] when passwordUpdate is called",
 
     build: () {
       when(() => mokeEnvConfig.getEncryptionEmail()).thenReturn("my_key");
@@ -72,7 +66,7 @@ void main() {
     expect: () => [PasswordUpdateLoading(), PasswordUpdateSuccess()],
   );
   blocTest(
-    "emits [PasswordUpdateLoading(), PasswordUpdateFailure(errorMessage: Failure(errorMessage: 'error'))] when passwordUpdate is called",
+    "emits [PasswordUpdateLoading, PasswordUpdateFailure(errorMessage: Failure(errorMessage: 'error'))] when passwordUpdate is called",
     build: () {
       when(() => mokeEnvConfig.getEncryptionEmail()).thenReturn("my_key");
       when(

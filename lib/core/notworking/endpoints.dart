@@ -1,37 +1,35 @@
 class Endpoints {
   //Api Path
-  static const String _apiEndPont = 'api/';
+  static const String _apiEndPoint = 'api/';
   //V1 Path
-  static const String _v1EndPont = 'v1/';
-  //Auth Path
-  static const String _auth = 'auth';
+  static const String _v1EndPoint = 'v1/';
+
+  static const String _basePath = '$_apiEndPoint$_v1EndPoint';
 
   //===========[Auth]===========
+  static const String _auth = 'auth';
 
   //Register
-  static const String register = '$_apiEndPont$_v1EndPont$_auth/register';
+  static const String register = '$_basePath$_auth/register';
 
   //Login
-  static const String login = '$_apiEndPont$_v1EndPont$_auth/login';
+  static const String login = '$_basePath$_auth/login';
 
   //Change Password
-  static const String forgotPassword =
-      '$_apiEndPont$_v1EndPont$_auth/forgot-password';
+  static const String forgotPassword = '$_basePath$_auth/forgot-password';
 
   //Resend Otp
-  static const String otpVerification =
-      '$_apiEndPont$_v1EndPont$_auth/otp-verification';
+  static const String otpVerification = '$_basePath$_auth/otp-verification';
 
   //Reset Password
-  static const String resetPassword =
-      '$_apiEndPont$_v1EndPont$_auth/reset-password';
-  //Password Update
-  static const String passwordUpdate =
-      '$_apiEndPont$_v1EndPont$_auth/password-update';
+  static const String resetPassword = '$_basePath$_auth/reset-password';
 
-  static const String refreshToken = '$_apiEndPont$_v1EndPont$_auth/refresh';
+  //Password Update
+  static const String passwordUpdate = '$_basePath$_auth/password-update';
+
+  //Refresh
+  static const String refreshToken = '$_basePath$_auth/refresh';
 
   //===========[Home]===========
-  static const String categories =
-      '$_apiEndPont$_v1EndPont$_v1EndPont get-categories';
+  static const String categories = '${_basePath}get-categories';
 }
