@@ -16,16 +16,16 @@ class TokenRefreshImpl extends ITokenRefresh {
         throw Exception();
       }
       String data = rr.fold((_) => '', (ifRight) => ifRight);
-      final response = await Dio().post(
+      Response response = await Dio().post(
         "${ApiBasUrl.baseUrl}${Endpoints.refreshToken}",
         options: Options(headers: {"Authorization": "Bearer $data"}),
       );
 
-      if (response.statusCode != 200 || response.data["access"] == null) {
+      if (response.statusCode != 200 || response.data["access_token"] == null) {
         throw Exception();
       }
-      iDecryptToken.encryptionService.encrypt(
-        plaintext: response.data["access"],
+      await iDecryptToken.encryptionService.encrypt(
+        plaintext: response.data["access_token"],
       );
       return Right(null);
     } catch (error) {
