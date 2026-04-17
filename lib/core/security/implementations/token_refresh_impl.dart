@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:shopzen/core/constants/api_constants.dart';
@@ -20,13 +22,14 @@ class TokenRefreshImpl extends ITokenRefresh {
         "${ApiBasUrl.baseUrl}${Endpoints.refreshToken}",
         options: Options(headers: {"Authorization": "Bearer $data"}),
       );
+      log("response ============= ${response.data}");
 
-      if (response.statusCode != 200 || response.data["access_token"] == null) {
-        throw Exception();
+      if (response.statusCode == 200) {
+        await iDecryptToken.encryptionService.encrypt(
+          plaintext: response.data["data"]["access_token"],
+        );
       }
-      await iDecryptToken.encryptionService.encrypt(
-        plaintext: response.data["access_token"],
-      );
+
       return Right(null);
     } catch (error) {
       return Left(ApiErrorHundler.errorHundel(error));

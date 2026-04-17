@@ -16,11 +16,7 @@ class TokenDecryptionImpl extends ITokenDecrtyption {
   Future<Either<Failure, String>> decryptToken() async {
     try {
       Either<StorageErrorModel, String?> accessTokenResult =
-          await iSecureStorage.read(
-            key:
-                //EnvConfig.instance.token
-                "Shawqi",
-          );
+          await iSecureStorage.read(key: EnvConfig.instance.token);
       return await accessTokenResult.fold(
         (storageError) {
           return Left(ApiErrorHundler.errorHundel(storageError));
