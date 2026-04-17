@@ -55,11 +55,8 @@ class ApiInterceptorsWrapper extends Interceptor {
       "ERORR[${err.response?.statusCode}] => PATH : ${err.requestOptions.path}",
     );
 
-    if (err.response?.statusCode == NetworkConfig.statusUnauthorized) {
-      // if (err.requestOptions.path.contains("refresh")) {
-      debugPrint("Token refresh failed. Directing to logout.");
-      //   return handler.reject(err);
-      // }
+    if (err.response?.statusCode == NetworkConfig.statusUnauthorized &&
+        !err.requestOptions.path.contains("refresh")) {
       try {
         Either<Failure, void> refreshResult = await iRefreshToken
             .getRefreshToken();
@@ -79,6 +76,9 @@ class ApiInterceptorsWrapper extends Interceptor {
         debugPrint("Error during token decryption after refresh: $e");
         return handler.reject(err);
       }
+    } else {
+      debugPrint("Token refresh failed. Directing to logout.");
+      return handler.reject(err);
     }
 
     return super.onError(err, handler);
