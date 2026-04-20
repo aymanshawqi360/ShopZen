@@ -11,13 +11,12 @@ class MockSecureStorage extends Mock implements ISecureStorage {}
 void main() {
   late EncryptionServiceImpl encryptionServiceImpl;
   late MockSecureStorage mockSecureStorage;
-  //String? storedKey;
+
   setUp(() {
     mockSecureStorage = MockSecureStorage();
     encryptionServiceImpl = EncryptionServiceImpl(
       flutterSecureStorageImpl: mockSecureStorage,
     );
-    // storedKey = null;
   });
 
   ///This test is for encrypt and decrypt
@@ -41,28 +40,36 @@ void main() {
     });
 
     //Special test in encryption
-    final resultEncrypt = await encryptionServiceImpl.encrypt(
-      plaintext: testData,
-    );
+    final resultEncrypt = await encryptionServiceImpl.encrypt(testData);
     expect(resultEncrypt.isRight(), true);
     expect(resultEncrypt, isA<Either<Failure, String>>());
     String ifRightEncrypt = resultEncrypt.fold((_) => "", (ifRight) {
       expect(ifRight, isA<String>());
       expect(ifRight, isNotEmpty);
-      return ifRight;
+      return ifRight.toString();
     });
 
     debugPrint(ifRightEncrypt);
 
     ///Special test in decryption
-
-    final resultDecrypt = await encryptionServiceImpl.decrypt(cipherText: "");
+    when(
+      () => mockSecureStorage.read(key: any(named: 'key')),
+    ).thenAnswer((_) async => Right(storedKey));
+    final resultDecrypt = await encryptionServiceImpl.decrypt(
+      cipherText: ifRightEncrypt,
+    );
     expect(resultDecrypt.isRight(), true);
     expect(resultDecrypt, isA<Either<Failure, String>>());
-    final isRightDecrypt = resultDecrypt.fold((_) => null, (ifRight) {
-      expect(ifRight, isA<String>());
-      return ifRight;
-    });
+    final isRightDecrypt = resultDecrypt.fold(
+      (f) {
+        expect(f, isA<Failure>());
+        debugPrint(f.errorMessage);
+      },
+      (ifRight) {
+        expect(ifRight, isA<String>());
+        return ifRight;
+      },
+    );
 
     debugPrint(isRightDecrypt.toString());
   });

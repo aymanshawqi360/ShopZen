@@ -20,13 +20,14 @@ class TokenRefreshImpl extends ITokenRefresh {
         "${ApiBasUrl.baseUrl}${Endpoints.refreshToken}",
         options: Options(headers: {"Authorization": "Bearer $data"}),
       );
-
-      if (response.statusCode != 200 || response.data["access_token"] == null) {
+      if (response.statusCode != 200 &&
+          response.data["data"]["access_token"] == null) {
         throw Exception();
       }
       await iDecryptToken.encryptionService.encrypt(
-        plaintext: response.data["access_token"],
+        response.data["data"]["access_token"],
       );
+
       return Right(null);
     } catch (error) {
       return Left(ApiErrorHundler.errorHundel(error));

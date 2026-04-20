@@ -1,18 +1,20 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:shopzen/core/di/di.dart';
+import 'package:shopzen/core/config/network_config.dart';
 import 'package:shopzen/core/error/api_error_model.dart';
-import 'package:shopzen/core/error/failure_message.dart';
 import 'package:shopzen/core/security/interfaces/i_token_decryption.dart';
 import 'package:shopzen/core/security/interfaces/i_token_refresh.dart';
 
 class ApiInterceptorsWrapper extends Interceptor {
   final ITokenDecrtyption iDecryptToken;
   final ITokenRefresh iRefreshToken;
-
-  const ApiInterceptorsWrapper({
+  final Dio _dio;
+  const ApiInterceptorsWrapper(
+    this._dio, {
     required this.iDecryptToken,
     required this.iRefreshToken,
   });
@@ -24,38 +26,41 @@ class ApiInterceptorsWrapper extends Interceptor {
   ) async {
     try {
       Either<Failure, String> result = await iDecryptToken.decryptToken();
-
+      // if (options.path.contains("login") || options.path.contains("signUp")) {
+      //   return handler.next(options); // مرر الطلب مباشرة للسيرفر
+      // }
       return result.fold(
-        (failure) {
-          return handler.reject(
-            DioException(
-              requestOptions: options,
-              error: "Security/Storage Error: ${failure.errorMessage}",
-              type: DioExceptionType.badResponse,
-            ),
-          );
+        (_) {
+          // return handler.next(options);
+          log("Authentication required but decryption failed.");
+          // return handler.reject(
+          //   DioException(
+          //     requestOptions: options,
+          //     error: "Authentication required but decryption failed.",
+          //   ),
+          // );
+          return handler.next(options);
         },
         (token) {
           if (token.isNotEmpty) {
             options.headers["Authorization"] = "Bearer $token";
             debugPrint("Token added successfully: [ONREQUEST]");
-            return handler.next(options);
-          } else {
-            return handler.reject(
-              DioException(
-                requestOptions: options,
-                error: StoargeFailureMessage.noToken,
-                type: DioExceptionType.badResponse,
-              ),
-            );
+            log("Token added successfully: [ONREQUEST]");
           }
+          log("Token added successfully: [ONREQUEST]");
+          return handler.next(options);
         },
       );
-    } catch (e) {
-      debugPrint("Interceptor Error: $e");
-      return handler.reject(
-        DioException(requestOptions: options, error: e.toString()),
-      );
+    } catch (failure) {
+      debugPrint("Interceptor Error: $failure");
+      log("Interceptor Error: $failure");
+      return handler.next(options);
+      // return handler.reject(
+      //   DioException(
+      //     requestOptions: options,
+      //     error: "An error occurred during authentication setup.",
+      //   ),
+      // );
     }
   }
 
@@ -71,13 +76,9 @@ class ApiInterceptorsWrapper extends Interceptor {
       "ERORR[${err.response?.statusCode}] => PATH : ${err.requestOptions.path}",
     );
 
-    if (err.response?.statusCode == 401) {
-      if (err.requestOptions.path.contains("refresh")) {
-        debugPrint("Token refresh failed. Directing to logout.");
-        return handler.reject(err);
-      }
+    if (err.response?.statusCode == NetworkConfig.statusUnauthorized &&
+        !err.requestOptions.path.contains("refresh")) {
       try {
-        final dio = sl<Dio>();
         Either<Failure, void> refreshResult = await iRefreshToken
             .getRefreshToken();
 
@@ -88,7 +89,7 @@ class ApiInterceptorsWrapper extends Interceptor {
             RequestOptions opts = err.requestOptions;
             opts.headers["Authorization"] = "Bearer $token";
             debugPrint("Token refreshed and retried successfully!");
-            final response = await dio.fetch(opts);
+            final response = await _dio.fetch(opts);
             return handler.resolve(response);
           }
         }
@@ -96,6 +97,9 @@ class ApiInterceptorsWrapper extends Interceptor {
         debugPrint("Error during token decryption after refresh: $e");
         return handler.reject(err);
       }
+    } else {
+      debugPrint("Token refresh failed. Directing to logout.");
+      return handler.reject(err);
     }
 
     return super.onError(err, handler);

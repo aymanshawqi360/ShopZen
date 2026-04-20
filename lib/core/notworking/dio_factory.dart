@@ -45,6 +45,7 @@ class DioFactory {
     }
     dio!.interceptors.add(
       ApiInterceptorsWrapper(
+        dio!,
         iDecryptToken: sl<ITokenDecrtyption>(),
         iRefreshToken: sl<ITokenRefresh>(),
       ),

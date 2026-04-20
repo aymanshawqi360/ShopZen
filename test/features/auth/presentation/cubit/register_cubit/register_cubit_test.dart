@@ -62,9 +62,7 @@ void main() {
       'emits [RegisterLoading, RegisterSuccess] when register is called successfully',
       build: () {
         when(
-          () => mockIEncryptionService.encrypt(
-            plaintext: any(named: 'plaintext'),
-          ),
+          () => mockIEncryptionService.encrypt(any(named: 'plaintext')),
         ).thenAnswer((_) async => const Right(""));
         when(
           () => mockRegisterUseCases.register(
