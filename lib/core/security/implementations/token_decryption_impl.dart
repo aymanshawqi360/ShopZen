@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:shopzen/core/config/env_config.dart';
@@ -17,12 +19,15 @@ class TokenDecryptionImpl extends ITokenDecrtyption {
     try {
       Either<StorageErrorModel, String?> accessTokenResult =
           await iSecureStorage.read(key: EnvConfig.instance.token);
-      return await accessTokenResult.fold(
+
+      return accessTokenResult.fold(
         (storageError) {
+          log("storageError: $storageError");
           return Left(ApiErrorHundler.errorHundel(storageError));
         },
         (encryptedToken) async {
           if (encryptedToken == null || encryptedToken.isEmpty) {
+            log("encryptedToken is Null: $encryptedToken");
             return Left(Failure(errorMessage: (StoargeFailureMessage.noToken)));
           }
           Either<Failure, String> decryptedResult = await encryptionService

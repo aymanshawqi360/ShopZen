@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -24,22 +26,41 @@ class ApiInterceptorsWrapper extends Interceptor {
   ) async {
     try {
       Either<Failure, String> result = await iDecryptToken.decryptToken();
-
+      // if (options.path.contains("login") || options.path.contains("signUp")) {
+      //   return handler.next(options); // مرر الطلب مباشرة للسيرفر
+      // }
       return result.fold(
         (_) {
+          // return handler.next(options);
+          log("Authentication required but decryption failed.");
+          // return handler.reject(
+          //   DioException(
+          //     requestOptions: options,
+          //     error: "Authentication required but decryption failed.",
+          //   ),
+          // );
           return handler.next(options);
         },
         (token) {
           if (token.isNotEmpty) {
             options.headers["Authorization"] = "Bearer $token";
             debugPrint("Token added successfully: [ONREQUEST]");
+            log("Token added successfully: [ONREQUEST]");
           }
+          log("Token added successfully: [ONREQUEST]");
           return handler.next(options);
         },
       );
     } catch (failure) {
       debugPrint("Interceptor Error: $failure");
+      log("Interceptor Error: $failure");
       return handler.next(options);
+      // return handler.reject(
+      //   DioException(
+      //     requestOptions: options,
+      //     error: "An error occurred during authentication setup.",
+      //   ),
+      // );
     }
   }
 

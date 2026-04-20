@@ -25,7 +25,7 @@ class TokenRefreshImpl extends ITokenRefresh {
         throw Exception();
       }
       await iDecryptToken.encryptionService.encrypt(
-        plaintext: response.data["data"]["access_token"],
+        response.data["data"]["access_token"],
       );
 
       return Right(null);

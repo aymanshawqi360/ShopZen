@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:shopzen/core/Shared/auth/entity/auth_response_entity.dart';
 import 'package:shopzen/core/error/api_error_model.dart';
 import 'package:shopzen/core/security/interfaces/i_encryption_service.dart';
 import 'package:shopzen/feature/auth/data/model/login/login_request_model.dart';
@@ -34,9 +37,14 @@ class LoginCubit extends Cubit<LoginState> {
         );
       },
       (response) {
-        iEncryptionService.encrypt(plaintext: response.userData ?? "");
+        log("message: ${response.userData}");
+        encryptToken(response);
         emit(LoginSuccess());
       },
     );
+  }
+
+  Future<void> encryptToken(AuthResponseEntity response) async {
+    await iEncryptionService.encrypt(response.userData ?? "");
   }
 }

@@ -11,7 +11,10 @@ class FlutterSecureStorageImpl implements ISecureStorage {
   }) : _flutterSecureStorage =
            flutterSecureStorage ??
            const FlutterSecureStorage(
-             aOptions: AndroidOptions(encryptedSharedPreferences: true),
+             aOptions: AndroidOptions(
+               encryptedSharedPreferences: true,
+               resetOnError: true,
+             ),
              iOptions: IOSOptions(
                accessibility: KeychainAccessibility.first_unlock,
              ),
@@ -20,41 +23,36 @@ class FlutterSecureStorageImpl implements ISecureStorage {
              ),
            );
   @override
-  Future<Either<StorageErrorModel, bool>> containsKey({required String key}) async{
-   try {
-    bool isExist = await _flutterSecureStorage.containsKey(key: key);
-     return Right(isExist);
-   } catch (e) {
-     return Left( 
-       DataNotFoundFailure(message: StoargeFailureMessage.keyNotFound)
-     );
-     
-   }
-  }
-
-  @override
-  Future<Either<StorageErrorModel, void>> delete({required String key}) async{
+  Future<Either<StorageErrorModel, bool>> containsKey({
+    required String key,
+  }) async {
     try {
-      await _flutterSecureStorage.delete(key: key);
-      return Right(null);
+      bool isExist = await _flutterSecureStorage.containsKey(key: key);
+      return Right(isExist);
     } catch (e) {
-      return Left( 
-        StorageDeleteFailure()
+      return Left(
+        DataNotFoundFailure(message: StoargeFailureMessage.keyNotFound),
       );
-      
     }
   }
 
   @override
-  Future<Either<StorageErrorModel, void>> deleteAll() async{
-    
+  Future<Either<StorageErrorModel, void>> delete({required String key}) async {
     try {
-        await _flutterSecureStorage.deleteAll();
+      await _flutterSecureStorage.delete(key: key);
+      return Right(null);
+    } catch (e) {
+      return Left(StorageDeleteFailure());
+    }
+  }
+
+  @override
+  Future<Either<StorageErrorModel, void>> deleteAll() async {
+    try {
+      await _flutterSecureStorage.deleteAll();
       return Right(null);
     } catch (error) {
-
       return Left(StorageDeleteAllFailure());
-      
     }
   }
 
@@ -64,23 +62,17 @@ class FlutterSecureStorageImpl implements ISecureStorage {
       String? reas = await _flutterSecureStorage.read(key: key);
       return Right(reas);
     } catch (e) {
-      return Left( 
-        StorageReadFailure()
-      );
-       
+      return Left(StorageReadFailure());
     }
   }
 
   @override
-  Future<Either<StorageErrorModel, Map<String, String>>> readAll() async{
+  Future<Either<StorageErrorModel, Map<String, String>>> readAll() async {
     try {
-      final reasAll=await _flutterSecureStorage.readAll();
+      final reasAll = await _flutterSecureStorage.readAll();
       return Right(reasAll);
     } catch (e) {
-      return Left( 
-        StorageReadAllFailure(message:e.toString())
-      );
-      
+      return Left(StorageReadAllFailure(message: e.toString()));
     }
   }
 
@@ -88,15 +80,12 @@ class FlutterSecureStorageImpl implements ISecureStorage {
   Future<Either<StorageErrorModel, void>> write({
     required String key,
     required String value,
-  }) async{
+  }) async {
     try {
-     await _flutterSecureStorage.write(key: key, value: value);
+      await _flutterSecureStorage.write(key: key, value: value);
       return Right(null);
     } catch (e) {
-      return Left( 
-        StorageWriteFailure()
-      );
-      
+      return Left(StorageWriteFailure());
     }
   }
 }

@@ -40,9 +40,7 @@ void main() {
     });
 
     //Special test in encryption
-    final resultEncrypt = await encryptionServiceImpl.encrypt(
-      plaintext: testData,
-    );
+    final resultEncrypt = await encryptionServiceImpl.encrypt(testData);
     expect(resultEncrypt.isRight(), true);
     expect(resultEncrypt, isA<Either<Failure, String>>());
     String ifRightEncrypt = resultEncrypt.fold((_) => "", (ifRight) {

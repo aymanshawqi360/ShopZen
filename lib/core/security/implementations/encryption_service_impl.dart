@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:math' hide log;
 import 'dart:typed_data';
 import 'package:dartz/dartz.dart';
@@ -17,7 +18,7 @@ class EncryptionServiceImpl implements IEncryptionService {
 
   //Encrypt data
   @override
-  Future<Either<Failure, String>> encrypt({required String plaintext}) async {
+  Future<Either<Failure, String>> encrypt(String plaintext) async {
     try {
       final key = await _createAndSaveKey();
       final iv = enc.IV.fromSecureRandom(16);
@@ -26,10 +27,11 @@ class EncryptionServiceImpl implements IEncryptionService {
       );
       final encrypt = encrypter.encrypt(plaintext, iv: iv);
       final encode = base64Url.encode(iv.bytes + encrypt.bytes);
+
       if (encode.isNotEmpty) {
         await flutterSecureStorageImpl.write(
           key: EnvConfig.instance.token,
-          value: encode,
+          value: encode.toString(),
         );
       } else {
         return Left(Failure(errorMessage: StoargeFailureMessage.noToken));
@@ -70,6 +72,7 @@ class EncryptionServiceImpl implements IEncryptionService {
     String? keyValue = key.fold((_) => null, (key) => key);
     if (keyValue != null && keyValue.isNotEmpty) {
       final byte = base64Url.decode(keyValue);
+      log("byte: $byte");
       return enc.Key(Uint8List.fromList(byte));
     }
     final random = Random.secure();

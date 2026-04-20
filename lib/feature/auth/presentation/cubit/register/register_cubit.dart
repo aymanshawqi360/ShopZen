@@ -37,7 +37,7 @@ class RegisterCubit extends Cubit<RegisterState> {
           );
         },
         (ifRight) {
-          iEncryptionService.encrypt(plaintext: ifRight.userData ?? "");
+          iEncryptionService.encrypt(ifRight.userData ?? "");
           emit(RegisterSuccess());
         },
       );
