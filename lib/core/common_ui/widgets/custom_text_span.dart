@@ -1,4 +1,3 @@
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:shopzen/core/constants/app_size.dart';
@@ -10,13 +9,15 @@ class CustomTextSpan extends StatelessWidget {
   final String fristText;
   final String lateText;
   final void Function()? onTap;
-  final TextStyle?  fristStyle;
-  final TextStyle?  lateStyle;
+  final TextStyle? fristStyle;
+  final TextStyle? lateStyle;
   const CustomTextSpan({
     super.key,
     required this.fristText,
     required this.lateText,
-    this.onTap, this.fristStyle, this.lateStyle,
+    this.onTap,
+    this.fristStyle,
+    this.lateStyle,
   });
 
   @override
@@ -27,20 +28,24 @@ class CustomTextSpan extends StatelessWidget {
           children: [
             TextSpan(
               recognizer: TapGestureRecognizer()..onTap = onTap,
-              style:lateStyle?? AppTextStyles.bodyLarge.copyWith(
-                fontSize: AppSize.textSizeSp16,
-                color:context.islight()? AppColors.primaryColor:AppColors.textWhite,
-              ),  
+              style:
+                  lateStyle ??
+                  AppTextStyles.bodyLarge.copyWith(
+                    fontSize: AppSize.textSizeSp16,
+                    color: context.islight()
+                        ? AppColors.primaryColor
+                        : AppColors.textWhite,
+                  ),
               text: lateText,
             ),
           ],
-          style:fristStyle?? AppTextStyles.bodyLarge.copyWith(
-            fontSize: AppSize.textSizeSp17,
-            color: AppColors.textGray,
-            // context.isDark() ? AppColors.textGray : AppColors.textBlack,
-          ),
+          style:
+              fristStyle ??
+              AppTextStyles.bodyLarge.copyWith(
+                fontSize: AppSize.textSizeSp17,
+                color: AppColors.textGray,
+              ),
           text: fristText,
-
         ),
       ),
     );

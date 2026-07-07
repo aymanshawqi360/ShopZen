@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "784194855126",
+    "project_id": "shopzen-distribution",
+    "storage_bucket": "shopzen-distribution.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:784194855126:android:afc003774591ff5b6ba977",
+        "android_client_info": {
+          "package_name": "com.example.shopzen"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDawvOchFb6nIiygGEhaT1v03hwydHPTU8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
