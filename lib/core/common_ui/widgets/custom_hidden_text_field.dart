@@ -26,7 +26,7 @@ class _CustomHiddenTextFieldState extends State<CustomHiddenTextField> {
   late bool _isHidden;
   @override
   void initState() {
-    _isHidden = false;
+    _isHidden = true;
     super.initState();
   }
 
